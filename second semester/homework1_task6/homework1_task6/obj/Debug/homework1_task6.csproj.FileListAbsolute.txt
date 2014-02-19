@@ -1,0 +1,6 @@
+D:\Julia-Khramyshkina\Julia-Khramyshkina\homework1_task6\homework1_task6\bin\Debug\homework1_task6.exe.config
+D:\Julia-Khramyshkina\Julia-Khramyshkina\homework1_task6\homework1_task6\bin\Debug\homework1_task6.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\homework1_task6\homework1_task6\bin\Debug\homework1_task6.pdb
+D:\Julia-Khramyshkina\Julia-Khramyshkina\homework1_task6\homework1_task6\obj\Debug\homework1_task6.csprojResolveAssemblyReference.cache
+D:\Julia-Khramyshkina\Julia-Khramyshkina\homework1_task6\homework1_task6\obj\Debug\homework1_task6.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\homework1_task6\homework1_task6\obj\Debug\homework1_task6.pdb
