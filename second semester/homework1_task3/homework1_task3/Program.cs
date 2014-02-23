@@ -1,4 +1,4 @@
-﻿namespace homework1_task3
+﻿namespace Homework1_task3
 {
     class Program
     {
