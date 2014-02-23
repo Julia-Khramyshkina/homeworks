@@ -14,7 +14,6 @@ namespace Task7
                 array[i, j + 1] = array[i, j];
                 array[i, j] = temp;
             }
-
         }
 
         // сортировка матрицы по убыванию
