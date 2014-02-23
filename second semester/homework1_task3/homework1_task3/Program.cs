@@ -5,10 +5,10 @@
         // распечатка массива
         static void PrintArray(int [] array, int size)
         {
-	        for (int i = 0; i < size; ++i) 
-            {
-		         System.Console.Write("{0} ", array[i]);
-	        }
+       for (int i = 0; i < size; ++i) 
+       {
+       		System.Console.Write("{0} ", array[i]);
+       }
         }
         // сортировка массива по убыванию
         static void BubbleSort(int [] array, int size)
