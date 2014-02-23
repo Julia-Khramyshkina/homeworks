@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-//using StreamReader;
-
 
 namespace Homework1_task6
 {
