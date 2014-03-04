@@ -12,19 +12,30 @@ namespace NameSpaceForHash
         public int sizeOfHash = 500;
         public class HashElement
         {
+
             public HashElement()
             {
                 List hashElement = new List();
-
-               // public
             }
+            //public List Element
+            //{
+            //    get
+            //    {
+            //        return hashElement;
+            //    }
+
+            //    set
+            //    {
+            //        this.Element = hashElement;
+            //    }
+            //}
      
        //    public HashElement Next { get; set; }
             
         }
         public HashTable()
         {
-            HashElement [] hashTable = new HashElement[sizeOfHash];
+            HashElement [] hashTable = new HashElement [sizeOfHash];
             for (int i = 0; i < sizeOfHash; ++i)
             {
                 hashTable[i] = new HashElement();
@@ -45,7 +56,9 @@ namespace NameSpaceForHash
         
         public void insertToHashTable(int newElement)
         {
-           
+           HashElement list = new HashElement();
+           list.InsertToEnd(newElement);
+
         }
 
 
