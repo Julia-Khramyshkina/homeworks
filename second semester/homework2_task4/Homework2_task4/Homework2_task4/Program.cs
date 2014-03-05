@@ -14,12 +14,9 @@ namespace Homework2_task4
         static void Main(string[] args)
         {
             GeneralStack stack = new Stack();
-            stack.Push(1);
+            Calculator qwety = new Calculator(stack);
+            qwety.PushResult(1);
             stack.Push(2);
-            stack.Push(3);
-            stack.Push(4);
-            stack.Push(5);
-            // а дальше пока просто какая-то грустная фееричность..
         }
     }
 }

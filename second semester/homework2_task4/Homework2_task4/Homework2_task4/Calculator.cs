@@ -9,8 +9,13 @@ namespace NameSpaceCalculator
     using GeneralStack;
     class Calculator
     {
-        private GeneralStack stack;
+        public Calculator(GeneralStack stack)
+        {
+            this.stack = stack;
+        }
 
+        private GeneralStack stack;
+        
         public int PopValue()
         {
             return stack.Pop();
