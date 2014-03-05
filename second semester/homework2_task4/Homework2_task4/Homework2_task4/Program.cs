@@ -16,8 +16,13 @@ namespace Homework2_task4
         {
             GeneralStack stack = new StackArray();
             Calculator qwety = new Calculator(stack);
-            qwety.PushResult(1);
+            //qwety.PushResult(1);
             stack.Push(2);
+            stack.Push(3);
+            stack.Push(4);
+            int x = stack.Pop();
+            int y = stack.Pop();
+
         }
     }
 }

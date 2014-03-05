@@ -13,17 +13,15 @@ namespace NameSpaceForStackWithArray
     public class StackArray : GeneralStack
     {
 
-        public class StackElement
+        public int[] aValue = new int [100];
+        public int head;
+        public StackArray()
         {
-            public int[] aValue { get; set; }
-            public int aLast { get; set; }
-            public StackElement(int value, int last)
-            {
-                aValue[aLast] = value;
-                aLast = last;
-            }
-            public StackElement Next { get; set; }
+            this.head = -1;
+           // aValue[i]
         }
+
+
         //private StackElement head = aValue[0];
 
 
@@ -33,6 +31,10 @@ namespace NameSpaceForStackWithArray
         /// <param name="Value to be pushed."></param>
         public override void Push(int value)
         {
+            ++this.head;
+            this.aValue[head] = value;
+
+
             //var newElement = new StackElement(value)
             //{
             //    Next = aLast,
@@ -47,7 +49,11 @@ namespace NameSpaceForStackWithArray
         /// </summary>
         public override int Pop()
         {
-            return 0;
+            int temp = this.aValue[head];
+            this.aValue[head] = 0;
+            --this.head;
+            return temp;
+
             //if (head == null)
             //{
             //    return -1;
