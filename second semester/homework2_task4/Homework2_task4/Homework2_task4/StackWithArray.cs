@@ -6,67 +6,86 @@ using System.Threading.Tasks;
 
 namespace NameSpaceForStackWithArray
 {
+    using GeneralStack;
     /// <summary>
     /// Stack.
     /// </summary>
-    public class Stack
+    public class StackArray : GeneralStack
     {
-        private class StackElement
+
+        public class StackElement
         {
-            private int [] aValue = new int [100];
-            private int i = 0;
-
-            public int Value
+            public int[] aValue { get; set; }
+            public int aLast { get; set; }
+            public StackElement(int value, int last)
             {
-                get
-                {
-                    ++i;
-                    return aValue[i];
-                }
-
-                set
-                {
-                    this.aValue[i] = value;
-                    ++i;
-                }
+                aValue[aLast] = value;
+                aLast = last;
             }
+            public StackElement Next { get; set; }
+        }
+        //private StackElement head = aValue[0];
 
-            public StackElement [] Next { get; set; }
-            //public int ValueOfIndex
+
+        /// <summary>
+        /// Push value to a stack.
+        /// </summary>
+        /// <param name="Value to be pushed."></param>
+        public override void Push(int value)
+        {
+            //var newElement = new StackElement(value)
             //{
-            //    get
-            //    {
-            //        return i;
-            //    }
-            //    set
-            //    {
-            //        this.i = value;
-            //    }
-            //}
-     
-        
-        
-        
-        
-        
-        
-        
+            //    Next = aLast,
+            //    aValue = value
+            //};
 
-
-
-
-
-
-
-
-
-
-
-
-
+            //head = newElement;
         }
 
-        private StackElement [] head = new StackElement[0];
+        /// <summary>
+        /// Get value from stack.
+        /// </summary>
+        public override int Pop()
+        {
+            return 0;
+            //if (head == null)
+            //{
+            //    return -1;
+            //}
+
+            //var temp = head.aValue;
+            //head = head.Next;
+            //return temp;
+        }
+
+
+
+
+
+       // private StackElement head[0;] //= aValue[0];
+
+
+        //public class StackElement
+        //{
+        //    public int aValue {get; set;}
+
+        //    public StackElement(int value)
+        //    {
+        //        aValue = value;
+        //    }
+
+        //    public StackElement Next { get; set; }     
+        //}
+
+        //public StackArray()
+        //{
+            //for (int i = 0; i < 100; ++i)
+            //{
+            //   // stack[i] = value;
+            //}
+        //}
+
+        //private StackElement[] head = new StackElement[0];
 
         /// <summary>
         /// Push value to a stack.
@@ -102,9 +121,9 @@ namespace NameSpaceForStackWithArray
         /// Checking stack. Empty?
         /// </summary>
         /// <returns></returns>
-        public bool IsEmpty()
-        {
-            return head == null;
-        }
+        //public bool IsEmpty()
+        //{
+        //    return head == null;
+        //}
     }
 }

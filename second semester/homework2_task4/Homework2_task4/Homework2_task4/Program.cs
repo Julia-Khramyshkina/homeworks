@@ -9,11 +9,12 @@ namespace Homework2_task4
     using GeneralStack;
     using NameSpaceForStack;
     using NameSpaceCalculator;
+    using NameSpaceForStackWithArray;
     class Program
     {
         static void Main(string[] args)
         {
-            GeneralStack stack = new Stack();
+            GeneralStack stack = new StackArray();
             Calculator qwety = new Calculator(stack);
             qwety.PushResult(1);
             stack.Push(2);

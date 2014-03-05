@@ -9,7 +9,7 @@ namespace GeneralStack
     abstract public class GeneralStack
     {
         public abstract class StackElement
-        {
+        { 
         }
         
         public abstract int Pop();
