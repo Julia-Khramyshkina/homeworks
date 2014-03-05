@@ -11,23 +11,13 @@ namespace NameSpaceForStack
     /// </summary>
     public class Stack
     {
-        private class StackElement
+        public class StackElement
         {
-            private int aValue;
-
-            public int Value
+            public int aValue { get; set; }
+            public StackElement(int value)
             {
-                get
-                {
-                    return aValue;
-                }
-
-                set
-                {
-                    this.aValue = value;
-                }
+                aValue = value;
             }
-
             public StackElement Next { get; set; }
         }
 
@@ -39,10 +29,10 @@ namespace NameSpaceForStack
         /// <param name="Value to be pushed."></param>
         public void Push(int value)
         {
-            var newElement = new StackElement()
+            var newElement = new StackElement(value)
             {
                 Next = head,
-                Value = value
+                aValue = value
             };
 
             head = newElement;
@@ -58,7 +48,7 @@ namespace NameSpaceForStack
                 return -1;
             }
 
-            var temp = head.Value;
+            var temp = head.aValue;
             head = head.Next;
             return temp;
         }
