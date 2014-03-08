@@ -1,32 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NameSpaceForList
+﻿namespace NameSpaceForList
 {
     /// <summary>
     /// List.
     /// </summary>
     public class List
     {
-        private class ListElement
+        public class ListElement
         {
-            private int aValue;
-
-
-            public int Value
+            public int aValue { get; set; }
+            public ListElement(int value)
             {
-                get
-                {
-                    return aValue;
-                }
-
-                set
-                {
-                    this.aValue = value;
-                }
+                aValue = value;
             }
             public ListElement Next { get; set; }
         }
@@ -47,11 +31,12 @@ namespace NameSpaceForList
         /// <param name="Value to be insert to head."></param>
         public void InsertToHead(int value)
         {
-            var newElement = new ListElement()
+            var newElement = new ListElement(value)
             {
                 Next = head,
-                Value = value
+                aValue = value
             };
+
 
             head = newElement;
         }
@@ -74,9 +59,7 @@ namespace NameSpaceForList
                 tempElement = tempElement.Next;
             }
 
-            var newElement = new ListElement();
-            newElement.Value = value;
-            newElement.Next = null;
+            var newElement = new ListElement(value);
             tempElement.Next = newElement;
         }
 
@@ -84,22 +67,15 @@ namespace NameSpaceForList
         /// Calculating a list size.
         /// </summary>
         public int SizeOfList()
-        {
-            if (IsEmpty())
+        {   
+            var tempElement = head;
+            int countOfElements = 0;
+            while (tempElement != null)
             {
-                return 0;
+                tempElement = tempElement.Next;
+                ++countOfElements;
             }
-            else
-            {
-                var tempElement = head;
-                int countOfElements = 0;
-                while (tempElement != null)
-                {
-                    tempElement = tempElement.Next;
-                    ++countOfElements;
-                }
-                return countOfElements;
-            }
+            return countOfElements;            
         }
 
         /// <summary>
@@ -108,12 +84,10 @@ namespace NameSpaceForList
         /// <param name="Element for check."></param>
         public bool ElementExist(int value)
         {
-            if (IsEmpty())
-                return false;
             var tempElement = head;
             while (tempElement != null)
             {
-                if (tempElement.Value == value)
+                if (tempElement.aValue == value)
                     return true;
                 tempElement = tempElement.Next;
             }
@@ -128,20 +102,19 @@ namespace NameSpaceForList
         {
             if (!ElementExist(value))
             {
-                Console.WriteLine("Sorry, this element doesn't exist\n");
+                System.Console.WriteLine("Sorry, this element doesn't exist");
                 return;
             }
             var tempElement = head;
             var tempElementPrevious = head;
-            while (tempElement.Value != value)
+            while (tempElement.aValue != value)
             {
                 tempElement = tempElement.Next;
-                if (tempElement.Next.Value != value)
+                if (tempElement.Next.aValue != value)
                 {
                     tempElementPrevious = tempElementPrevious.Next;
                 }
             }
-
             tempElementPrevious.Next = tempElement.Next;
         }
 
@@ -153,11 +126,69 @@ namespace NameSpaceForList
             var tempELement = head;
             while (tempELement != null)
             {
-                Console.WriteLine("{0} ", tempELement.Value);
+                System.Console.WriteLine("{0} ", tempELement.aValue);
                 tempELement = tempELement.Next;
             }
         }
+
+        /// <summary>
+        /// Get value from this position.
+        /// </summary>
+        /// <param name="Position from which we obtain the value."></param>
+        /// <returns></returns>
+        public int ValueOnPosition(int position)
+        {
+            var tempElement = head;
+            int countPosition = 0;
+            while (countPosition != position)
+            {
+                tempElement = tempElement.Next;
+            }
+            return tempElement.aValue;
+        }
+
+        /// <summary>
+        /// Insert value to this position.
+        /// </summary>
+        /// <param name="Position."></param>
+        /// <param name="Value to be insert."></param>
+        public void InsertToThisPosition(int position, int value)
+        {            
+            var tempElement = head;
+            int countPosition = 0;
+            var newElement = new ListElement(value);
+
+            var tempElementPrevious = head;
+            while (countPosition != position)
+            {
+                tempElement = tempElement.Next;
+                if (countPosition + 1 != position)
+                {
+                    tempElementPrevious = tempElementPrevious.Next;
+                }
+            }
+            tempElementPrevious.Next = newElement;
+            newElement.Next = tempElement;
+        }
+
+        /// <summary>
+        /// Delete value from this position.
+        /// </summary>
+        /// <param name="Position."></param>
+        public void DeleteFromThisPosition(int position)
+        {                 
+            var tempElement = head;
+            int countPosition = 0;
+            var tempElementPrevious = head;
+            while (countPosition != position)
+            {
+                tempElement = tempElement.Next;
+                if (countPosition + 1 != position)
+                {
+                    tempElementPrevious = tempElementPrevious.Next;
+                }
+            }
+            tempElementPrevious.Next = tempElement.Next;
+        }     
     }
 }
-
-
