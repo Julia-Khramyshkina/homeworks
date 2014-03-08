@@ -37,7 +37,6 @@
                 aValue = value
             };
 
-
             head = newElement;
         }
 
@@ -157,7 +156,6 @@
             var tempElement = head;
             int countPosition = 0;
             var newElement = new ListElement(value);
-
             var tempElementPrevious = head;
             while (countPosition != position)
             {
