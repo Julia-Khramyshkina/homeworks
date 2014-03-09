@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Homework2_task2
+﻿namespace Homework2_task2
 {
     using NameSpaceForList;
     class Program

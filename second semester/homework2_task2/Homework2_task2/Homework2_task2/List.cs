@@ -5,16 +5,15 @@
     /// </summary>
     public class List
     {
-        public class ListElement
+        private class ListElement
         {
-            public int aValue { get; set; }
+            public int Value { get; set; }
             public ListElement(int value)
             {
-                aValue = value;
+                Value = value;
             }
             public ListElement Next { get; set; }
         }
-
         private ListElement head = null;
 
         /// <summary>
@@ -26,24 +25,23 @@
         }
 
         /// <summary>
-        /// Insert new element to head.
+        /// Insert to the head.
         /// </summary>
-        /// <param name="Value to be insert to head."></param>
+        /// <param name="value"> Value to be insert to head.</param>
         public void InsertToHead(int value)
         {
             var newElement = new ListElement(value)
             {
                 Next = head,
-                aValue = value
+                Value = value
             };
-
             head = newElement;
         }
 
         /// <summary>
         /// Insert new element to the end.
         /// </summary>
-        /// <param name="Value to be insert to the end."></param>
+        /// <param name="value"> Value to be insert to the end.</param>
         public void InsertToEnd(int value)
         {
             if (IsEmpty())
@@ -66,7 +64,7 @@
         /// Calculating a list size.
         /// </summary>
         public int SizeOfList()
-        {   
+        {
             var tempElement = head;
             int countOfElements = 0;
             while (tempElement != null)
@@ -74,19 +72,19 @@
                 tempElement = tempElement.Next;
                 ++countOfElements;
             }
-            return countOfElements;            
+            return countOfElements;
         }
 
         /// <summary>
         /// Checking the existence.
         /// </summary>
-        /// <param name="Element for check."></param>
+        /// <param name="value">Element for check.</param>
         public bool ElementExist(int value)
         {
             var tempElement = head;
             while (tempElement != null)
             {
-                if (tempElement.aValue == value)
+                if (tempElement.Value == value)
                     return true;
                 tempElement = tempElement.Next;
             }
@@ -96,7 +94,7 @@
         /// <summary>
         /// Delete element.
         /// </summary>
-        /// <param name="Element for delete."></param>
+        /// <param name="value">Element for delete.</param>
         public void RemoveElement(int value)
         {
             if (!ElementExist(value))
@@ -106,10 +104,10 @@
             }
             var tempElement = head;
             var tempElementPrevious = head;
-            while (tempElement.aValue != value)
+            while (tempElement.Value != value)
             {
                 tempElement = tempElement.Next;
-                if (tempElement.Next.aValue != value)
+                if (tempElement.Next.Value != value)
                 {
                     tempElementPrevious = tempElementPrevious.Next;
                 }
@@ -125,7 +123,7 @@
             var tempELement = head;
             while (tempELement != null)
             {
-                System.Console.WriteLine("{0} ", tempELement.aValue);
+                System.Console.WriteLine("{0} ", tempELement.Value);
                 tempELement = tempELement.Next;
             }
         }
@@ -133,26 +131,33 @@
         /// <summary>
         /// Get value from this position.
         /// </summary>
-        /// <param name="Position from which we obtain the value."></param>
+        /// <param name="value">Position from which we obtain the value.</param>
         /// <returns></returns>
         public int ValueOnPosition(int position)
         {
+            if (position < 0 || position > SizeOfList() + 1)
+                return -33333;
             var tempElement = head;
             int countPosition = 0;
             while (countPosition != position)
             {
                 tempElement = tempElement.Next;
             }
-            return tempElement.aValue;
+            return tempElement.Value;
         }
 
         /// <summary>
         /// Insert value to this position.
         /// </summary>
-        /// <param name="Position."></param>
-        /// <param name="Value to be insert."></param>
+        /// <param name="position"> Position.</param>
+        /// <param name="value"> Value to be insert.</param>
         public void InsertToThisPosition(int position, int value)
-        {            
+        {
+            if (position < 0 || position > SizeOfList() + 1)
+            {
+                System.Console.WriteLine("This position does not exist");
+                return;
+            }
             var tempElement = head;
             int countPosition = 0;
             var newElement = new ListElement(value);
@@ -172,9 +177,14 @@
         /// <summary>
         /// Delete value from this position.
         /// </summary>
-        /// <param name="Position."></param>
+        /// <param name="position"> Position for delete.</param>
         public void DeleteFromThisPosition(int position)
-        {                 
+        {
+            if (position < 0 || position > SizeOfList() + 1)
+            {
+                System.Console.WriteLine("This position does not exist");
+                return;
+            }
             var tempElement = head;
             int countPosition = 0;
             var tempElementPrevious = head;
@@ -187,6 +197,6 @@
                 }
             }
             tempElementPrevious.Next = tempElement.Next;
-        }     
+        }
     }
 }
