@@ -135,6 +135,8 @@
         /// <returns></returns>
         public int ValueOnPosition(int position)
         {
+            if (position < 0 || position > SizeOfList() + 1)
+                return -33333;
             var tempElement = head;
             int countPosition = 0;
             while (countPosition != position)
@@ -151,6 +153,11 @@
         /// <param name="value"> Value to be insert.</param>
         public void InsertToThisPosition(int position, int value)
         {
+            if (position < 0 || position > SizeOfList() + 1)
+            {
+                System.Console.WriteLine("This position does not exist");
+                return;
+            }
             var tempElement = head;
             int countPosition = 0;
             var newElement = new ListElement(value);
@@ -173,6 +180,11 @@
         /// <param name="position"> Position for delete.</param>
         public void DeleteFromThisPosition(int position)
         {
+            if (position < 0 || position > SizeOfList() + 1)
+            {
+                System.Console.WriteLine("This position does not exist");
+                return;
+            }
             var tempElement = head;
             int countPosition = 0;
             var tempElementPrevious = head;

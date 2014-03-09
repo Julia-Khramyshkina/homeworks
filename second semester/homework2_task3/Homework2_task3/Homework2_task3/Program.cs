@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework2_task3
+﻿namespace Homework2_task3
 {
     using NameSpaceForHashAndList;
     class Program
