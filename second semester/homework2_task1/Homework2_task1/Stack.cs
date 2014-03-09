@@ -5,13 +5,20 @@
     /// </summary>
     public class Stack
     {
-        public class StackElement
+        private class StackElement
         {
-            public int aValue { get; set; }
+            public int Value { get; set; }
+            /// <summary>
+            /// Constructor for Element of stack.
+            /// </summary>
+            /// <param name="value">Value to be create in stack.</param>
             public StackElement(int value)
             {
-                aValue = value;
+                Value = value;
             }
+            /// <summary>
+            /// Next element in stack.
+            /// </summary>
             public StackElement Next { get; set; }
         }
 
@@ -20,15 +27,14 @@
         /// <summary>
         /// Push value to a stack.
         /// </summary>
-        /// <param name="Value to be pushed."></param>
+        /// <param name="value">Value to be pushed.</param>
         public void Push(int value)
         {
             var newElement = new StackElement(value)
             {
                 Next = head,
-                aValue = value
+                Value = value
             };
-
             head = newElement;
         }
 
@@ -42,7 +48,7 @@
                 return -1;
             }
 
-            var temp = head.aValue;
+            var temp = head.Value;
             head = head.Next;
             return temp;
         }
