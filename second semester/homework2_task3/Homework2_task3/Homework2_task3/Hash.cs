@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NameSpaceForHash
+﻿namespace NameSpaceForHashAndList
 {
-    using NameSpaceForList;
+    /// <summary>
+    /// Hashtable.
+    /// </summary>
     public class HashTable
     {
-        public int sizeOfHash = 500;
-        public List[] hashElement = new List[500];
+        private int sizeOfHash = 500;
+        private List[] hashElement = new List[500];
+        public HashTable()
+        {
+            for (int i = 0; i < 500; ++i)
+            {
+                hashElement[i] = new List();
+            }
+        }
 
-        public int hashFunction(int newElement)
+        /// <summary>
+        /// Hashfunction.
+        /// </summary>
+        /// <param name="newElement"> Hashfunction for new element. </param>
+        /// <returns></returns>
+        public int HashFunction(int newElement)
         {
             int valueOfHashFunction = 0;
             for (int i = 0; i < newElement; ++i)
@@ -22,11 +30,32 @@ namespace NameSpaceForHash
             return valueOfHashFunction;
         }
         
-        public void insertToHashTable(int newElement)
+        /// <summary>
+        /// Insert to Hashtable.
+        /// </summary>
+        /// <param name="newElement">Element, which will insert. </param>
+        public void InsertToHashTable(int newElement)
         {
-           // this.hashElement[hashFunction(newElement)].InsertToEnd(newElement);
-         //   hashElement[hashFunction(newElement)].InsertToEnd(newElement);
+           hashElement[HashFunction(newElement)].InsertToEnd(newElement);
         }
 
+        /// <summary>
+        /// Cheking exist element.
+        /// </summary>
+        /// <param name="value"> Element, which will check</param>
+        /// <returns></returns>
+        public bool ElementExist(int value)
+        {
+            return hashElement[HashFunction(value)].ElementExist(value);
+        }
+
+        /// <summary>
+        /// Delete this element.
+        /// </summary>
+        /// <param name="value">Element, which will delete.</param>
+        public void DeleteElement(int value)
+        {
+            hashElement[HashFunction(value)].RemoveElement(value);
+        }
     }
 }

@@ -5,19 +5,16 @@ using System.Threading.Tasks;
 
 namespace Homework2_task3
 {
-    using NameSpaceForHash;
+    using NameSpaceForHashAndList;
     class Program
     {
         static void Main(string[] args)
         {
             HashTable hashTable = new HashTable();
-            hashTable.insertToHashTable(12);
-            hashTable.insertToHashTable(1);
-            hashTable.insertToHashTable(2);
-            hashTable.insertToHashTable(3);
-            return;
-
-
+            hashTable.InsertToHashTable(12);
+            hashTable.InsertToHashTable(1);
+            hashTable.InsertToHashTable(2);
+            hashTable.InsertToHashTable(3);
         }
     }
 }
