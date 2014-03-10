@@ -1,50 +1,50 @@
-﻿namespace NameSpaceForStack
+﻿namespace GeneralStack
 {
-    using GeneralStack;
     /// <summary>
     /// Stack.
     /// </summary>
     /// 
     public class Stack : GeneralStack
     {
-        public class StackElement
+        private class StackElement
         {
-            public int aValue { get; set; }
+            public int Value { get; set; }
+            /// <summary>
+            /// Constructor for stack.
+            /// </summary>
+            /// <param name="value">Value to be create in stack.</param>
             public StackElement(int value)
             {
-                aValue = value;
+                Value = value;
             }
             public StackElement Next { get; set; }
         }
-
         private StackElement head = null;
 
         /// <summary>
         /// Push value to a stack.
         /// </summary>
         /// <param name="Value to be pushed."></param>
-        public override void Push(int value)
+        public void Push(int value)
         {
             var newElement = new StackElement(value)
             {
                 Next = head,
-                aValue = value
+                Value = value
             };
-
             head = newElement;
         }
 
         /// <summary>
         /// Get value from stack.
         /// </summary>
-        public override int Pop()
+        public int Pop()
         {
             if (head == null)
             {
                 return -1;
             }
-
-            var temp = head.aValue;
+            var temp = head.Value;
             head = head.Next;
             return temp;
         }

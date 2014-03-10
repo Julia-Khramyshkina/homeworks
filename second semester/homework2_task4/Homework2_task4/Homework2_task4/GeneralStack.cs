@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GeneralStack
+﻿namespace GeneralStack
 {
-    abstract public class GeneralStack
-    {
-        public abstract class StackElement
-        { 
-        }
-        
-        public abstract int Pop();
+    interface GeneralStack
+    {   
+        /// <summary>
+        /// Get element to stack.
+        /// </summary>
+        /// <returns></returns>
+        int Pop();
 
-        public abstract void Push(int value);
+        /// <summary>
+        /// Add ellemnt to stack.
+        /// </summary>
+        /// <param name="value">Value to be pushed.</param>
+        void Push(int value);
     }
 }
