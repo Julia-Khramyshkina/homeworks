@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="newElement"> Hashfunction for new element. </param>
         /// <returns></returns>
-        public int HashFunction(int newElement)
+        private int HashFunction(int newElement)
         {
             int valueOfHashFunction = 0;
             for (int i = 0; i < newElement; ++i)
