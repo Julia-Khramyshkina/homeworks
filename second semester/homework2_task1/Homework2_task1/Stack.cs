@@ -43,9 +43,9 @@
         /// </summary>
         public int Pop()
         {
-            if (head == null)
+            if (IsEmpty())
             {
-                return -1;
+                return -33333;
             }
 
             var temp = head.Value;
