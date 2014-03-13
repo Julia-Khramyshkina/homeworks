@@ -67,6 +67,7 @@
         {
             var tempElement = head;
             int countOfElements = 0;
+
             while (tempElement != null)
             {
                 tempElement = tempElement.Next;

@@ -38,8 +38,8 @@ namespace Homework2_task2.Tests
         [TestMethod]
         public void RemoveElementTest()
         {
-            list.InsertToEnd(1);
-            list.RemoveElement(1);
+            list.InsertToEnd(2);
+            list.RemoveElement(2);
             Assert.IsTrue(list.IsEmpty());
         }
 
