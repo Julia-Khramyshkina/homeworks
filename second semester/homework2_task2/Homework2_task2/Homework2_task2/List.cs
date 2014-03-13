@@ -104,6 +104,11 @@
             }
             var tempElement = head;
             var tempElementPrevious = head;
+            if (tempElement.Value == value)
+            {
+                head = head.Next;
+                return;
+            }
             while (tempElement.Value != value)
             {
                 tempElement = tempElement.Next;
