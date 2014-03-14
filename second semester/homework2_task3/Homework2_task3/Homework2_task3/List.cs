@@ -102,6 +102,11 @@
                 System.Console.WriteLine("Sorry, this element doesn't exist");
                 return;
             }
+            if (head.Value == value)
+            {
+                head = head.Next;
+                return;
+            }
             var tempElement = head;
             var tempElementPrevious = head;
             while (tempElement.Value != value)
