@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hash.cs" />
+    <Compile Include="HashNumberOne.cs" />
+    <Compile Include="HashNumberTwo.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

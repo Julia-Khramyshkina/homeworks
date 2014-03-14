@@ -5,7 +5,7 @@
     {
         static void Main(string[] args)
         {
-            HashTable hashTable = new HashTable();
+            HashTable hashTable = new HashNumberOne();
             hashTable.InsertToHashTable(12);
             hashTable.InsertToHashTable(1);
             hashTable.InsertToHashTable(2);
