@@ -4,7 +4,7 @@
     /// Stack.
     /// </summary>
     /// 
-    public class Stack : GeneralStack
+    public class Stack : GenStack
     {
         private class StackElement
         {

@@ -1,6 +1,6 @@
 ﻿namespace GeneralStack
 {
-    interface GeneralStack
+    interface GenStack
     {   
         /// <summary>
         /// Get element to stack.

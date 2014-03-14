@@ -13,12 +13,12 @@ namespace NameSpaceCalculator
         /// Constructor for calculator.
         /// </summary>
         /// <param name="stack"> Stack, which we will use.</param>
-        public Calculator(GeneralStack stack)
+        public Calculator(GenStack stack)
         {
             this.stack = stack;
         }
 
-        private GeneralStack stack;
+        private GenStack stack;
 
         /// <summary>
         /// Get value.

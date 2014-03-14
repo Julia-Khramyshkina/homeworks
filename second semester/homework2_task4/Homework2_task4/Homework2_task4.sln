@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2_task4", "Homework2_task4\Homework2_task4.csproj", "{0A024141-6B28-4E42-B582-0B07BC3930E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homework2_task4.Tests", "Homework2_task4.Tests\Homework2_task4.Tests.csproj", "{719CAE3D-FDA7-4817-B9E7-11AE9D3CBEA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{0A024141-6B28-4E42-B582-0B07BC3930E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A024141-6B28-4E42-B582-0B07BC3930E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A024141-6B28-4E42-B582-0B07BC3930E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719CAE3D-FDA7-4817-B9E7-11AE9D3CBEA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719CAE3D-FDA7-4817-B9E7-11AE9D3CBEA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719CAE3D-FDA7-4817-B9E7-11AE9D3CBEA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719CAE3D-FDA7-4817-B9E7-11AE9D3CBEA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
