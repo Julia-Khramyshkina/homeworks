@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NameSpaceCalculator
 {
     using GeneralStack;
-    class Calculator
+    public class Calculator
     {
         /// <summary>
         /// Constructor for calculator.

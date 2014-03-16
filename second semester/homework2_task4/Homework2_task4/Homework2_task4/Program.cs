@@ -6,7 +6,7 @@
     {
         static void Main(string[] args)
         {
-            GeneralStack stack = new Stack();
+            GenStack stack = new Stack();
             Calculator qwety = new Calculator(stack);
             stack.Push(2);
             stack.Push(3);
@@ -14,7 +14,7 @@
             qwety.Addition();
             int x = qwety.PopValue();
 
-            GeneralStack stackOfArray = new StackArray();
+            GenStack stackOfArray = new StackArray();
             Calculator qwerty = new Calculator(stackOfArray);
             stackOfArray.Push(23);
             stackOfArray.Push(11);
