@@ -1,7 +1,6 @@
 ﻿namespace NameSpaceForHashAndList
 {
-    //using NameSpaceForHashAndList;
-    class HashNumberTwo : HashTable
+    class HashNumberTwo : HashFunctionInterface
     {
         private override int HashFunction(int newElement)
         {

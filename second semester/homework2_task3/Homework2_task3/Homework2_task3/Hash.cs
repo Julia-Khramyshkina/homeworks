@@ -3,7 +3,8 @@
     /// <summary>
     /// Hashtable.
     /// </summary>
-    public abstract class HashTable
+
+    public class HashTable
     {
         private int sizeOfHash = 500;
         private List[] hashElement = new List[500];
@@ -14,30 +15,26 @@
                 hashElement[i] = new List();
             }
         }
+    //    HashFunctionInterface hashFunction = new HashNumberOne();
 
         /// <summary>
         /// Hashfunction.
         /// </summary>
         /// <param name="newElement"> Hashfunction for new element. </param>
         /// <returns></returns>
-        private abstract int HashFunction(int newElement)
-        {
-            return 0;
-            //int valueOfHashFunction = 0;
-            //for (int i = 0; i < newElement; ++i)
-            //{
-            //    valueOfHashFunction = (valueOfHashFunction + newElement * i) % 500;
-            //}
-            //return valueOfHashFunction;
-        }
-        
+        /// 
+        // HashFunctionInterface
+        //{
+        //    int HashFunction(int newElement);
+        //}
+      
         /// <summary>
         /// Insert to Hashtable.
         /// </summary>
         /// <param name="newElement">Element, which will insert. </param>
         public void InsertToHashTable(int newElement)
         {
-           hashElement[HashFunction(newElement)].InsertToEnd(newElement);
+           //hashElement[HashFunction(newElement)].InsertToEnd(newElement);
         }
 
         /// <summary>
@@ -47,7 +44,7 @@
         /// <returns></returns>
         public bool ElementExist(int value)
         {
-            return hashElement[HashFunction(value)].ElementExist(value);
+          //  return hashElement[HashFunction(value)].ElementExist(value);
         }
 
         /// <summary>
@@ -56,7 +53,7 @@
         /// <param name="value">Element, which will delete.</param>
         public void DeleteElement(int value)
         {
-            hashElement[HashFunction(value)].RemoveElement(value);
+           // hashElement[HashFunction(value)].RemoveElement(value);
         }
     }
 }
