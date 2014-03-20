@@ -14,7 +14,7 @@
             {
                 hashElement[i] = new List();
             }
-          //  hashFunction = new HashFunctionInterface();
+            this.hashFunction = hashFunction;
         }
      
         /// <summary>

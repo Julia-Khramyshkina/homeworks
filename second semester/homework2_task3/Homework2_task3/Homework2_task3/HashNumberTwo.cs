@@ -2,6 +2,7 @@
 {
     public class HashNumberTwo : HashFunctionInterface
     {
+
         public int HashFunction(int newElement)
         {
             int valueOfHashFunction = 0;
