@@ -1,6 +1,6 @@
 ﻿namespace NameSpaceForHashAndList
 {
-    interface HashFunctionInterface
+    public interface HashFunctionInterface
     {
         int HashFunction(int newElement);
     }

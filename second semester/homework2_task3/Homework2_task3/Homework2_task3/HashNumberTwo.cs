@@ -1,8 +1,8 @@
 ﻿namespace NameSpaceForHashAndList
 {
-    class HashNumberTwo : HashFunctionInterface
+    public class HashNumberTwo : HashFunctionInterface
     {
-        private override int HashFunction(int newElement)
+        public int HashFunction(int newElement)
         {
             int valueOfHashFunction = 0;
             for (int i = 0; i < newElement; ++i)

@@ -6,35 +6,24 @@
 
     public class HashTable
     {
-        private int sizeOfHash = 500;
         private List[] hashElement = new List[500];
-        public HashTable()
+        private HashFunctionInterface hashFunction;
+        public HashTable(HashFunctionInterface hashFunction)
         {
             for (int i = 0; i < 500; ++i)
             {
                 hashElement[i] = new List();
             }
+          //  hashFunction = new HashFunctionInterface();
         }
-    //    HashFunctionInterface hashFunction = new HashNumberOne();
-
-        /// <summary>
-        /// Hashfunction.
-        /// </summary>
-        /// <param name="newElement"> Hashfunction for new element. </param>
-        /// <returns></returns>
-        /// 
-        // HashFunctionInterface
-        //{
-        //    int HashFunction(int newElement);
-        //}
-      
+     
         /// <summary>
         /// Insert to Hashtable.
         /// </summary>
         /// <param name="newElement">Element, which will insert. </param>
         public void InsertToHashTable(int newElement)
         {
-           //hashElement[HashFunction(newElement)].InsertToEnd(newElement);
+            hashElement[hashFunction.HashFunction(newElement)].InsertToEnd(newElement);
         }
 
         /// <summary>
@@ -44,7 +33,7 @@
         /// <returns></returns>
         public bool ElementExist(int value)
         {
-          //  return hashElement[HashFunction(value)].ElementExist(value);
+            return hashElement[hashFunction.HashFunction(value)].ElementExist(value);
         }
 
         /// <summary>
@@ -53,7 +42,7 @@
         /// <param name="value">Element, which will delete.</param>
         public void DeleteElement(int value)
         {
-           // hashElement[HashFunction(value)].RemoveElement(value);
+            hashElement[hashFunction.HashFunction(value)].RemoveElement(value);
         }
     }
 }

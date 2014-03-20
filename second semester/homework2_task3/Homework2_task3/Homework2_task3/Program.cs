@@ -5,7 +5,8 @@
     {
         static void Main(string[] args)
         {
-            HashTable hashTable = new HashNumberOne();
+            HashFunctionInterface hashFunction = new HashNumberOne();
+            HashTable hashTable = new HashTable(hashFunction);
             hashTable.InsertToHashTable(12);
             hashTable.InsertToHashTable(1);
             hashTable.InsertToHashTable(2);
