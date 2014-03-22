@@ -10,13 +10,11 @@ namespace Homework4_task1
     {
         static void Main(string[] args)
         {
+            string input = System.Console.ReadLine();
             Tree tree = new Tree();
-            tree.InsertElementOfInt(5);
-
-            tree.InsertElementOfInt(2);
-            tree.InsertElementOfInt(1);
-            tree.InsertElementOfInt(4);
-            tree.InsertElementOfInt(6);
+            int i = 0;
+            tree.InsertElement(input, ref i, tree.first());
+            int value = tree.count(tree.first(), tree.first());
 
         }
     }
