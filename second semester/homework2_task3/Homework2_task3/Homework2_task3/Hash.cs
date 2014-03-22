@@ -1,9 +1,8 @@
-﻿namespace NameSpaceForHashAndList
+﻿namespace Homework2_task3
 {
     /// <summary>
     /// Hashtable.
     /// </summary>
-
     public class HashTable
     {
         private List[] hashElement = new List[500];

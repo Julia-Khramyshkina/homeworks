@@ -1,8 +1,7 @@
-﻿namespace NameSpaceForHashAndList
+﻿namespace Homework2_task3
 {
     public class HashNumberTwo : HashFunctionInterface
     {
-
         public int HashFunction(int newElement)
         {
             int valueOfHashFunction = 0;

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Homework2_task2.Tests
+namespace Homework2_task3.Tests
 {
-    using NameSpaceForHashAndList;
+    using Homework2_task3;
     [TestClass]
     public class ListTest
     {

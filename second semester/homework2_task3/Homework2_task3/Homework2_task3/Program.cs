@@ -1,6 +1,5 @@
 ﻿namespace Homework2_task3
 {
-    using NameSpaceForHashAndList;
     class Program
     {
         static void Main(string[] args)

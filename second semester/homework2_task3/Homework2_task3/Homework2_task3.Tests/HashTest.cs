@@ -3,16 +3,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Homework2_task3.Tests
 {
-    using NameSpaceForHashAndList;
+    using Homework2_task3;
     [TestClass]
     public class HashTest
     {
         private HashTable hashTable;
-
+        private HashFunctionInterface hashFunction;
         [TestInitialize]
         public void Initialize()
         {
-            hashTable = new HashTable();
+            hashFunction = new HashNumberTwo();
+            hashTable = new HashTable(hashFunction);
         }
 
         [TestMethod]

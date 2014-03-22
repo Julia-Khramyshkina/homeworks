@@ -1,4 +1,4 @@
-﻿namespace NameSpaceForHashAndList
+﻿namespace Homework2_task3
 {
     /// <summary>
     /// List.
