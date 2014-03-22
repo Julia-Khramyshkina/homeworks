@@ -113,64 +113,104 @@
 	        }
 	            InsertElement(input, ref i, position);
         }
+      
+    }
 
-        public void operation(ElementOfTree position)
+    public class Operation : Tree
+    {
+        private ElementOfTree position;
+        public Operation(ElementOfTree position)
         {
-            if (position.ValueOfChar == '+')
-            {
-                position.ValueOfInt = (position.Left.ValueOfInt) + (position.Right.ValueOfInt);
-            }
+            this.position = position;
+        }
 
-            if (position.ValueOfChar == '-')
-            {
-                position.ValueOfInt = (position.Left.ValueOfInt) - (position.Right.ValueOfInt);
-            }
+        public void Addition()
+        {
+            position.ValueOfInt = (position.Left.ValueOfInt) + (position.Right.ValueOfInt);
+        }
 
-            if (position.ValueOfChar == '*')
-            {
-                position.ValueOfInt = (position.Left.ValueOfInt) * (position.Right.ValueOfInt);
-            }
+        public void Subtraction()
+        {
+            position.ValueOfInt = (position.Left.ValueOfInt) - (position.Right.ValueOfInt);
+        }
 
-            if (position.ValueOfChar == '/')
+        public void Multiplication()
+        {
+            position.ValueOfInt = (position.Left.ValueOfInt) * (position.Right.ValueOfInt);
+        }
+
+        public void Division()
+        {
+            position.ValueOfInt = (position.Left.ValueOfInt) / (position.Right.ValueOfInt);
+        }
+
+        public void Choice()
+        {
+            switch (position.ValueOfChar)
             {
-                position.ValueOfInt = (position.Left.ValueOfInt) / (position.Right.ValueOfInt);
+                case '+':
+                    {
+                        this.Addition();
+                        break;
+                    }
+
+                case '-':
+                    {
+                        this.Subtraction();
+                        break;
+                    }
+                case '*':
+                    {
+                        this.Multiplication();
+                        break;
+                    }
+                case '/':
+                    {
+                        this.Division();
+                        break;
+                    }
+
             }
         }
 
-        public int count(ElementOfTree position, ElementOfTree preposition)
+    }
+
+    public class Count : Operation
+    {
+        private ElementOfTree Position;
+        private Operation ourOperation;
+
+        //public Count(ElementOfTree position, )
+        //{
+        //    this.Position = position;
+        //    this.ourOperation = ourOperation;
+        //}
+
+
+        public int Counter(ElementOfTree position, ElementOfTree preposition)
         {
-            if (position.ValueOfInt != -1)
+            if (Position.ValueOfInt != -1)
             {
-                return position.ValueOfInt;
+                return Position.ValueOfInt;
             }
 
-            if (position.Left != null)
+            if (Position.Left != null)
             {
-                count(position.Left, position);
+                Counter(Position.Left, Position);
             }
 
-            if (position.Right != null)
+            if (Position.Right != null)
             {
-                count(position.Right, position);
+                Counter(Position.Right, Position);
             }
-            operation(position);
-            return position.ValueOfInt;
-        }	
 
+            ourOperation.Choice();
 
-
-
-
-
-
-
-
-
-
-
-
-
-           
+            return Position.ValueOfInt;
         }
     }
+
+}
+
+
 
