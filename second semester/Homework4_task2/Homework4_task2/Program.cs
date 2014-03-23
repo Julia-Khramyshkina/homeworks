@@ -11,13 +11,16 @@ namespace Homework4_task2
         static void Main(string[] args)
         {
             List list = new UniqueList();
-            list.InsertToHead(1);
             try
             {
-                list.InsertToHead(1);
+                list.InsertToEnd(1);
+                list.InsertToHead(2);
+                list.InsertToThisPosition(1, 1);
             }
+          
 
-            catch (Exception e)
+
+            catch (Exception e) 
             {
                 System.Console.WriteLine(e.Message);
             }

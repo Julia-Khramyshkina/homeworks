@@ -29,11 +29,7 @@ namespace Homework4_task2
             return head == null;
         }
 
-        /// <summary>
-        /// Insert to the head.
-        /// </summary>
-        /// <param name="value"> Value to be insert to head.</param>
-        public virtual void InsertToHead(int value)
+        protected void NeedForHead(int value)
         {
             var newElement = new ListElement(value)
             {
@@ -41,6 +37,15 @@ namespace Homework4_task2
                 Value = value
             };
             head = newElement;
+        }
+
+        /// <summary>
+        /// Insert to the head.
+        /// </summary>
+        /// <param name="value"> Value to be insert to head.</param>
+        public virtual void InsertToHead(int value)
+        {
+            this.NeedForHead(value);
         }
 
         /// <summary>
@@ -231,8 +236,7 @@ namespace Homework4_task2
             {
                 throw new Exception("Element exist");
             }
-            ListElement temp = this.first();
-            temp = new ListElement(value);
+            this.NeedForHead(value);
         }
 
         public override void InsertToEnd(int value)
@@ -285,9 +289,6 @@ namespace Homework4_task2
             tempElementPrevious.Next = newElement;
             newElement.Next = tempElement;
         }
-
-
-
-
     }
 }
+
