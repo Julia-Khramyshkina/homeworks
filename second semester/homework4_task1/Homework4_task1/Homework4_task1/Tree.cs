@@ -1,8 +1,7 @@
 ﻿namespace Homework4_task1
 {
     public class Tree
-    {
-       
+    {     
         public class ElementOfTree
         {
             public char ValueOfChar { get; set; }
@@ -112,13 +111,12 @@
 		        }
 	        }
 	            InsertElement(input, ref i, position);
-        }
-      
+        }   
     }
 
     public class Operation : Tree
     {
-        private ElementOfTree position;
+        protected ElementOfTree position;
         public Operation(ElementOfTree position)
         {
             this.position = position;
@@ -169,7 +167,6 @@
                         this.Division();
                         break;
                     }
-
             }
         }
 
@@ -177,36 +174,54 @@
 
     public class Count : Operation
     {
-        private ElementOfTree Position;
         private Operation ourOperation;
-
-        //public Count(ElementOfTree position, )
+        //public Count(ElementOfTree position)
         //{
-        //    this.Position = position;
-        //    this.ourOperation = ourOperation;
+        //    ourOperation = new Operation(position);
         //}
 
+        //public Count(ElementOfTree position)
+        //{
+
+        //}
+        //public Count(Operation operation)
+        //{
+        //    this.ourOperation = operation;
+        //}
 
         public int Counter(ElementOfTree position, ElementOfTree preposition)
         {
-            if (Position.ValueOfInt != -1)
+
+            if (position.ValueOfInt != -1)
             {
-                return Position.ValueOfInt;
+                return position.ValueOfInt;
             }
 
-            if (Position.Left != null)
+            if (position.Left != null)
             {
-                Counter(Position.Left, Position);
+                Counter(position.Left, position);
             }
 
-            if (Position.Right != null)
+            if (position.Right != null)
             {
-                Counter(Position.Right, Position);
+                Counter(position.Right, position);
             }
-
+            ourOperation = new Operation(position);
             ourOperation.Choice();
 
-            return Position.ValueOfInt;
+          //  position.    
+          //  position.Choice();
+
+            return position.ValueOfInt;
+        }
+    }
+
+
+    public class BeginCount : Count
+    {
+        public int Begin()
+        {
+            return this.Counter(this.first(), this.first());
         }
     }
 
