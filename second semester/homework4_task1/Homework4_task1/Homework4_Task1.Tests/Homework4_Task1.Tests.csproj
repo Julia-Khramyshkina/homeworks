@@ -51,13 +51,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CounterTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Homework4_task1\Homework4_task1.csproj">
       <Project>{de774be3-60f6-4cfb-a908-da9027536a7b}</Project>
       <Name>Homework4_task1</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

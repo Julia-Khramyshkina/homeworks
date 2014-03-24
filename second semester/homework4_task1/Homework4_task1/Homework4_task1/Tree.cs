@@ -113,117 +113,36 @@
 	            InsertElement(input, ref i, position);
         }   
     }
-
-    public class Operation : Tree
-    {
-        protected ElementOfTree position;
-        public Operation(ElementOfTree position)
-        {
-            this.position = position;
-        }
-
-        public void Addition()
-        {
-            position.ValueOfInt = (position.Left.ValueOfInt) + (position.Right.ValueOfInt);
-        }
-
-        public void Subtraction()
-        {
-            position.ValueOfInt = (position.Left.ValueOfInt) - (position.Right.ValueOfInt);
-        }
-
-        public void Multiplication()
-        {
-            position.ValueOfInt = (position.Left.ValueOfInt) * (position.Right.ValueOfInt);
-        }
-
-        public void Division()
-        {
-            position.ValueOfInt = (position.Left.ValueOfInt) / (position.Right.ValueOfInt);
-        }
-
-        public void Choice()
-        {
-            switch (position.ValueOfChar)
-            {
-                case '+':
-                    {
-                        this.Addition();
-                        break;
-                    }
-
-                case '-':
-                    {
-                        this.Subtraction();
-                        break;
-                    }
-                case '*':
-                    {
-                        this.Multiplication();
-                        break;
-                    }
-                case '/':
-                    {
-                        this.Division();
-                        break;
-                    }
-            }
-        }
-
-    }
-
-    public class Count : Operation
-    {
-        private Operation ourOperation;
-        //public Count(ElementOfTree position)
-        //{
-        //    ourOperation = new Operation(position);
-        //}
-
-        //public Count(ElementOfTree position)
-        //{
-
-        //}
-        //public Count(Operation operation)
-        //{
-        //    this.ourOperation = operation;
-        //}
-
-        public int Counter(ElementOfTree position, ElementOfTree preposition)
-        {
-
-            if (position.ValueOfInt != -1)
-            {
-                return position.ValueOfInt;
-            }
-
-            if (position.Left != null)
-            {
-                Counter(position.Left, position);
-            }
-
-            if (position.Right != null)
-            {
-                Counter(position.Right, position);
-            }
-            ourOperation = new Operation(position);
-            ourOperation.Choice();
-
-          //  position.    
-          //  position.Choice();
-
-            return position.ValueOfInt;
-        }
-    }
+    //public class Count : Tree
+    //{
 
 
-    public class BeginCount : Count
-    {
-        public int Begin()
-        {
-            return this.Counter(this.first(), this.first());
-        }
-    }
+    //    public int Counter(ElementOfTree position, ElementOfTree preposition)
+    //    {
+    //        if (position.ValueOfInt != -1)
+    //        {
+    //            return position.ValueOfInt;
+    //        }
+
+    //        if (position.Left != null)
+    //        {
+    //            Counter(position.Left, position);
+    //        }
+
+    //        if (position.Right != null)
+    //        {
+    //            Counter(position.Right, position);
+    //        }
+    //        Operation ourOperation = new Operation(position);
+    //        ourOperation.Choice();
+    //        return position.ValueOfInt;
+    //    }
+    //}
+
+   
+
+
+ 
 
 }
 

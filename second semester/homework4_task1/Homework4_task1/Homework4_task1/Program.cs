@@ -14,8 +14,9 @@ namespace Homework4_task1
             Tree tree = new Tree();
             int i = 0;
             tree.InsertElement(input, ref i, tree.first());
-            BeginCount count = new BeginCount();
-            int result = count.Begin();
+            //BeginCount count = new BeginCount();
+           // Operation oper = new Operation(tree.first());
+            //int result = count.Begin();
           //  int value = tree.(tree.first(), tree.first());
            // Count qwerty = new Count();
 
