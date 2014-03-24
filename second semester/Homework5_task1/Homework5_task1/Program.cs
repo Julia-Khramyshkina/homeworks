@@ -13,8 +13,6 @@ namespace Homework5_task1
 {
     class Program
     {
-        Func<int, int> x2 = x => x * 2;
-
         public static void Map(List list, Func<int,int> x2)
         {
             int end = list.SizeOfList();   
@@ -31,6 +29,7 @@ namespace Homework5_task1
         static void Main(string[] args)
         {
             List list = new List();
+            Func<int, int> somethingG = x => x * 2;
 
             for (int i = 0; i < 4; ++i)
             {
@@ -39,7 +38,7 @@ namespace Homework5_task1
 
             list.PrintList();
 
-          //  Map(list, Func<int,int> x2);
+            Map(list, somethingG);
             list.PrintList();
         }
     }
