@@ -2,9 +2,16 @@
 {
     public class Operation : Node
     {
-        public Operation(ElementOfTree position): base()
+        private ElementOfTree position;
+        public Operation(ElementOfTree position)
+        {
+            this.position = position;
+        }
+        public Operation()
+            : base()
         {
         }
+
         public char ValueOfOperation()
         {
             return this.first().ValueOfChar;

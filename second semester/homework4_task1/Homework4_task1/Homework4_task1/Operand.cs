@@ -7,7 +7,7 @@
         {
             this.position = position;
         }
-        public Operand(ElementOfTree position)
+        public Operand()
             : base()
         {
         }
