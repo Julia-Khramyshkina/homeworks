@@ -6,31 +6,44 @@ namespace Homework4_task2.Tests
     [TestClass] 
     public class UniqueListTest
     {
-        private List list;
+        private UniqueList list;
 
         [TestInitialize]
         public void Initialize()
         {
-            list = new List();
+            list = new UniqueList();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.DivideByZeroException))]
-        public void InsertToHeadTest1()
+        [ExpectedException(typeof(MyException))]
+        public void InsertToHeadTest()
         {
-            try
-            {
+            list.InsertToHead(1);
+            list.InsertToHead(1);
 
-                list.InsertToHead(1);
+        }
 
-                list.InsertToHead(1);
-            }
+        [TestMethod]
+        [ExpectedException(typeof(MyException))]
+        public void InsertToEndTest()
+        {
+            list.InsertToEnd(1);
+            list.InsertToEnd(1);
+        }
 
-            catch (MyException e)
-            {
-                Assert.AreEqual(e.Message, "Element exist");
-            }
+        [TestMethod]
+        [ExpectedException(typeof(MyException))]
+        public void InsertToThisPositionTest()
+        {
+            list.InsertToThisPosition(0, 1);
+            list.InsertToThisPosition(1, 1);
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(MyException))]
+        public void RemoveElementTest()
+        {
+            list.RemoveElement(1);
         }
     }
 }

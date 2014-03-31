@@ -184,8 +184,13 @@ namespace Homework4_task2
                 System.Console.WriteLine("This position does not exist");
                 return;
             }
-            var tempElement = head;
             int countPosition = 0;
+            if (countPosition == position)
+            {
+                this.InsertToHead(value);
+                return;
+            }
+            var tempElement = head;
             var newElement = new ListElement(value);
             var tempElementPrevious = head;
             while (countPosition != position)

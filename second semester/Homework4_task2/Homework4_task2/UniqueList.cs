@@ -61,9 +61,14 @@ namespace Homework4_task2
                 System.Console.WriteLine("This position does not exist");
                 return;
             }
-            var tempElement = this.first();
             int countPosition = 0;
-            var newElement = new ListElement(value);
+            if (countPosition == position)
+            {
+                this.InsertToHead(value);
+                return;
+            }
+            var tempElement = this.first();         
+            var newElement = new ListElement(value);        
             var tempElementPrevious = this.first();
             while (countPosition != position)
             {
