@@ -18,8 +18,6 @@ namespace Homework4_task2
                 list.InsertToThisPosition(1, 1);
             }
           
-
-
             catch (Exception e) 
             {
                 System.Console.WriteLine(e.Message);

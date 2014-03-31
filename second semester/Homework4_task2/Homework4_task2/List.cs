@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace Homework4_task2
 {
     /// <summary>
@@ -29,6 +26,10 @@ namespace Homework4_task2
             return head == null;
         }
 
+        /// <summary>
+        /// Insert to head for descendants.
+        /// </summary>
+        /// <param name="value">Value to be insert to head.</param>
         protected void NeedForHead(int value)
         {
             var newElement = new ListElement(value)
@@ -42,7 +43,7 @@ namespace Homework4_task2
         /// <summary>
         /// Insert to the head.
         /// </summary>
-        /// <param name="value"> Value to be insert to head.</param>
+        /// <param name="value">Value to be insert to head.</param>
         public virtual void InsertToHead(int value)
         {
             this.NeedForHead(value);
@@ -115,7 +116,7 @@ namespace Homework4_task2
         /// Delete element.
         /// </summary>
         /// <param name="value">Element for delete.</param>
-        public void RemoveElement(int value)
+        public virtual void RemoveElement(int value)
         {
             if (!ElementExist(value))
             {
@@ -224,71 +225,4 @@ namespace Homework4_task2
             tempElementPrevious.Next = tempElement.Next;
         }
     }
-
-
-    public class UniqueList : List
-    {
-       
-
-        public override void InsertToHead(int value)
-        {
-            if (ElementExist(value))
-            {
-                throw new Exception("Element exist");
-            }
-            this.NeedForHead(value);
-        }
-
-        public override void InsertToEnd(int value)
-        {
-            if (ElementExist(value))
-            {
-                throw new Exception("Element exist");
-            }
-
-            if (IsEmpty())
-            {
-                InsertToHead(value);
-                return;
-            }
-
-            var tempElement = this.first();
-            while (tempElement.Next != null)
-            {
-                tempElement = tempElement.Next;
-            }
-
-            var newElement = new ListElement(value);
-            tempElement.Next = newElement;
-        }
-
-        public override void InsertToThisPosition(int position, int value)
-        {
-            if (ElementExist(value))
-            {
-                throw new Exception("Element exist");
-            }
-
-            if (position < 0 || position > SizeOfList() + 1)
-            {
-                System.Console.WriteLine("This position does not exist");
-                return;
-            }
-            var tempElement = this.first();
-            int countPosition = 0;
-            var newElement = new ListElement(value);
-            var tempElementPrevious = this.first();
-            while (countPosition != position)
-            {
-                tempElement = tempElement.Next;
-                if (countPosition + 1 != position)
-                {
-                    tempElementPrevious = tempElementPrevious.Next;
-                }
-            }
-            tempElementPrevious.Next = newElement;
-            newElement.Next = tempElement;
-        }
-    }
 }
-
