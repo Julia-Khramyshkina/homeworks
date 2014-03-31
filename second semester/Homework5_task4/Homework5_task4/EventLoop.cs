@@ -15,78 +15,56 @@ namespace Homework5_task4
 
         public void Run()
         {
-            while (true)
+            try
             {
-                var key = Console.ReadKey(true);
-                switch (key.Key)
+                while (true)
                 {
-                    case ConsoleKey.LeftArrow:
-                        {
-                            try
-                            {                             
+                    var key = Console.ReadKey(true);
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            {
                                 if (Console.CursorLeft - 1 < 0)
                                     throw new Exception("going beyond");
                                 LeftHandler(this, EventArgs.Empty);
                                 break;
-                             }
-                             catch (Exception e)
-                             {
-                                 Console.WriteLine(e.Message);
-                                 break;
-                             }
-                             
-                        }
+                            }
 
-                    case ConsoleKey.RightArrow:
-                        {
-                            try
-                            {
+                        case ConsoleKey.RightArrow:
+                            { 
                                 if (Console.CursorLeft > Console.WindowWidth)
                                     throw new Exception("going beyond");
                                 RightHandler(this, EventArgs.Empty);
-                                break;
+                                break;                             
                             }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(e.Message);
-                                return;
-                            }
-                             
-                        }
 
-                    case ConsoleKey.UpArrow:
-                        {
-                            try
+                        case ConsoleKey.UpArrow:
                             {
                                 if (Console.CursorTop - 1 < 0)
                                     throw new Exception("going beyond");
                                 UpHandler(this, EventArgs.Empty);
-                                break;
+                                break;                 
                             }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(e.Message);
-                                break;
-                            }
-                        }
 
-                    case ConsoleKey.DownArrow:
-                        {
-                            try
-                            {
+                        case ConsoleKey.DownArrow:
+                            {                         
                                 if (Console.CursorTop > Console.WindowWidth)
                                     throw new Exception("going beyond");
                                 DownHandler(this, EventArgs.Empty);
-                                break;
+                                break; 
                             }
-                            catch (Exception e)
+                        default:
                             {
-                                Console.WriteLine(e.Message);
-                                break;
+                                Console.WriteLine("Incorrect input\n");
+                                return;
                             }
-                        }
-
+                    }
                 }
+            }
+
+            catch (Exception newExc)
+            {
+                Console.WriteLine(newExc.Message);
             }
         }
     }
