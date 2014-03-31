@@ -22,26 +22,70 @@ namespace Homework5_task4
                 {
                     case ConsoleKey.LeftArrow:
                         {
-                            LeftHandler(this, EventArgs.Empty);
-                            break;
+                            try
+                            {                             
+                                if (Console.CursorLeft - 1 < 0)
+                                    throw new Exception("going beyond");
+                                LeftHandler(this, EventArgs.Empty);
+                                break;
+                             }
+                             catch (Exception e)
+                             {
+                                 Console.WriteLine(e.Message);
+                                 break;
+                             }
+                             
                         }
+
                     case ConsoleKey.RightArrow:
                         {
-                            RightHandler(this, EventArgs.Empty);
-                            break;
+                            try
+                            {
+                                if (Console.CursorLeft > Console.WindowWidth)
+                                    throw new Exception("going beyond");
+                                RightHandler(this, EventArgs.Empty);
+                                break;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                                return;
+                            }
+                             
                         }
 
                     case ConsoleKey.UpArrow:
                         {
-                            UpHandler(this, EventArgs.Empty);
-                            break;
+                            try
+                            {
+                                if (Console.CursorTop - 1 < 0)
+                                    throw new Exception("going beyond");
+                                UpHandler(this, EventArgs.Empty);
+                                break;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                                break;
+                            }
                         }
 
                     case ConsoleKey.DownArrow:
                         {
-                            DownHandler(this, EventArgs.Empty);
-                            break;
+                            try
+                            {
+                                if (Console.CursorTop > Console.WindowWidth)
+                                    throw new Exception("going beyond");
+                                DownHandler(this, EventArgs.Empty);
+                                break;
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                                break;
+                            }
                         }
+
                 }
             }
         }

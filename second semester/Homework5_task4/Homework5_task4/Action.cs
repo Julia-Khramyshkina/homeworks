@@ -17,9 +17,7 @@ namespace Homework5_task4
         }
         public void Movement(object sender, EventArgs args)
         {
-
-            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);
-
+            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);     
         }
     }
 }
