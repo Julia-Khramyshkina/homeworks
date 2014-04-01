@@ -50,10 +50,10 @@ namespace Homework4_task2
         }
 
         /// <summary>
-        /// Insert new element to the end.
+        /// Insert to end for descendants.
         /// </summary>
-        /// <param name="value"> Value to be insert to the end.</param>
-        public virtual void InsertToEnd(int value)
+        /// <param name="value">Value to be insert to end.</param>
+        protected void NeedForEnd(int value)
         {
             if (IsEmpty())
             {
@@ -69,6 +69,15 @@ namespace Homework4_task2
 
             var newElement = new ListElement(value);
             tempElement.Next = newElement;
+        }
+
+        /// <summary>
+        /// Insert new element to the end.
+        /// </summary>
+        /// <param name="value"> Value to be insert to the end.</param>
+        public virtual void InsertToEnd(int value)
+        {
+            this.NeedForEnd(value);
         }
 
         /// <summary>
@@ -113,10 +122,10 @@ namespace Homework4_task2
         }
 
         /// <summary>
-        /// Delete element.
+        /// Remove for descendants.
         /// </summary>
-        /// <param name="value">Element for delete.</param>
-        public virtual void RemoveElement(int value)
+        /// <param name="value">Value to be removed.</param>
+        protected void NeedForRemoveElement(int value)
         {
             if (!ElementExist(value))
             {
@@ -139,6 +148,15 @@ namespace Homework4_task2
                 }
             }
             tempElementPrevious.Next = tempElement.Next;
+        }
+
+        /// <summary>
+        /// Delete element.
+        /// </summary>
+        /// <param name="value">Element for delete.</param>
+        public virtual void RemoveElement(int value)
+        {
+            this.NeedForRemoveElement(value);
         }
 
         /// <summary>
@@ -173,11 +191,11 @@ namespace Homework4_task2
         }
 
         /// <summary>
-        /// Insert value to this position.
+        /// Insert to this position for descendants.
         /// </summary>
-        /// <param name="position"> Position.</param>
-        /// <param name="value"> Value to be insert.</param>
-        public virtual void InsertToThisPosition(int position, int value)
+        /// <param name="position">This position</param>
+        /// <param name="value">Value to be insert to this position.</param>
+        protected void NeedForThisPosition(int position, int value)
         {
             if (position < 0 || position > SizeOfList() + 1)
             {
@@ -203,6 +221,16 @@ namespace Homework4_task2
             }
             tempElementPrevious.Next = newElement;
             newElement.Next = tempElement;
+        }
+
+        /// <summary>
+        /// Insert value to this position.
+        /// </summary>
+        /// <param name="position"> Position.</param>
+        /// <param name="value"> Value to be insert.</param>
+        public virtual void InsertToThisPosition(int position, int value)
+        {
+            this.NeedForThisPosition(position, value);
         }
 
         /// <summary>

@@ -27,21 +27,7 @@ namespace Homework4_task2
             {
                 throw new MyException("Element exist");
             }
-
-            if (IsEmpty())
-            {
-                InsertToHead(value);
-                return;
-            }
-
-            var tempElement = this.first();
-            while (tempElement.Next != null)
-            {
-                tempElement = tempElement.Next;
-            }
-
-            var newElement = new ListElement(value);
-            tempElement.Next = newElement;
+            this.NeedForEnd(value);
         }
 
         /// <summary>
@@ -55,31 +41,7 @@ namespace Homework4_task2
             {
                 throw new MyException("Element exist");
             }
-
-            if (position < 0 || position > SizeOfList() + 1)
-            {
-                System.Console.WriteLine("This position does not exist");
-                return;
-            }
-            int countPosition = 0;
-            if (countPosition == position)
-            {
-                this.InsertToHead(value);
-                return;
-            }
-            var tempElement = this.first();         
-            var newElement = new ListElement(value);        
-            var tempElementPrevious = this.first();
-            while (countPosition != position)
-            {
-                tempElement = tempElement.Next;
-                if (countPosition + 1 != position)
-                {
-                    tempElementPrevious = tempElementPrevious.Next;
-                }
-            }
-            tempElementPrevious.Next = newElement;
-            newElement.Next = tempElement;
+            this.NeedForThisPosition(position, value);
         }
 
         public override void RemoveElement(int value)
@@ -88,24 +50,8 @@ namespace Homework4_task2
             {
                 throw new MyException("Element doesn't exist");
             }
-            var tempElement = head;
-            var tempElementPrevious = head;
-            if (tempElement.Value == value)
-            {
-                head = head.Next;
-                return;
-            }
-            while (tempElement.Value != value)
-            {
-                tempElement = tempElement.Next;
-                if (tempElement.Next.Value != value)
-                {
-                    tempElementPrevious = tempElementPrevious.Next;
-                }
-            }
-            tempElementPrevious.Next = tempElement.Next;
+            this.NeedForRemoveElement(value);         
         }
-
     }
 }
 
