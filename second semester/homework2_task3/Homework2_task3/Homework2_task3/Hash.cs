@@ -15,6 +15,11 @@
             }
             this.hashFunction = hashFunction;
         }
+
+        public void ChangeHashFunction(HashFunctionInterface hashFunction)
+        {
+            this.hashFunction = hashFunction;
+        }
      
         /// <summary>
         /// Insert to Hashtable.

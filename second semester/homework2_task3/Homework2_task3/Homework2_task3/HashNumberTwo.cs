@@ -1,5 +1,8 @@
 ﻿namespace Homework2_task3
 {
+    /// <summary>
+    /// Realization interface for hashfunction №2.
+    /// </summary>
     public class HashNumberTwo : HashFunctionInterface
     {
         public int HashFunction(int newElement)

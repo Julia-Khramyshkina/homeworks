@@ -30,5 +30,16 @@ namespace Homework2_task3.Tests
             hashTable.DeleteElement(1);
             Assert.IsFalse(hashTable.ElementExist(1));
         }
+
+
+        [TestMethod]
+        public void ChangeHashFunctionTest()
+        {
+            var newHashFunction = new HashNumberOne();
+            hashTable.InsertToHashTable(1);
+            hashTable.ChangeHashFunction(newHashFunction);
+            Assert.IsTrue(hashTable.ElementExist(1));
+        }
+
     }
 }
