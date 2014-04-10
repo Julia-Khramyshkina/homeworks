@@ -1,36 +1,25 @@
 #pragma once
 #include "generalstack.h"
 
-///
-/// \brief The Stack class
-///
+// Class ordinary stack
 class Stack : public GeneralStack
 {
 public:
     Stack();
     ~Stack();
-    ///
-    /// \brief push
-    /// \param value
-    ///
+
+    // Push value to stack
     void push(int value) override;
 
-    ///
-    /// \brief pop
-    /// \return
-    ///
+    // Pop value from stack
     int pop() override;
 
-    ///
-    /// \brief removeStack
-    ///
+    // Remove stack
     void removeStack() override;
 
 
 private:
-    ///
-    /// \brief The StackElement class
-    ///
+    // Class for element of stack
     class StackElement
     {
     public:

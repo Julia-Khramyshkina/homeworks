@@ -2,9 +2,7 @@
 #include "generalstack.h"
 #include <QTextStream>
 
-///
-/// \brief The Calculator class
-///
+// Class for calculator
 class Calculator
 {
 public:
@@ -12,33 +10,20 @@ public:
         : stack(newStack)
     {
     }
-    virtual ~Calculator() {}
+    ~Calculator();
 
-    ///
-    /// \brief operation
-    /// \param something
-    ///
+    // Arithmetic operation
     void operation(QCharRef something);
 
-    ///
-    /// \brief popValue
-    /// \return
-    ///
+    // Get value from calculator
     int popValue();
 
-    ///
-    /// \brief pushResult
-    /// \param value
-    ///
-    ///
+    // Push value to calculator
     void pushResult(int value);
 
-    ///
-    /// \brief removeCalculator
-    ///
+    // Remove calculator
     void removeCalculator(GeneralStack &stack);
 
 private:
     GeneralStack &stack;
 };
-

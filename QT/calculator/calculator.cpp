@@ -1,43 +1,47 @@
 #pragma once
 #include "calculator.h"
 
-    void Calculator:: operation(QCharRef something)
+Calculator::~Calculator()
+{}
+
+void Calculator::operation(QCharRef something)
+{
+    if (something == '+')
     {
-        if (something == '+')
-        {
-            this->pushResult(this->popValue() + this->popValue());
-        }
-
-        if (something == '-')
-        {
-            this->pushResult(this->popValue() - this->popValue());
-        }
-
-        if (something == '*')
-        {
-            this->pushResult(this->popValue() * this->popValue());
-        }
-
-        if (something == '/')
-        {
-            int number1 = this->popValue();
-            int number2 =  this->popValue();
-            this->pushResult(number2 / number1);
-        }
-   }
-
-    int Calculator:: popValue()
-    {
-        return this->stack.pop();
+        this->pushResult(this->popValue() + this->popValue());
     }
 
-    void Calculator:: pushResult(int value)
+    if (something == '-')
     {
-        this->stack.push(value);
+        this->pushResult(this->popValue() - this->popValue());
     }
 
-    void Calculator::removeCalculator(GeneralStack &stack)
+    if (something == '*')
     {
-        this->stack.removeStack();
-        delete this;
+        this->pushResult(this->popValue() * this->popValue());
     }
+
+    if (something == '/')
+    {
+        int const number1 = this->popValue();
+        int const number2 =  this->popValue();
+        if (number1 == 0)
+            throw QString("Division by 0");
+        this->pushResult(number2 / number1);
+    }
+}
+
+int Calculator::popValue()
+{
+    return this->stack.pop();
+}
+
+void Calculator::pushResult(int value)
+{
+    this->stack.push(value);
+}
+
+void Calculator::removeCalculator(GeneralStack &stack)
+{
+    this->stack.removeStack();
+}

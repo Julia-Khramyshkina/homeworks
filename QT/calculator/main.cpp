@@ -13,20 +13,29 @@ int main()
     QString outString;
     outString = in.readLine();
     int i = 0;
-    while (outString[i] != '=')
+    try
     {
-        if (outString[i] >= '0' && outString[i] <= '9')
+        while (outString[i] != '=')
         {
-            int number = QString(outString[i]).toInt();
-            calculator->pushResult(number);
+            if (outString[i] >= '0' && outString[i] <= '9')
+            {
+                int number = QString(outString[i]).toInt();
+                calculator->pushResult(number);
+            }
+            else
+            {
+                calculator->operation(outString[i]);
+            }
+            ++i;
         }
-        else
-        {
-            calculator->operation(outString[i]);
-        }
-        ++i;
+        qDebug() << calculator->popValue();
     }
-    qDebug() << calculator->popValue();
-    delete stack;
-    delete calculator;
+
+
+    catch (QString str)
+    {
+        qDebug() << str;
+    }
+        delete stack;
+        delete calculator;
 }

@@ -1,40 +1,43 @@
 #pragma once
 #include "stackwitharray.h"
+#include <QTextStream>
+
 StackWithArray::StackWithArray()
 {
 }
 
 StackWithArray::~StackWithArray ()
 {
-    this->removeStack();
+    delete [] value;
 }
-    void StackWithArray:: push(int value)
-    {
-        ++this->head;
-        this->value[head] = value;
-    }
 
-    bool StackWithArray:: isEmpty()
-    {
-        return (this->head == -1);
-    }
+void StackWithArray:: push(int value)
+{
+    ++this->head;
+    this->value[head] = value;
+}
 
-    int StackWithArray::pop()
-    {
-        if (this->isEmpty())
-        {
-            return -33333;
-        }
-        int temp = this->value[head];
-        this->value[head] = 0;
-        --this->head;
-        return temp;
-    }
+bool StackWithArray:: isEmpty()
+{
+    return (this->head == -1);
+}
 
-    void StackWithArray:: removeStack()
+int StackWithArray::pop()
+{
+    if (this->isEmpty())
     {
-        while (!this->isEmpty())
-        {
-            this->pop();
-        }
+        throw QString("Stack is empty");
     }
+    int temp = this->value[head];
+    this->value[head] = 0;
+    --this->head;
+    return temp;
+}
+
+void StackWithArray:: removeStack()
+{
+    while (!this->isEmpty())
+    {
+        this->pop();
+    }
+}

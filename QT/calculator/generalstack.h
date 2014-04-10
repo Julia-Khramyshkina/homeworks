@@ -1,27 +1,15 @@
 #pragma once
 
-///
-/// \brief The GeneralStack class
-///
+// Interface for stack
 class GeneralStack
 {
 public:
-    GeneralStack();
-    virtual ~GeneralStack() {}
-    ///
-    /// \brief pop
-    /// \return
-    ///
+    // Pop value from stack
     virtual int pop() = 0;
 
-    ///
-    /// \brief push
-    /// \param value
-    ///
+    // Push value to stack
     virtual void push(int value) = 0;
 
-    ///
-    /// \brief removeStack
-    ///
+    // Remove stack
     virtual void removeStack() = 0;
 };

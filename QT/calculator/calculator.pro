@@ -19,7 +19,6 @@ TEMPLATE = app
 SOURCES += main.cpp \
     stack.cpp \
     stackwitharray.cpp \
-    generalstack.cpp \
     calculator.cpp
 
 HEADERS += \

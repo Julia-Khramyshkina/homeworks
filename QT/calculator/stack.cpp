@@ -1,35 +1,41 @@
 #pragma once
 #include "stack.h"
+#include <QTextStream>
 
 Stack::Stack()
 {
 }
+
 Stack:: ~Stack()
 {
     this->removeStack();
 }
 
-    void Stack::push(int value)
-    {
-        StackElement *temp = new StackElement;
-        temp->value = value;
-        temp->next = this->head;
-        this->head = temp;
-    }
+void Stack::push(int value)
+{
+    StackElement *temp = new StackElement;
+    temp->value = value;
+    temp->next = this->head;
+    this->head = temp;
+}
 
-    int Stack::pop()
+int Stack::pop()
+{
+    if (this->head == nullptr)
     {
-        int thisValue = this->head->value;
-        StackElement *temp = this->head;
-        this->head = this->head->next;
-        delete temp;
-        return thisValue;
+        throw QString("Stack is empty");
     }
+    int thisValue = this->head->value;
+    StackElement *temp = this->head;
+    this->head = this->head->next;
+    delete temp;
+    return thisValue;
+}
 
-    void Stack:: removeStack()
+void Stack::removeStack()
+{
+    while (this->head != nullptr)
     {
-        while (this->head != nullptr)
-        {
-            this->pop();
-        }
+        this->pop();
     }
+}

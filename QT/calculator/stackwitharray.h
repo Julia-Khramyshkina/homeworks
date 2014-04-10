@@ -3,39 +3,24 @@
 #pragma once
 #include "generalstack.h"
 
-///
-/// \brief The StackWithArray class
-///
+// Class Stack with array
 class StackWithArray : public GeneralStack
 {
 public:
     StackWithArray();
     ~StackWithArray();
 
-
-    ///
-    /// \brief push
-    /// \param value
-    ///
+    // Push value to stack
     void push(int value) override;
 
-    ///
-    /// \brief pop
-    /// \return
-    ///
+    // Pop value from stack
     int pop() override;
 
-    ///
-    /// \brief removeStack
-    ///
+    //Remove stack
     void removeStack() override;
 
-    ///
-    /// \brief isEmpty
-    /// \return
-    ///
+    //Checking. Empty?
     bool isEmpty();
-
 
 private:
     int *value = new int [100];
