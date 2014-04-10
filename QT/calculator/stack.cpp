@@ -20,7 +20,7 @@ void Stack::push(int value)
 
 int Stack::pop()
 {
-    if (this->head == nullptr)
+    if (!this->head)
     {
         throw QString("Stack is empty");
     }
