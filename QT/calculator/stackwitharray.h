@@ -22,5 +22,5 @@ public:
 
 private:
     int *value = new int [100];
-    int head = -33333;
+    int head = -1;
 };
