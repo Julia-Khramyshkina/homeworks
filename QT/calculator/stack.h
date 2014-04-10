@@ -1,7 +1,7 @@
 #pragma once
 #include "generalstack.h"
 
-// Class ordinary stack
+/// Class ordinary stack
 class Stack : public GeneralStack
 {
 public:

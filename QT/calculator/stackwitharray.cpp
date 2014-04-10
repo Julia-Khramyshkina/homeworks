@@ -1,23 +1,22 @@
-#pragma once
 #include "stackwitharray.h"
-#include  <QtCore/QTextStream>
+#include <QtCore/QTextStream>
 
 StackWithArray::StackWithArray()
 {
 }
 
-StackWithArray::~StackWithArray ()
+StackWithArray::~StackWithArray()
 {
-    delete [] value;
+    delete[] value;
 }
 
-void StackWithArray:: push(int value)
+void StackWithArray::push(int value)
 {
     ++this->head;
     this->value[head] = value;
 }
 
-bool StackWithArray:: isEmpty()
+bool StackWithArray::isEmpty()
 {
     return (this->head == -1);
 }
@@ -34,7 +33,7 @@ int StackWithArray::pop()
     return temp;
 }
 
-void StackWithArray:: removeStack()
+void StackWithArray::removeStack()
 {
     while (!this->isEmpty())
     {

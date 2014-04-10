@@ -1,9 +1,7 @@
 #pragma once
 #include "generalstack.h"
-#pragma once
-#include "generalstack.h"
 
-// Class Stack with array
+/// Class Stack with array
 class StackWithArray : public GeneralStack
 {
 public:

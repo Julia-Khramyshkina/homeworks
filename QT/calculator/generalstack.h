@@ -1,6 +1,6 @@
 #pragma once
 
-// Interface for stack
+/// Interface for stack
 class GeneralStack
 {
 public:

@@ -1,4 +1,3 @@
-#pragma once
 #include "stack.h"
 #include <QtCore/QTextStream>
 
@@ -34,7 +33,7 @@ int Stack::pop()
 
 void Stack::removeStack()
 {
-    while (this->head != nullptr)
+    while (!this->head != nullptr)
     {
         this->pop();
     }

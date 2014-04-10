@@ -2,7 +2,7 @@
 #include "generalstack.h"
 #include <QTextStream>
 
-// Class for calculator
+/// Class for calculator
 class Calculator
 {
 public:
