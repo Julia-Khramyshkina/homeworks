@@ -1,6 +1,6 @@
 #pragma once
 #include "stack.h"
-#include <QTextStream>
+#include <QtCore/QTextStream>
 
 Stack::Stack()
 {

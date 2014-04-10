@@ -1,6 +1,6 @@
 #pragma once
 #include "stackwitharray.h"
-#include <QTextStream>
+#include  <QtCore/QTextStream>
 
 StackWithArray::StackWithArray()
 {

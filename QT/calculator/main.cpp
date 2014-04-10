@@ -3,7 +3,7 @@
 #include "calculator.h"
 #include "stackwitharray.h"
 #include "stack.h"
-#include <QTextStream>
+#include  <QtCore/QTextStream>
 
 int main()
 {
@@ -30,10 +30,10 @@ int main()
         }
         qDebug() << calculator->popValue();
     }
-    catch (QString str)
+    catch (QString const &str)
     {
         qDebug() << str;
     }
-        delete stack;
-        delete calculator;
+    delete stack;
+    delete calculator;
 }
