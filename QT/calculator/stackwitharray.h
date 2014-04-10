@@ -10,16 +10,16 @@ public:
     StackWithArray();
     ~StackWithArray();
 
-    // Push value to stack
+    /// Push value to stack
     void push(int value) override;
 
-    // Pop value from stack
+    /// Pop value from stack
     int pop() override;
 
-    //Remove stack
+    /// Remove stack
     void removeStack() override;
 
-    //Checking. Empty?
+    /// Checking. Empty?
     bool isEmpty();
 
 private:

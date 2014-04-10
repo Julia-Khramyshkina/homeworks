@@ -12,16 +12,16 @@ public:
     }
     ~Calculator();
 
-    // Arithmetic operation
+    /// Arithmetic operation
     void operation(QCharRef something);
 
-    // Get value from calculator
+    /// Get value from calculator
     int popValue();
 
-    // Push value to calculator
+    /// Push value to calculator
     void pushResult(int value);
 
-    // Remove calculator
+    /// Remove calculator
     void removeCalculator(GeneralStack &stack);
 
 private:

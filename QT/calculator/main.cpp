@@ -19,7 +19,7 @@ int main()
         {
             if (outString[i] >= '0' && outString[i] <= '9')
             {
-                int number = QString(outString[i]).toInt();
+                int const number = QString(outString[i]).toInt();
                 calculator->pushResult(number);
             }
             else
@@ -30,8 +30,6 @@ int main()
         }
         qDebug() << calculator->popValue();
     }
-
-
     catch (QString str)
     {
         qDebug() << str;

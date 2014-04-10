@@ -8,18 +8,17 @@ public:
     Stack();
     ~Stack();
 
-    // Push value to stack
+    /// Push value to stack
     void push(int value) override;
 
-    // Pop value from stack
+    /// Pop value from stack
     int pop() override;
 
-    // Remove stack
+    /// Remove stack
     void removeStack() override;
 
-
 private:
-    // Class for element of stack
+    /// Class for element of stack
     class StackElement
     {
     public:
