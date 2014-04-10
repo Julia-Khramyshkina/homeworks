@@ -24,7 +24,7 @@ void Calculator::operation(QCharRef something)
     if (something == '/')
     {
         int const number1 = this->popValue();
-        int const number2 =  this->popValue();
+        int const number2 = this->popValue();
         if (number1 == 0)
             throw QString("Division by 0");
         this->pushResult(number2 / number1);
