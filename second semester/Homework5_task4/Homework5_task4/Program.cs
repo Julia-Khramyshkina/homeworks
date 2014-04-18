@@ -18,11 +18,11 @@ namespace Homework5_task4
             eventLoop.RightHandler += action.Movement;
             eventLoop.UpHandler += action.Movement;
             eventLoop.DownHandler += action.Movement;
-     
-            eventLoop.LeftHandler += (sender, eventArgs) => Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-            eventLoop.RightHandler += (sender, eventArgs) => Console.SetCursorPosition(Console.CursorLeft + 1, Console.CursorTop);
-            eventLoop.UpHandler += (sender, eventArgs) => Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
-            eventLoop.DownHandler += (sender, eventArgs) => Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop + 1);
+
+            eventLoop.LeftHandler += (sender, eventArgs) => action.Movement(sender, eventArgs);
+            eventLoop.RightHandler += (sender, eventArgs) => action.Movement(sender, eventArgs); 
+            eventLoop.UpHandler += (sender, eventArgs) => action.Movement(sender, eventArgs); 
+            eventLoop.DownHandler += (sender, eventArgs) => action.Movement(sender, eventArgs); 
 
             eventLoop.Run();
         }
