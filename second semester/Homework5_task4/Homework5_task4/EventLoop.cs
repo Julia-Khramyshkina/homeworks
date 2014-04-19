@@ -17,7 +17,7 @@ namespace Homework5_task4
         public event EventHandler<EventArgs> DownHandler = (sender, args) => { };
 
         /// <summary>
-        /// Run.
+        /// Launch of an infinite event loop.
         /// </summary>
         public void Run()
         {
