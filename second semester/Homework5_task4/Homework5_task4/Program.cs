@@ -17,10 +17,10 @@ namespace Homework5_task4
             Action actionUp = new Action(Console.CursorLeft, Console.CursorTop);
             Action actionDown = new Action(Console.CursorLeft, Console.CursorTop);
 
-            eventLoop.LeftHandler += (sender, eventArgs) => actionLeft.MovementLeft(sender, eventArgs);
-            eventLoop.RightHandler += (sender, eventArgs) => actionRight.MovementRight(sender, eventArgs); 
-            eventLoop.UpHandler += (sender, eventArgs) => actionUp.MovementUp(sender, eventArgs); 
-            eventLoop.DownHandler += (sender, eventArgs) => actionDown.MovementDown(sender, eventArgs); 
+            eventLoop.LeftHandler += actionLeft.MovementLeft;
+            eventLoop.RightHandler += actionRight.MovementRight;
+            eventLoop.UpHandler += actionUp.MovementUp;
+            eventLoop.DownHandler += actionDown.MovementDown;
 
             eventLoop.Run();
         }
