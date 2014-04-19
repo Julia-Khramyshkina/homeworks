@@ -12,17 +12,21 @@ namespace Homework5_task4
         {
             var eventLoop = new EventLoop();
             Console.Clear();
-            Action action = new Action(Console.CursorLeft, Console.CursorTop);
+            Action actionLeft = new Action(Console.CursorLeft, Console.CursorTop);
+            Action actionRight = new Action(Console.CursorLeft, Console.CursorTop);
+            Action actionUp = new Action(Console.CursorLeft, Console.CursorTop);
+            Action actionDown = new Action(Console.CursorLeft, Console.CursorTop);
 
-            eventLoop.LeftHandler += action.Movement;
-            eventLoop.RightHandler += action.Movement;
-            eventLoop.UpHandler += action.Movement;
-            eventLoop.DownHandler += action.Movement;
 
-            eventLoop.LeftHandler += (sender, eventArgs) => action.Movement(sender, eventArgs);
-            eventLoop.RightHandler += (sender, eventArgs) => action.Movement(sender, eventArgs); 
-            eventLoop.UpHandler += (sender, eventArgs) => action.Movement(sender, eventArgs); 
-            eventLoop.DownHandler += (sender, eventArgs) => action.Movement(sender, eventArgs); 
+            eventLoop.LeftHandler += actionLeft.MovementLeft;
+            eventLoop.RightHandler += actionRight.MovementRight;
+            eventLoop.UpHandler += actionUp.MovementUp;
+            eventLoop.DownHandler += actionDown.MovementDown;
+
+            eventLoop.LeftHandler += (sender, eventArgs) => actionLeft.MovementLeft(sender, eventArgs);
+            eventLoop.RightHandler += (sender, eventArgs) => actionRight.MovementRight(sender, eventArgs); 
+            eventLoop.UpHandler += (sender, eventArgs) => actionUp.MovementUp(sender, eventArgs); 
+            eventLoop.DownHandler += (sender, eventArgs) => actionDown.MovementDown(sender, eventArgs); 
 
             eventLoop.Run();
         }

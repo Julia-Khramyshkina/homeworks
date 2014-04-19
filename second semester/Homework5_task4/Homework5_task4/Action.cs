@@ -12,73 +12,34 @@ namespace Homework5_task4
             this.origCol = value2;
         }
 
-        //public void FunctionForException(ConsoleKey key)
-        //{
-        //    if (key == ConsoleKey.LeftArrow)
-        //    {
-        //        if (Console.CursorLeft - 1 < 0)
-        //            throw new Exception("going beyond");
-        //    }
 
-        //    if (key == ConsoleKey.RightArrow)
-        //    {
-        //        if (Console.CursorLeft > Console.WindowWidth)
-        //            throw new Exception("going beyond");
-        //    }
 
-        //    if (key == ConsoleKey.UpArrow)
-        //    {
-        //        if (Console.CursorTop - 1 < 0)
-        //            throw new Exception("going beyond");
-        //    }
-
-        //    if (key == ConsoleKey.DownArrow)
-        //    {
-        //        if (Console.CursorTop > Console.WindowWidth)
-        //            throw new Exception("going beyond");
-        //    }
-        //}
-
-        public void Movement(object sender, EventArgs args)
+        public void MovementLeft(object sender, EventArgs args)
         {
-            //ConsoleKey key = ????;
-            switch (key)
-            {
-                case ConsoleKey.LeftArrow:
-                    {
-                        if (Console.CursorLeft - 1 < 0)
-                            throw new Exception("going beyond");
-                        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
-                        break;
+             if (Console.CursorLeft - 1 < 0)
+                 throw new Exception("going beyond");
+             Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+        }
 
-                    }
+        public void MovementRight(object sender, EventArgs args)
+        {
+            if (Console.CursorLeft > Console.WindowWidth)
+                throw new Exception("going beyond");
+            Console.SetCursorPosition(Console.CursorLeft + 1, Console.CursorTop);
+        }
 
-                case ConsoleKey.RightArrow:
-                    {
-                        if (Console.CursorLeft > Console.WindowWidth)
-                            throw new Exception("going beyond");
-                        Console.SetCursorPosition(Console.CursorLeft + 1, Console.CursorTop);
-                        break;
-                    }
+        public void MovementUp(object sender, EventArgs args)
+        {
+            if (Console.CursorTop - 1 < 0)
+                throw new Exception("going beyond");
+            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
+        }
 
-                case ConsoleKey.UpArrow:
-                    {
-                        if (Console.CursorTop - 1 < 0)
-                            throw new Exception("going beyond");
-                        Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
-                        break;
-                    }
-
-                case ConsoleKey.DownArrow:
-                    {
-                        if (Console.CursorTop > Console.WindowWidth)
-                            throw new Exception("going beyond");
-                        Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop + 1);
-                        break;
-                    }
-
-                //Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);     
-            }
+        public void MovementDown(object sender, EventArgs args)
+        { 
+            if (Console.CursorTop > Console.WindowWidth)
+                throw new Exception("going beyond");
+            Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop + 1);
         }
     }
 }
