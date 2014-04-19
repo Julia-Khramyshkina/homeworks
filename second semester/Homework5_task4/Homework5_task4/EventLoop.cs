@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Homework5_task4
 {
+    /// <summary>
+    /// class -- The EvenLoop 
+    /// </summary>
     public class EventLoop
     {
         public event EventHandler<EventArgs> LeftHandler = (sender, args) => { };
@@ -13,6 +16,9 @@ namespace Homework5_task4
         public event EventHandler<EventArgs> UpHandler = (sender, args) => { };
         public event EventHandler<EventArgs> DownHandler = (sender, args) => { };
 
+        /// <summary>
+        /// Run.
+        /// </summary>
         public void Run()
         {
             while (true)
@@ -43,6 +49,7 @@ namespace Homework5_task4
                             DownHandler(this, EventArgs.Empty);
                             break; 
                         }
+
                     default:
                         {
                             Console.WriteLine("Incorrect input\n");
