@@ -110,8 +110,9 @@ namespace Homework6_task1
                     {
                         this.TempValue = this.Value;
                         this.Assembly();
-                        this.Value = this.Value * this.TempValue;
                         textBox1.Text = this.Value.ToString();
+                        this.Value = this.Value * this.TempValue;
+
                         break;
                     }
 
@@ -153,13 +154,21 @@ namespace Homework6_task1
             if (countButton.Text != "=")
             {
                 this.Assembly();
-                this.Operation = countButton.Text;
-                if (!this.IsBinary())
+                if (this.Operation == "")
                 {
-                    this.ThisOperation();
-                    return;
+                    this.Operation = countButton.Text;
+
+                    if (!this.IsBinary())
+                    {
+                        this.ThisOperation();
+                        return;
+                    }
+
+                    textBox1.Text = textBox1.Text + (countButton.Text[0]).ToString();
                 }
-                textBox1.Text = textBox1.Text + (countButton.Text[0]).ToString();
+
+                
+              
                 if (this.FractionalPart != "" || this.WholePart != "")
                 {
                     this.BinaryOperation();
@@ -170,8 +179,6 @@ namespace Homework6_task1
             {
                 textBox1.Text = this.Value.ToString();
             }
-
-
         }
 
     }
