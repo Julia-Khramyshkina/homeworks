@@ -35,6 +35,10 @@ namespace Homework6_task1
 
         public void Assembly()
         {
+            if (FractionalPart == "")
+            {
+                this.FractionalPart = "0";
+            }
             String ourNumber = this.WholePart + ',' + this.FractionalPart;
             this.WholePart = "";
             this.FractionalPart = "";
@@ -51,18 +55,21 @@ namespace Homework6_task1
                     {
                         this.Value = Math.Sqrt(this.Value);
                         this.Operation = "";
+                        textBox1.Text = this.Value.ToString();
                         break;
                     }
                 case "1/x":
                     {
                         this.Value = 1 / (this.Value);
                         this.Operation = "";
+                        textBox1.Text = this.Value.ToString();
                         break;
                     }
                 case "+-":
                     {
                         this.Value = -this.Value;
                         this.Operation = "";
+                        textBox1.Text = this.Value.ToString();
                         break;
                     }
                
@@ -86,6 +93,7 @@ namespace Homework6_task1
                         this.TempValue = this.Value;
                         this.Assembly();
                         this.Value = this.Value + this.TempValue;
+                        textBox1.Text = this.Value.ToString();
                         break;
                     }
 
@@ -94,6 +102,7 @@ namespace Homework6_task1
                         this.TempValue = this.Value;
                         this.Assembly();
                         this.Value = this.Value - this.TempValue;
+                        textBox1.Text = this.Value.ToString();
                         break;
                     }
 
@@ -102,6 +111,7 @@ namespace Homework6_task1
                         this.TempValue = this.Value;
                         this.Assembly();
                         this.Value = this.Value * this.TempValue;
+                        textBox1.Text = this.Value.ToString();
                         break;
                     }
 
@@ -110,6 +120,7 @@ namespace Homework6_task1
                         this.TempValue = this.Value;
                         this.Assembly();
                         this.Value = this.Value / this.TempValue;
+                        textBox1.Text = this.Value.ToString();
                         break;
                     }
             }
@@ -121,13 +132,13 @@ namespace Homework6_task1
             if (countButton.Text == "," && !this.Dot)
             {
                 this.Dot = true;
+                textBox1.Text = textBox1.Text + (countButton.Text[0]).ToString();
                 return;
             }
 
             if (Digit(countButton.Text) && !this.Dot)
             {
                 this.WholePart = this.WholePart + countButton.Text[0];
-               // textBox1.AppendText(countButton.Text);
                 textBox1.Text = textBox1.Text + (countButton.Text[0]).ToString();
                 return;
             }
@@ -135,10 +146,7 @@ namespace Homework6_task1
             if (Digit(countButton.Text) && this.Dot)
             {
                 this.FractionalPart = this.FractionalPart + countButton.Text[0];
-               // textBox1 = this.FractionalPart;
-
-
-                //textBox1.AppendText(countButton.Text);
+                textBox1.Text = textBox1.Text + (countButton.Text[0]).ToString();
                 return;
             }
 
@@ -151,18 +159,20 @@ namespace Homework6_task1
                     this.ThisOperation();
                     return;
                 }
+                textBox1.Text = textBox1.Text + (countButton.Text[0]).ToString();
                 if (this.FractionalPart != "" || this.WholePart != "")
                 {
                     this.BinaryOperation();
                 }
             }
-        }
 
-        public void Print(String value)
-        {
-          //  textBox1.
-        }
+            if (countButton.Text == "=")
+            {
+                textBox1.Text = this.Value.ToString();
+            }
 
+
+        }
 
     }
 }
