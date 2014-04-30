@@ -12,13 +12,13 @@ namespace Homework6_task1
 {
     public partial class Calculator : Form
     {
-        //private Button[,] buttons = new Button[6, 6];
-
         private String WholePart = "";
         private String FractionalPart = "";
         private bool Dot = false;
 
         private double Value;
+
+        private double TempValue;
 
         private String Operation = "";
 
@@ -35,15 +35,16 @@ namespace Homework6_task1
 
         public void Assembly()
         {
-            String ourNumber = this.WholePart + '.' + this.FractionalPart;
+            String ourNumber = this.WholePart + ',' + this.FractionalPart;
+            this.WholePart = "";
+            this.FractionalPart = "";
+            this.Dot = false;
             this.Value = Double.Parse(ourNumber);
         }
 
         public void ThisOperation()
         {
             
-
-
             switch (this.Operation)
             {
                 case "sqrt":
@@ -75,44 +76,91 @@ namespace Homework6_task1
             return this.Operation == "+" || this.Operation == "-" || this.Operation == "*" || this.Operation == "/";
         }
 
+        public void BinaryOperation()
+        {
+            switch (this.Operation)
+            {
+
+                case "+":
+                    {
+                        this.TempValue = this.Value;
+                        this.Assembly();
+                        this.Value = this.Value + this.TempValue;
+                        break;
+                    }
+
+                case "-":
+                    {
+                        this.TempValue = this.Value;
+                        this.Assembly();
+                        this.Value = this.Value - this.TempValue;
+                        break;
+                    }
+
+                case "*":
+                    {
+                        this.TempValue = this.Value;
+                        this.Assembly();
+                        this.Value = this.Value * this.TempValue;
+                        break;
+                    }
+
+                case "/":
+                    {
+                        this.TempValue = this.Value;
+                        this.Assembly();
+                        this.Value = this.Value / this.TempValue;
+                        break;
+                    }
+            }
+        }
 
         public void ButtonClick(object sender, EventArgs e)
         {
             Button countButton = (Button)sender;
- 
-            //if (countButton.Text == "," && !this.Dot)
-            //{
-            //    this.Dot = true;
-            //    return;
-            //}
+            if (countButton.Text == "," && !this.Dot)
+            {
+                this.Dot = true;
+                return;
+            }
 
-            //if (Digit(countButton.Text) && !this.Dot)
-            //{
-            //    this.WholePart = this.WholePart + countButton.Text[0];
-            //    return;
-            //}
+            if (Digit(countButton.Text) && !this.Dot)
+            {
+                this.WholePart = this.WholePart + countButton.Text[0];
+               // textBox1.AppendText(countButton.Text);
+                textBox1.Text = textBox1.Text + (countButton.Text[0]).ToString();
+                return;
+            }
 
-            //if (Digit(countButton.Text) && this.Dot)
-            //{
-            //    this.FractionalPart = this.FractionalPart + countButton.Text[0];
-            //    return;
-            //}
-
-
-            //if (countButton.Text != "=")
-            //{
-            //    this.Assembly();
-            //    this.Operation = countButton.Text;
-            //    if (!this.IsBinary())
-            //    {
-            //        this.ThisOperation();
-            //        return;
-            //    }
-                
-            //}
+            if (Digit(countButton.Text) && this.Dot)
+            {
+                this.FractionalPart = this.FractionalPart + countButton.Text[0];
+               // textBox1 = this.FractionalPart;
 
 
+                //textBox1.AppendText(countButton.Text);
+                return;
+            }
 
+            if (countButton.Text != "=")
+            {
+                this.Assembly();
+                this.Operation = countButton.Text;
+                if (!this.IsBinary())
+                {
+                    this.ThisOperation();
+                    return;
+                }
+                if (this.FractionalPart != "" || this.WholePart != "")
+                {
+                    this.BinaryOperation();
+                }
+            }
+        }
+
+        public void Print(String value)
+        {
+          //  textBox1.
         }
 
 
