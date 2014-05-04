@@ -9,7 +9,7 @@ namespace Homework7_task1
     /// <summary>
     /// List.
     /// </summary>
-    public class List <ElementType>
+    public class List<ElementType> : IEnumerable<ElementType>, IEnumerator<ElementType>
     {
         private class ListElement
         {
@@ -21,6 +21,8 @@ namespace Homework7_task1
             public ListElement Next { get; set; }
         }
         private ListElement head = null;
+
+        private int valueForNumerator = -1;
 
         /// <summary>
         /// Checking list. Empty?
@@ -81,7 +83,6 @@ namespace Homework7_task1
             }
             return countOfElements;
         }
-
 
         /// <summary>
         /// Checking the existence.
@@ -209,5 +210,51 @@ namespace Homework7_task1
             }
             tempElementPrevious.Next = tempElement.Next;
         }
+
+
+
+
+        public IEnumerator<ElementType> GetEnumerator()
+        {
+            return (IEnumerator<ElementType>)this;
+        }
+
+        IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public bool MoveNext()
+        {
+            if (this.head.Next == null)
+            {
+                Reset();
+                return false;
+            }
+            ++valueForNumerator;
+            return true;
+        }
+
+        public void Reset()
+        {
+            valueForNumerator = -1;
+        }
+
+
+        public object Current
+        {
+            get 
+            {
+                return this.ValueOnPosition(valueForNumerator);
+            }
+        }
+
+
+
+
+        public void Dispose()
+        {
+        }
+      
     }
 }
