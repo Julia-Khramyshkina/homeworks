@@ -22,7 +22,18 @@ namespace Homework7_task1
         }
         private ListElement head = null;
 
-   
+
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            return (IEnumerator<int>)this;
+        }
+
+
+        IEnumerator<int> IEnumerable<int>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
 
         public IEnumerator<ElementType> GetEnumerator()
@@ -34,6 +45,7 @@ namespace Homework7_task1
         {
             return GetEnumerator();
         }
+
 
 
         /// <summary>
@@ -223,9 +235,45 @@ namespace Homework7_task1
             tempElementPrevious.Next = tempElement.Next;
         }
 
+        public class MyEnumerator : IEnumerator<int>
+        {
+            private int valueForNumerator = -1;
+            private List<ElementType> list = new List<ElementType>();
 
+            public object Current
+            {
+                get
+                {
+                    return list.ValueOnPosition(valueForNumerator);
 
-        public class MyEnumerator <ElementType> : IEnumerator<ElementType>
+                }
+            }
+
+            object MyEnumerator.Current
+            {
+                get { return Current; }
+            }
+
+            public bool MoveNext()
+            {
+                if (list.head.Next == null)
+                {
+                    Reset();
+                    return false;
+                }
+                ++valueForNumerator;
+                return true;
+            }
+
+            public void Reset()
+            {
+                valueForNumerator = -1;
+            }
+
+        }
+   
+
+        public class MyEnumerator<ElementType> : IEnumerator<ElementType>
         {
             private int valueForNumerator = -1;
             private List<ElementType> list = new List<ElementType>();
@@ -245,6 +293,7 @@ namespace Homework7_task1
                 get { return Current; }
             }
 
+           
             public bool MoveNext()
             {
                 if (list.head.Next == null)
@@ -257,14 +306,15 @@ namespace Homework7_task1
             }
 
 
-
             public void Reset()
             {
                 valueForNumerator = -1;
             }
 
         }
-   
+
+
+  
       
     }
 }
