@@ -10,11 +10,11 @@ namespace Homework4_task1
     {
         static void Main(string[] args)
         {
-            Tree tree = new Tree();
+            Node tree = new Node();
             String input = "(+(+12)(+(+14)5))=";
             int i = 0;
             tree.InsertElement(input, ref i, tree.First());
-            tree.CalculateTree(tree.First());
+
         }
     }
 }

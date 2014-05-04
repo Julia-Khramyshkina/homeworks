@@ -1,11 +1,21 @@
-﻿namespace Homework4_task1
+﻿using System;
+
+namespace Homework4_task1
 {
-    public class Addiction : Node
+    public class Addition : Node
     {
+
+        public Addition(String value, int temp)
+            : base(value, temp)
+        {
+            
+        }
+
 
         //public override void OperationCalc()
         //{
-        //    this.ValueOfInt = (this.Left.ValueOfInt) + (this.Right.ValueOfInt);
+        //    int tempValue = Convert.ToInt32(this.Left.Value) + Convert.ToInt32(this.Right.Value);
+        //    this.Value = tempValue.ToString();
         //}
     }
 }
