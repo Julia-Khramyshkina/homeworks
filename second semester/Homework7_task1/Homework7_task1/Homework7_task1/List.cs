@@ -9,7 +9,7 @@ namespace Homework7_task1
     /// <summary>
     /// List.
     /// </summary>
-    public class List<ElementType> : IEnumerable<ElementType>, IEnumerator<ElementType>
+    public class List<ElementType> : IEnumerable<ElementType>
     {
         private class ListElement
         {
@@ -22,7 +22,19 @@ namespace Homework7_task1
         }
         private ListElement head = null;
 
-        private int valueForNumerator = -1;
+   
+
+
+        public IEnumerator<ElementType> GetEnumerator()
+        {
+            return (IEnumerator<ElementType>)this;
+        }
+
+        IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
 
         /// <summary>
         /// Checking list. Empty?
@@ -213,48 +225,46 @@ namespace Homework7_task1
 
 
 
-
-        public IEnumerator<ElementType> GetEnumerator()
+        public class MyEnumerator <ElementType> : IEnumerator<ElementType>
         {
-            return (IEnumerator<ElementType>)this;
-        }
+            private int valueForNumerator = -1;
+            private List<ElementType> list = new List<ElementType>();
 
-        IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
 
-        public bool MoveNext()
-        {
-            if (this.head.Next == null)
+            public object Current
             {
-                Reset();
-                return false;
+                get
+                {
+                    return list.ValueOnPosition(valueForNumerator);
+                    
+                }
             }
-            ++valueForNumerator;
-            return true;
-        }
 
-        public void Reset()
-        {
-            valueForNumerator = -1;
-        }
-
-
-        public object Current
-        {
-            get 
+            object MyEnumerator<ElementType>.Current
             {
-                return this.ValueOnPosition(valueForNumerator);
+                get { return Current; }
             }
+
+            public bool MoveNext()
+            {
+                if (list.head.Next == null)
+                {
+                    Reset();
+                    return false;
+                }
+                ++valueForNumerator;
+                return true;
+            }
+
+
+
+            public void Reset()
+            {
+                valueForNumerator = -1;
+            }
+
         }
-
-
-
-
-        public void Dispose()
-        {
-        }
+   
       
     }
 }
