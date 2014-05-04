@@ -1,41 +1,27 @@
 ﻿namespace Homework4_task1
 {
     public class Tree
-    {     
-        public class ElementOfTree
-        {
-            public char ValueOfChar { get; set; }
-            public int ValueOfInt { get; set; }
-            public ElementOfTree(char valueOfChar, int valueOfInt)
-            {
-                ValueOfChar = valueOfChar;
-                ValueOfInt = valueOfInt;
-                Left = null;
-                Right = null;
-            }
-        
-            public ElementOfTree Left { get; set; }
-            public ElementOfTree Right { get; set; }
-        }
-        private ElementOfTree head = null;
+    {
+        protected Node head = null;
 
-        public bool IsEmpty()
+        public virtual void Calculate()
         {
-            return head == null;
+            Node newNode = this.head;
+            newNode.Calculate();
         }
 
-        public ElementOfTree first()
+        public Node First()
         {
-            return head;
+            return this.head;
         }
 
-        public void InsertElement(string input, ref int i, ElementOfTree position)
+        public void InsertElement(string input, ref int i, Node current)
         {
 
             if (input[i] == '(')
             {
                 ++i;
-                InsertElement(input, ref i, position);
+                InsertElement(input, ref i, current);
             }
 
             if (i == input.Length)
@@ -49,102 +35,88 @@
                 return;
             }
 
-            if (input[i - 1] == ')' && (input[i] >= '9' || input[i] <= '0') && input[i] != '(' )
+
+            if (input[i - 1] == ')' && (input[i] >= '9' || input[i] <= '0') && input[i] != '(')
             {
                 return;
             }
-            
+
+
             if (input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/')
             {
                 if (this.head == null)
                 {
-                    this.head = new ElementOfTree(input[i], -1);
-                    position = this.head;
+                    this.head = new Node(input[i], 0);
+                    current = this.head;
                     ++i;
                 }
                 else
                 {
                     //if (position == null)
                     //    return;
-                    if (position.Left == null)
+                    if (current.Left == null)
                     {
-                        position.Left = new ElementOfTree(input[i], -1);
-                        position = position.Left;
+                        current.Left = new Node(input[i], 0);
+                        current = current.Left;
                         ++i;
                     }
                     else
                     {
-                        if (position.Right == null)
+                        if (current.Right == null)
                         {
-                            position.Right = new ElementOfTree(input[i], -1);
-                            position = position.Right;
+                            current.Right = new Node(input[i], 0);
+                            current = current.Right;
                             ++i;
                         }
                         else
                         {
-                            while (position.Left != null)
+                            while (current.Left != null)
                             {
-                                position = position.Left;
+                                current = current.Left;
                             }
-                            position.Left = new ElementOfTree(input[i], -1);
-                            position = position.Left;
+                            current.Left = new Node(input[i], 0);
+                            current = current.Left;
                             ++i;
                         }
                     }
                 }
             }
             if (input[i] >= '0' && input[i] <= '9')
-	        {
+            {
                 int value = input[i] - 48;
-		        if (position.Left == null)
-		        {
-			        position.Left = new ElementOfTree('0', value);
-			        ++i;					
-		        }
-		        else
-		        {
-			        if (position.Right == null)
-			        {
-				        position.Right = new ElementOfTree('0', value);
-				        ++i;
-			        }			
-		        }
-	        }
-	            InsertElement(input, ref i, position);
-        }   
+                if (current.Left == null)
+                {
+                    current.Left = new Node('!', value);
+                    ++i;
+                }
+                else
+                {
+                    if (current.Right == null)
+                    {
+                        current.Right = new Node('!', value);
+                        ++i;
+                    }
+                }
+            }
+            InsertElement(input, ref i, current);
+        }
+
+        public void CalculateTree(Node current)
+        {
+            if (current.Left != null)
+            {
+                CalculateTree(current.Left);          
+                current.Calculate();
+
+            }
+
+            if (current.Right != null)
+            {
+                CalculateTree(current.Right);
+                current.Calculate();
+            }
+        }
+
     }
-    //public class Count : Tree
-    //{
-
-
-    //    public int Counter(ElementOfTree position, ElementOfTree preposition)
-    //    {
-    //        if (position.ValueOfInt != -1)
-    //        {
-    //            return position.ValueOfInt;
-    //        }
-
-    //        if (position.Left != null)
-    //        {
-    //            Counter(position.Left, position);
-    //        }
-
-    //        if (position.Right != null)
-    //        {
-    //            Counter(position.Right, position);
-    //        }
-    //        Operation ourOperation = new Operation(position);
-    //        ourOperation.Choice();
-    //        return position.ValueOfInt;
-    //    }
-    //}
-
-   
-
-
- 
 
 }
-
-
-

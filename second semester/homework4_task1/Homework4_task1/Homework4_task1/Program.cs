@@ -10,16 +10,11 @@ namespace Homework4_task1
     {
         static void Main(string[] args)
         {
-            string input = System.Console.ReadLine();
             Tree tree = new Tree();
+            String input = "(+(+12)(+(+14)5))=";
             int i = 0;
-            tree.InsertElement(input, ref i, tree.first());
-            //BeginCount count = new BeginCount();
-           // Operation oper = new Operation(tree.first());
-            //int result = count.Begin();
-          //  int value = tree.(tree.first(), tree.first());
-           // Count qwerty = new Count();
-
+            tree.InsertElement(input, ref i, tree.First());
+            tree.CalculateTree(tree.First());
         }
     }
 }

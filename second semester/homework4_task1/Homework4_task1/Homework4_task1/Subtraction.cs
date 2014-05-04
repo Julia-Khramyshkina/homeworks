@@ -2,9 +2,9 @@
 {
     public class Subtraction : Operation
     {
-        public void SubtractionOperation()
-        {
-            //position.ValueOfInt = (position.Left.ValueOfInt) - (position.Right.ValueOfInt);
-        }
+        //public override void OperationCalc()
+        //{
+        //    this.ValueOfInt = (this.Left.ValueOfInt) - (this.Right.ValueOfInt);
+        //}
     }
 }

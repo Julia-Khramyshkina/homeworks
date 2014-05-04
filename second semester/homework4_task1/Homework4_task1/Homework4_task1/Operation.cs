@@ -2,19 +2,21 @@
 {
     public class Operation : Node
     {
-        private ElementOfTree position;
-        public Operation(ElementOfTree position)
-        {
-            this.position = position;
-        }
-        public Operation()
-            : base()
-        {
-        }
+        //Operation()
+        //{
+        //}
+        //public virtual void Calculate()
+        //{
+        //    if (this.ValueOfChar == '+')
+        //    {
+        //        this.ValueOfInt = this.Left.ValueOfInt + this.Right.ValueOfInt;
+        //    }
+        //}
 
-        public char ValueOfOperation()
-        {
-            return this.first().ValueOfChar;
-        }
+
+
+
+     
     }
 }
+

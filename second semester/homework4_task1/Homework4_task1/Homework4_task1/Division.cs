@@ -2,9 +2,9 @@
 {
     public class Division: Operation
     {
-        public void DivisionOperation()
-        {
-           // position.ValueOfInt = (position.Left.ValueOfInt) / (position.Right.ValueOfInt);
-        }
+        //public override void OperationCalc()
+        //{
+        //    this.ValueOfInt = (this.Left.ValueOfInt) / (this.Right.ValueOfInt);
+        //}
     }
 }

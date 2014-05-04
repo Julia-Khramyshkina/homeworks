@@ -1,10 +1,11 @@
 ﻿namespace Homework4_task1
 {
-    public class Addiction : Operation
+    public class Addiction : Node
     {
-        public void Addition()
-        {
-            //position.ValueOfInt = (position.Left.ValueOfInt) + (position.Right.ValueOfInt);
-        }
+
+        //public override void OperationCalc()
+        //{
+        //    this.ValueOfInt = (this.Left.ValueOfInt) + (this.Right.ValueOfInt);
+        //}
     }
 }

@@ -2,25 +2,46 @@
 {
     public class Node : Tree
     {
-        private ElementOfTree position;
+        public char ValueOfChar { get; set; }
+        public int ValueOfInt { get; set; }
 
-        public Node() :base()       
-        { 
+        public Node(char valueOfChar, int valueOfInt)
+        {
+            ValueOfChar = valueOfChar;
+            ValueOfInt = valueOfInt;
+            Left = null;
+            Right = null;
         }
 
-     
-        public Node(ElementOfTree position)
+        public Node()
         {
-            this.position = position;
         }
 
-        public int Consider()
-        {
-            Operation operation = new Operation(position);
-           // Operand operandLeft = new Operand(position);
-            //Operand operandRight = new Operand();
-            return 0;
+        public Node Left { get; set; }
+        public Node Right { get; set; }
 
+        public override void Calculate()
+        {
+
+            if (this.ValueOfChar == '+')
+            {
+                this.ValueOfInt = (this.Left.ValueOfInt) + (this.Right.ValueOfInt);
+            }
+
+            if (this.ValueOfChar == '-')
+            {
+                this.ValueOfInt = this.Left.ValueOfInt - this.Right.ValueOfInt;
+            }
+
+            if (this.ValueOfChar == '*')
+            {
+                this.ValueOfInt = this.Left.ValueOfInt * this.Right.ValueOfInt;
+            }
+            if (this.ValueOfChar == '/')
+            {
+                this.ValueOfInt = this.Left.ValueOfInt / this.Right.ValueOfInt;
+            }
         }
     }
+
 }
