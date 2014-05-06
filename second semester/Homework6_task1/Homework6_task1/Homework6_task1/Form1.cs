@@ -155,6 +155,11 @@ namespace Homework6_task1
             this.GetResult = false;
         }
 
+        public bool Ordinary(String value)
+        {
+            return  value == "sqrt" || value == "reverse" || value == "+-" ;
+        }
+
 
         public void ButtonClick(object sender, EventArgs e)
         {
@@ -202,6 +207,12 @@ namespace Homework6_task1
             if (this.Operation == "" && this.Value != 0 && countButton.Text != "=")
             {
                 this.Operation = countButton.Text;
+                if (Ordinary(countButton.Text))
+                {
+                    this.ThisOperation();
+                    this.Operation = "";
+                    return;
+                }
                 textBox1.Text = this.Value.ToString() + countButton.Text[0];
                 return;
             }
@@ -244,11 +255,11 @@ namespace Homework6_task1
                 return;
             }
 
-            if (this.Operation == "" && countButton.Text != "=")
+            if (this.Operation == "")
             {
                 this.Operation = countButton.Text;
 
-                if (!this.IsBinary())
+                if (Ordinary(countButton.Text))
                 {
                     this.ThisOperation();
                     this.Operation = "";
@@ -266,7 +277,9 @@ namespace Homework6_task1
                 }
                 else
                 {
+                    
                     textBox1.Text = textBox1.Text + countButton.Text[0];
+
                 }
                 
 
@@ -276,9 +289,25 @@ namespace Homework6_task1
             if (this.Value != 0 && this.TempValue != 0 && this.IsBinary() && countButton.Text != "=")
             {
                 this.BinaryOperation();
-                textBox1.Text = this.Value.ToString() + countButton.Text;
-                this.Operation = countButton.Text;
-                return;
+                    if (Ordinary(countButton.Text))
+                    {
+                        this.Operation = countButton.Text;
+
+                        this.ThisOperation();
+                        textBox1.Text = this.Value.ToString();
+                    }
+                    else
+                    {
+
+                        textBox1.Text = this.Value.ToString() + countButton.Text;
+                        this.Operation = countButton.Text;
+                    }
+                
+                //{
+                //    //textBox1.Text = this.Value.ToString();
+                //    textBox1.Text = "RRRRRRR";
+                //}
+                //return;
             }
 
 
