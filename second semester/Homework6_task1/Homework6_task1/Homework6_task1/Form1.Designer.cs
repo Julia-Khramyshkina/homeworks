@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.Backspace = new System.Windows.Forms.Button();
             this.CE = new System.Windows.Forms.Button();
             this.C = new System.Windows.Forms.Button();
             this.sign = new System.Windows.Forms.Button();
@@ -63,11 +62,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.Backspace, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.CE, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.C, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.sign, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.sqrt, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.CE, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.C, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.sign, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.sqrt, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.button, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.button7, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.button8, 2, 2);
@@ -99,21 +97,10 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 267);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // Backspace
-            // 
-            this.Backspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Backspace.Location = new System.Drawing.Point(3, 47);
-            this.Backspace.Name = "Backspace";
-            this.Backspace.Size = new System.Drawing.Size(52, 38);
-            this.Backspace.TabIndex = 0;
-            this.Backspace.Text = "Backspace";
-            this.Backspace.UseVisualStyleBackColor = true;
-            this.Backspace.Click += new System.EventHandler(this.ButtonClick);
-            // 
             // CE
             // 
             this.CE.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CE.Location = new System.Drawing.Point(61, 47);
+            this.CE.Location = new System.Drawing.Point(3, 47);
             this.CE.Name = "CE";
             this.CE.Size = new System.Drawing.Size(52, 38);
             this.CE.TabIndex = 1;
@@ -124,7 +111,7 @@
             // C
             // 
             this.C.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.C.Location = new System.Drawing.Point(119, 47);
+            this.C.Location = new System.Drawing.Point(61, 47);
             this.C.Name = "C";
             this.C.Size = new System.Drawing.Size(52, 38);
             this.C.TabIndex = 2;
@@ -135,7 +122,7 @@
             // sign
             // 
             this.sign.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sign.Location = new System.Drawing.Point(177, 47);
+            this.sign.Location = new System.Drawing.Point(119, 47);
             this.sign.Name = "sign";
             this.sign.Size = new System.Drawing.Size(52, 38);
             this.sign.TabIndex = 3;
@@ -145,10 +132,11 @@
             // 
             // sqrt
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.sqrt, 2);
             this.sqrt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqrt.Location = new System.Drawing.Point(235, 47);
+            this.sqrt.Location = new System.Drawing.Point(177, 47);
             this.sqrt.Name = "sqrt";
-            this.sqrt.Size = new System.Drawing.Size(56, 38);
+            this.sqrt.Size = new System.Drawing.Size(114, 38);
             this.sqrt.TabIndex = 4;
             this.sqrt.Text = "sqrt";
             this.sqrt.UseVisualStyleBackColor = true;
@@ -206,7 +194,7 @@
             this.tableLayoutPanel1.SetRowSpan(this.button10, 2);
             this.button10.Size = new System.Drawing.Size(56, 82);
             this.button10.TabIndex = 9;
-            this.button10.Text = "1/x";
+            this.button10.Text = "reverse";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.ButtonClick);
             // 
@@ -370,7 +358,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button Backspace;
         private System.Windows.Forms.Button CE;
         private System.Windows.Forms.Button C;
         private System.Windows.Forms.Button sign;
