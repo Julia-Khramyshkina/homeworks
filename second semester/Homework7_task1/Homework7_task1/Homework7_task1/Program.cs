@@ -14,6 +14,8 @@ namespace Homework7_task1
 
 
             List<int> list = new List<int>();
+
+
             list.InsertToEnd(1);
             list.InsertToEnd(2);
 

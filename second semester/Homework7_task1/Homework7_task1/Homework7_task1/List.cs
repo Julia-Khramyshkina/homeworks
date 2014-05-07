@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,26 +25,20 @@ namespace Homework7_task1
 
 
 
-        public IEnumerator<int> GetEnumerator()
-        {
-            return (IEnumerator<int>)this;
-        }
+   
+
+       
 
 
-        IEnumerator<int> IEnumerable<int>.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-
-        public IEnumerator<ElementType> GetEnumerator()
-        {
-            return (IEnumerator<ElementType>)this;
-        }
 
         IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
         {
-            return GetEnumerator();
+            return new MyEnumerator<ElementType>(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return (IEnumerator)(new MyEnumerator<ElementType>(this));
         }
 
 
@@ -235,48 +230,17 @@ namespace Homework7_task1
             tempElementPrevious.Next = tempElement.Next;
         }
 
-        public class MyEnumerator : IEnumerator<int>
-        {
-            private int valueForNumerator = -1;
-            private List<ElementType> list = new List<ElementType>();
 
-            public object Current
-            {
-                get
-                {
-                    return list.ValueOnPosition(valueForNumerator);
-
-                }
-            }
-
-            object MyEnumerator.Current
-            {
-                get { return Current; }
-            }
-
-            public bool MoveNext()
-            {
-                if (list.head.Next == null)
-                {
-                    Reset();
-                    return false;
-                }
-                ++valueForNumerator;
-                return true;
-            }
-
-            public void Reset()
-            {
-                valueForNumerator = -1;
-            }
-
-        }
-   
 
         public class MyEnumerator<ElementType> : IEnumerator<ElementType>
         {
             private int valueForNumerator = -1;
-            private List<ElementType> list = new List<ElementType>();
+            private List<ElementType> list;
+           
+            public MyEnumerator(List<ElementType> list1)
+            {
+                this.list = list1;
+            }
 
 
             public object Current
@@ -288,14 +252,18 @@ namespace Homework7_task1
                 }
             }
 
-            object MyEnumerator<ElementType>.Current
-            {
-                get { return Current; }
-            }
+            //object MyEnumerator<ElementType>.Current
+            //{
+            //    get { return Current; }
+            //}
 
            
             public bool MoveNext()
             {
+                if (list.head == null)
+                    return false;
+
+
                 if (list.head.Next == null)
                 {
                     Reset();
@@ -311,6 +279,19 @@ namespace Homework7_task1
                 valueForNumerator = -1;
             }
 
+
+            ElementType IEnumerator<ElementType>.Current
+            {
+                get 
+                {
+                    return list.ValueOnPosition(valueForNumerator);
+                }
+            }
+
+            public void Dispose()
+            {
+                
+            }
         }
 
 
