@@ -50,12 +50,12 @@ namespace Homework6_task1
 
         public void ThisOperation()
         {
-            
             switch (this.Operation)
             {
                 case "sqrt":
                     {
-                        this.Value = this.Assembly();
+                        if (this.Value == 0)
+                            this.Value = this.Assembly();
                         this.Value = Math.Sqrt(this.Value);
                         this.Operation = "";
                         this.GetResult = true;
@@ -164,19 +164,73 @@ namespace Homework6_task1
         public void ButtonClick(object sender, EventArgs e)
         {
             Button countButton = (Button)sender;
-
-            if (this.Value != 0 && this.Operation == "" && Digit(countButton.Text) && !this.GetResult)
-            {
-                this.WholePart = this.WholePart + countButton.Text[0];
-                textBox1.Text = countButton.Text[0].ToString();
-                return;
-            }
-
             if (this.Value != 0 && this.Operation == "" && Digit(countButton.Text) && this.GetResult)
             {
                 this.Clear();
                 return;
             }
+
+            //if (this.Value != 0 && this.Operation == "" && Digit(countButton.Text) && !this.GetResult)
+            //{
+
+            //    //if (!this.Dot)
+            //    //{
+            //    //    this.WholePart = this.WholePart + countButton.Text[0];
+            //    //    textBox1.Text = countButton.Text[0].ToString();
+            //    //    return;
+            //    //}
+            //    //else
+            //    //{
+            //    //    this.FractionalPart = this.FractionalPart + countButton.Text[0];
+            //    //    textBox1.Text = countButton.Text[0].ToString();
+            //    //}
+            //}
+
+            if (Digit(countButton.Text) && !this.Dot)
+            {
+                this.WholePart = this.WholePart + countButton.Text[0];
+                textBox1.Text = textBox1.Text + countButton.Text[0];
+                //if (this.Operation != "")
+                //{
+                //    this.TempValue = this.Assembly();
+                //    //this.BinaryOperation();
+                //    //textBox1.Text = this.Value.ToString() + ;
+                //    return;
+
+                //}
+                return;
+            }
+
+
+            if (countButton.Text == "," && !this.Dot)
+            {
+                this.Dot = true;
+                if (this.WholePart == "")
+                {
+                    this.WholePart = "0";
+                    textBox1.Text = textBox1.Text + this.WholePart + countButton.Text[0];
+                }
+                else
+                {
+                    textBox1.Text = textBox1.Text + countButton.Text[0];
+                }
+                return;
+            }
+
+            if (Digit(countButton.Text) && this.Dot)
+            {
+                this.FractionalPart = this.FractionalPart + countButton.Text[0];
+                textBox1.Text = textBox1.Text + countButton.Text[0];
+                return;
+            }
+
+
+            //if (countButton.Text == "," && !this.Dot)
+            //{
+            //    this.Dot = true;
+            //    textBox1.Text = textBox1.Text + countButton.Text[0];
+            //    return;
+            //}
 
             if (countButton.Text == "C")
             {
@@ -204,6 +258,13 @@ namespace Homework6_task1
                 }
             }
 
+            if (!Digit(countButton.Text) && this.Operation != "" && this.Value != 0)
+            {
+                if (this.TempValue == 0)
+                    this.TempValue = this.Assembly();
+            }
+
+
             if (this.Operation == "" && this.Value != 0 && countButton.Text != "=")
             {
                 this.Operation = countButton.Text;
@@ -217,21 +278,7 @@ namespace Homework6_task1
                 return;
             }
 
-            if (countButton.Text == "," && !this.Dot)
-            {
-                this.Dot = true;
-                textBox1.Text = textBox1.Text + countButton.Text[0];
-                return;
-            }
-
-
-            //if (Digit(countButton.Text) && this.Operation != "")
-            //{
-            //    this.BinaryOperation();
-            //    textBox1.Text = this.Value.ToString();
-            //    return;
-
-            //}
+          
 
             if (Digit(countButton.Text) && !this.Dot)
             {
@@ -259,6 +306,11 @@ namespace Homework6_task1
             {
                 this.Operation = countButton.Text;
 
+                //if (this.Value == 0)
+                //{
+                //    this.Value = this.Assembly();
+                //}
+
                 if (Ordinary(countButton.Text))
                 {
                     this.ThisOperation();
@@ -266,48 +318,30 @@ namespace Homework6_task1
                     return;
                 }
 
-                
-
                 if (this.Value != 0 && this.IsBinary())
                 {
-
                     textBox1.Text = this.Value.ToString() + countButton.Text[0];
-
                     return;
                 }
                 else
                 {
-                    
                     textBox1.Text = textBox1.Text + countButton.Text[0];
-
                 }
-                
-
-            }           
+            }
 
 
-            if (this.Value != 0 && this.TempValue != 0 && this.IsBinary() && countButton.Text != "=")
+            if (this.Value != 0 && this.TempValue != 0 && this.IsBinary())
             {
                 this.BinaryOperation();
-                    if (Ordinary(countButton.Text))
-                    {
-                        this.Operation = countButton.Text;
+                textBox1.Text = this.Value.ToString() + countButton.Text;
+                this.Operation = countButton.Text;
 
-                        this.ThisOperation();
-                        textBox1.Text = this.Value.ToString();
-                    }
-                    else
-                    {
-
-                        textBox1.Text = this.Value.ToString() + countButton.Text;
-                        this.Operation = countButton.Text;
-                    }
-                
-                //{
-                //    //textBox1.Text = this.Value.ToString();
-                //    textBox1.Text = "RRRRRRR";
-                //}
-                //return;
+                if (Ordinary(countButton.Text))
+                {
+                    this.ThisOperation();
+                    textBox1.Text = this.Value.ToString();
+                    return;
+                }
             }
 
 
@@ -320,19 +354,21 @@ namespace Homework6_task1
                 this.TempValue = this.Assembly();
             }
 
-            
 
-            if (countButton.Text == "=" )
+
+
+            if (countButton.Text == "=")
             {
                 if (this.Value != 0 && this.TempValue != 0 && this.IsBinary())
                 {
                     this.BinaryOperation();
                 }
                 this.Operation = "";
-                textBox1.Text = this.Value.ToString() + "ololo";
+                textBox1.Text = this.Value.ToString();
                 return;
-              
+
             }
+
         }
 
     }
