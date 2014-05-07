@@ -50,7 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CounterTest.cs" />
+    <Compile Include="TreeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Homework4_task1\Homework4_task1.csproj">

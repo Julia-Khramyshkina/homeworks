@@ -3,11 +3,11 @@
 namespace Homework4_task1
 {
     /// <summary>
-    /// Multiplication in the parse tree.
+    /// Addition in the parse tree.
     /// </summary>
-    public class Multiplication : Operation
+    public class Addition : Operation
     {
-        public Multiplication(String value, Node left, Node right)
+        public Addition(String value, Node left, Node right)
         {
             ValueOperation = value;
             Left = left;
@@ -20,7 +20,7 @@ namespace Homework4_task1
         /// <returns></returns>
         public override Double Calculate()
         {
-            return this.Left.Calculate() * this.Right.Calculate();
+            return this.Left.Calculate() + this.Right.Calculate();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Homework4_task1
         {
             System.Console.Write("(");
             this.Left.Print();
-            System.Console.Write(" * ");
+            System.Console.Write(" + ");
             this.Right.Print();
             System.Console.Write(")");
         }

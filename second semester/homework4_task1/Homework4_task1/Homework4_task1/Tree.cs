@@ -1,176 +1,123 @@
 ﻿using System;
+
 namespace Homework4_task1
 {
+    /// <summary>
+    /// Class for Tree.
+    /// </summary>
     public class Tree
-    {
-       
-        private Node head = null;  
+    {      
+        private Node root = null;  
 
-        public Node First()
+        /// <summary>
+        /// Calculate tree.
+        /// </summary>
+        /// <returns></returns>
+        public Double Calculate()
         {
-            return this.head;
+            return this.root.Calculate();
         }
 
-
-        public void InsertMini(String input, int i, Node current)
+        /// <summary>
+        /// Print tree.
+        /// </summary>
+        public void Print()
         {
-            //switch (input[i])
-            //{
-            //    case '+':
-            //        {
-            //            current = new Addition(input[i].ToString(), 0);
-            //            break;
-            //        }
-            //    case '-':
-            //        {
-            //            current = new Subtraction(input[i].ToString(), 0);
-            //            break;
-            //        }
-            //    case '*':
-            //        {
-            //            current = new Multiplication(input[i].ToString(), 0);
-            //            break;
-            //        }
-            //    case '/':
-            //        {
-            //            current = new Division(input[i].ToString(), 0);
-            //            break;
-            //        }
-            //}
+            this.root.Print();
         }
 
-        //public void InsertElement(string input, ref int i, Node current)
-        //{
+        /// <summary>
+        /// Parse tree.
+        /// </summary>
+        /// <param name="input">String that contains the tree.</param>
+        public void Parse(string input)
+        {
+            int i = 0;
+            this.root = TreeConstruction(input, ref i);
+        }
 
-        //    if (input[i] == '(')
-        //    {
-        //        ++i;
-        //        InsertElement(input, ref i, current);
-        //    }
+        /// <summary>
+        /// Tree construction and return new node.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        public Node TreeConstruction(string input, ref int i)
+        {
+            if (input[i] == '(')
+            {
+                ++i;
+                return TreeConstruction(input, ref i);
+            }
 
-        //    if (i == input.Length)
-        //    {
-        //        return;
-        //    }
+            if (input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/')
+            {
+                switch (input[i])
+                {
+                    case '+':
+                        {                         
+                            ++i;
+                            Node left = TreeConstruction(input, ref i);
+                            ++i;
+                            Node right = TreeConstruction(input, ref i);
+                            ++i;
+                            if (input[i] == ')')
+                            {
+                                return new Addition("+", left, right);
+                            }
+                            else
+                                throw new Exception("Fail");                                
+                        }
+                    case '-':
+                        {
+                            ++i;
+                            Node left = TreeConstruction(input, ref i);
+                            ++i;
+                            Node right = TreeConstruction(input, ref i);
+                            ++i;
+                            if (input[i] == ')')
+                            {
+                                return new Subtraction("-", left, right);
+                            }
+                            else
+                                throw new Exception("Fail");
+                        }
+                    case '*':
+                        {
+                            ++i;
+                            Node left = TreeConstruction(input, ref i);
+                            ++i;
+                            Node right = TreeConstruction(input, ref i);
+                            ++i;
+                            if (input[i] == ')')
+                            {
+                                return new Multiplication("+", left, right);
+                            }
+                            else
+                                throw new Exception("Fail");
+                        }
+                    case '/':
+                        {
+                            ++i;
+                            Node left = TreeConstruction(input, ref i);
+                            ++i;
+                            Node right = TreeConstruction(input, ref i);
+                            ++i;
+                            if (input[i] == ')')
+                            {
+                                return new Division("+", left, right);
+                            }
+                            else
+                                throw new Exception("Fail");
+                        }
+                    }
+                }
 
-        //    if (input[i] == ')')
-        //    {
-        //        ++i;
-        //        return;
-        //    }
-
-
-        //    if (input[i - 1] == ')' && (input[i] >= '9' || input[i] <= '0') && input[i] != '(')
-        //    {
-        //        return;
-        //    }
-
-
-        //    if (input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/')
-        //    {
-        //        if (this.head == null)
-        //        {
-        //            switch (input[i])
-        //            {
-        //                case '+':
-        //                    {
-        //                        this.head = new Addition(input[i].ToString(), 0);
-        //                        break;
-        //                    }
-        //                case '-':
-        //                    {
-        //                        current = new Subtraction(input[i].ToString(), 0);
-        //                        this.head = current;
-        //                        break;
-        //                    }
-        //                case '*':
-        //                    {
-        //                        current = new Multiplication(input[i].ToString(), 0);
-        //                        this.head = current;
-        //                        break;
-        //                    }
-        //                case '/':
-        //                    {
-        //                        current = new Division(input[i].ToString(), 0);
-        //                        this.head = current;
-        //                        break;
-        //                    }
-        //            }
-
-
-        //          //  InsertMini(input, i, this.head);
-        //          //  current = this.head;
-        //            ++i;
-        //        }
-        //        else
-        //        {
-        //            //if (position == null)
-        //            //    return;
-        //            if (current.Left == null)
-        //            {
-        //                InsertMini(input, i, current.Left);
-                       
-        //                current = current.Left;
-        //                ++i;
-        //            }
-        //            else
-        //            {
-        //                if (current.Right == null)
-        //                {
-        //                    InsertMini(input, i, current.Right);
-                          
-        //                    current = current.Right;
-        //                    ++i;
-        //                }
-        //                else
-        //                {
-        //                    while (current.Left != null)
-        //                    {
-        //                        current = current.Left;
-        //                    }
-        //                    InsertMini(input, i, current.Left);
-        //                    current = current.Left;
-        //                    ++i;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    if (input[i] >= '0' && input[i] <= '9')
-        //    {
-        //        int value = input[i] - 48;
-        //        if (current.Left == null)
-        //        {
-        //            current.Left = new Operand(input[i].ToString());
-        //            ++i;
-        //        }
-        //        else
-        //        {
-        //            if (current.Right == null)
-        //            {
-        //                current.Right = new Operand(input[i].ToString());
-        //                ++i;
-        //            }
-        //        }
-        //    }
-        //    InsertElement(input, ref i, current);
-        //}
-
-
-        //public void CalculateTree(Node current)
-        //{
-        //    if (current.Left != null)
-        //    {
-        //        CalculateTree(current.Left);          
-        //        current.Calculate();
-        //    }
-
-        //    if (current.Right != null)
-        //    {
-        //        CalculateTree(current.Right);
-        //        current.Calculate();
-        //    }
-        //}
-
+            if (input[i] >= '0' && input[i] <= '9')
+            {
+                return new Operand(Convert.ToDouble(input[i].ToString()));
+            }
+            throw new Exception("Fail!11");
+        }  
     }
-
 }

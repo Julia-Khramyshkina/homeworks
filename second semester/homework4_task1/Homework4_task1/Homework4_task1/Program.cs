@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework4_task1
 {
@@ -10,11 +6,10 @@ namespace Homework4_task1
     {
         static void Main(string[] args)
         {
-            Node tree = new Node();
-            String input = "(+(+12)(+(+14)5))=";
-            int i = 0;
-            tree.InsertElement(input, ref i, tree.First());
-
+            Tree tree = new Tree();
+            tree.Parse("(*(+12)(-25))");
+            tree.Print();
+            System.Console.WriteLine("\n{0}", tree.Calculate());
         }
     }
 }
