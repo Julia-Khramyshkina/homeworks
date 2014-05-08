@@ -1,0 +1,9 @@
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\bin\Debug\Homework6_task1.exe.config
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\bin\Debug\Homework6_task1.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\bin\Debug\Homework6_task1.pdb
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\obj\Debug\Homework6_task1.csprojResolveAssemblyReference.cache
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\obj\Debug\Homework6_task1.Calculator.resources
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\obj\Debug\Homework6_task1.Properties.Resources.resources
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\obj\Debug\Homework6_task1.csproj.GenerateResource.Cache
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\obj\Debug\Homework6_task1.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\second semester\Homework6_task1\Homework6_task1\Homework6_task1\obj\Debug\Homework6_task1.pdb

@@ -345,8 +345,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(303, 288);
+            this.ClientSize = new System.Drawing.Size(290, 269);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximumSize = new System.Drawing.Size(306, 307);
+            this.MinimumSize = new System.Drawing.Size(306, 307);
             this.Name = "Calculator";
             this.Text = "Calculator";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -356,6 +358,7 @@
         }
 
         #endregion
+
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button CE;
