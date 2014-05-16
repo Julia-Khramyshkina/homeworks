@@ -24,7 +24,7 @@ namespace Homework7_task1
 
 
             foreach (int i in list)
-                Console.Write(i + "\t");
+                Console.Write(i + " ");
 
         }
     }

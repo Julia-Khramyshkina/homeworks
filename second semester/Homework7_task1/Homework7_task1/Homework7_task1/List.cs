@@ -23,25 +23,14 @@ namespace Homework7_task1
         }
         private ListElement head = null;
 
-
-
-   
-
-       
-
-
-
         IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
         {
             return new MyEnumerator<ElementType>(this);
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return (IEnumerator)(new MyEnumerator<ElementType>(this));
         }
-
-
 
         /// <summary>
         /// Checking list. Empty?
@@ -174,7 +163,10 @@ namespace Homework7_task1
             int countPosition = 0;
             while (countPosition != position)
             {
+                if (tempElement.Next == null)
+                    break;
                 tempElement = tempElement.Next;
+                ++countPosition;
             }
             return tempElement.Value;
         }
@@ -225,13 +217,15 @@ namespace Homework7_task1
                 if (countPosition + 1 != position)
                 {
                     tempElementPrevious = tempElementPrevious.Next;
+                    ++countPosition;
                 }
             }
             tempElementPrevious.Next = tempElement.Next;
         }
 
-
-
+        /// <summary>
+        /// Class for travel to our list.
+        /// </summary>
         public class MyEnumerator<ElementType> : IEnumerator<ElementType>
         {
             private int valueForNumerator = -1;
@@ -242,7 +236,6 @@ namespace Homework7_task1
                 this.list = list1;
             }
 
-
             public object Current
             {
                 get
@@ -251,34 +244,26 @@ namespace Homework7_task1
                     
                 }
             }
-
-            //object MyEnumerator<ElementType>.Current
-            //{
-            //    get { return Current; }
-            //}
-
            
             public bool MoveNext()
             {
                 if (list.head == null)
                     return false;
-
-
                 if (list.head.Next == null)
                 {
                     Reset();
                     return false;
                 }
                 ++valueForNumerator;
+                if (list.SizeOfList() == valueForNumerator)
+                    return false;
                 return true;
             }
-
 
             public void Reset()
             {
                 valueForNumerator = -1;
             }
-
 
             ElementType IEnumerator<ElementType>.Current
             {
@@ -292,10 +277,6 @@ namespace Homework7_task1
             {
                 
             }
-        }
-
-
-  
-      
+        }      
     }
 }
