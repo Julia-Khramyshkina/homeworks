@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic_tac_toe", "Tic_tac_toe\Tic_tac_toe.csproj", "{80656D99-EA7C-429B-A9A4-2768496E4BF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic_tac_toe.Web", "Tic_tac_toe.Web\Tic_tac_toe.Web.csproj", "{2140AA1E-CBA5-4CEC-A3EB-E3042EA22EDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80656D99-EA7C-429B-A9A4-2768496E4BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80656D99-EA7C-429B-A9A4-2768496E4BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80656D99-EA7C-429B-A9A4-2768496E4BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80656D99-EA7C-429B-A9A4-2768496E4BF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2140AA1E-CBA5-4CEC-A3EB-E3042EA22EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2140AA1E-CBA5-4CEC-A3EB-E3042EA22EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2140AA1E-CBA5-4CEC-A3EB-E3042EA22EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2140AA1E-CBA5-4CEC-A3EB-E3042EA22EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
