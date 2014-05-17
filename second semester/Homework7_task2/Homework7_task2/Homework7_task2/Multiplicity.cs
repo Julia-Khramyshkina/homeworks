@@ -6,19 +6,47 @@ using System.Threading.Tasks;
 
 namespace Homework7_task2
 {
+    /// <summary>
+    /// Class for multiplicity with 
+    /// </summary>
+    /// <typeparam name="ElementType"> </typeparam>
     public class Multiplicity<ElementType>
     {
-        private ElementType Value;
+        /// <summary>
+        /// Class for element of multiplicity.
+        /// </summary>
+        public class MultiplicityElement
+        {
+            public ElementType Value { get; set; }
+            public MultiplicityElement(ElementType value)
+            {
+                Value = value;
+            }
+            public MultiplicityElement Next { get; set; }
+        }
+        private MultiplicityElement begin = null;
 
-        public Multiplicity<ElementType> Next { get; set; }
-
-        private Multiplicity<ElementType> begin = null;
-
-        public Multiplicity<ElementType> First()
+        /// <summary>
+        /// First element.
+        /// </summary>
+        /// <returns></returns>
+        public MultiplicityElement First()
         {
             return this.begin;
         }
 
+        /// <summary>
+        /// Check for empty.
+        /// </summary>
+        public bool IsEmpty()
+        {
+            return this.begin == null;
+        }
+
+        /// <summary>
+        /// Check for the existence.
+        /// </summary>
+        /// <param name="value">Value to be checked.</param>
         public bool ElementExist(ElementType value)
         {
             var tempElement = this.begin;
@@ -28,33 +56,37 @@ namespace Homework7_task2
                 {
                     return true;
                 }
-
                 tempElement = tempElement.Next;
             }
             return false;
         }
 
+        /// <summary>
+        /// Add element in our multiplicity.
+        /// </summary>
+        /// <param name="value">Value to be added.</param>
         public void AddElement(ElementType value)
         {
             if (ElementExist(value))
                 return;
-
             if (this.begin == null)
             {
-                this.begin.Value = value;
+                var newElement = new MultiplicityElement(value);
+                this.begin = newElement;
                 return;
             }
-
             var tempElement = this.begin;
-
             while (tempElement != null)
             {
                 tempElement = tempElement.Next;
             }
-
-            tempElement.Value = value;
+            tempElement = new MultiplicityElement(value);
         }
-    
+
+        /// <summary>
+        /// Delete element.
+        /// </summary>
+        /// <param name="value">Value for removing.</param>
         public void DeleteELement(ElementType value)
         {
             if (ElementExist(value))
@@ -63,18 +95,21 @@ namespace Homework7_task2
                 if (tempElement.Value.Equals(value))
                 {
                     this.begin = this.begin.Next;
+                    return;
                 }
-
-
                 while (!tempElement.Next.Value.Equals(value))
                 {
                     tempElement = tempElement.Next;
                 }
-
                 tempElement.Next = tempElement.Next.Next;
             }
         }
 
+        /// <summary>
+        /// Intersects the sets.
+        /// </summary>
+        /// <param name="many1">Multiplicity №1</param>
+        /// <returns></returns>
         public Multiplicity<ElementType> Intersection(Multiplicity<ElementType> many1)
         {
             Multiplicity<ElementType> resultMany = new Multiplicity<ElementType>();
@@ -90,6 +125,10 @@ namespace Homework7_task2
             return resultMany;                   
          }
 
+        /// <summary>
+        /// Combines multiple.
+        /// </summary>
+        /// <param name="many1">Multiplicity №1</param>
         public void Unification(Multiplicity<ElementType> many1)
         {
             var tempElement = many1.First();
@@ -99,8 +138,8 @@ namespace Homework7_task2
                 {
                     this.AddElement(tempElement.Value);
                 }
+                tempElement = tempElement.Next;
             }
         }
-
     }
 }
