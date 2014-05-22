@@ -10,7 +10,6 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-
 namespace Tic_tac_toe
 {
     public partial class MainPage : UserControl
@@ -18,7 +17,6 @@ namespace Tic_tac_toe
         internal System.Windows.Controls.Button[] buttons = new System.Windows.Controls.Button[9];
         private int Change = 0;
         private bool Win = false;
-
 
         public MainPage()
         {
@@ -35,31 +33,38 @@ namespace Tic_tac_toe
 
         }
 
+        /// <summary>
+        /// Winner determination.
+        /// </summary>
+        /// <returns></returns>
         private bool IsWin()
-        {
+        { 
             for (int i = 0; i < 3; ++i)
             {
-                if (buttons[i].Content == buttons[i + 3].Content && buttons[i + 3].Content == buttons[i + 6].Content && buttons[i + 6].Content.ToString() != "")
+                if (buttons[i].Content.ToString() == buttons[i + 3].Content.ToString() && buttons[i + 3].Content.ToString() == buttons[i + 6].Content.ToString() && buttons[i].Content.ToString() != "")
                     return true;
             }
+
             int j = 0;
             while (j < 7)
             {
-                if (buttons[j].Content == buttons[j + 1].Content && buttons[j + 1].Content == buttons[j + 2].Content && buttons[j + 2].Content.ToString() != "")
+                if (buttons[j].Content.ToString() == buttons[j + 1].Content.ToString() && buttons[j + 1].Content.ToString() == buttons[j + 2].Content.ToString() && buttons[j + 2].Content.ToString() != "")
                     return true;
                 j = j + 3;
             }
 
-            if (buttons[0].Content == buttons[4].Content && buttons[4].Content == buttons[8].Content && buttons[8].Content.ToString() != "")
+            if (buttons[0].Content.ToString() == buttons[4].Content.ToString() && buttons[4].Content.ToString() == buttons[8].Content.ToString() && buttons[8].Content.ToString() != "")
                 return true;
-            if (buttons[2].Content == buttons[4].Content && buttons[4].Content == buttons[6].Content && buttons[6].Content.ToString() != "")
+
+            if (buttons[2].Content.ToString() == buttons[4].Content.ToString() && buttons[4].Content.ToString() == buttons[6].Content.ToString() && buttons[6].Content.ToString() != "")
                 return true;
 
             return false;
-
         }
 
-
+        /// <summary>
+        /// The click handler.
+        /// </summary>
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             Button countButton = (Button)sender;
@@ -72,24 +77,23 @@ namespace Tic_tac_toe
                 countButton.Content = countButton.Content + "!";
                 return;
             }
+
             if (this.Change == 0 && countButton.Name.ToString() == "ChangeX")
             {
                 this.Change = 1;
                 countButton.Content = countButton.Content + "!";
                 return;
             }
-            
 
-
+            if (this.Change == 0)
+                return;
 
             if (countButton.Content.ToString() != "")
                 return;
 
-
             if (this.Change == 1)
             {
                 countButton.Content = "X";
-
                 if (this.IsWin())
                 {
                     countButton.Content = "X! WIN";
@@ -107,8 +111,6 @@ namespace Tic_tac_toe
                     return;
                 }
             }
-
-
 
             for (int i = 0; i < 9; ++i)
             {
@@ -136,11 +138,6 @@ namespace Tic_tac_toe
                     }
                 }
             }
-      
-
-
         }
-
-       
     }
 }
