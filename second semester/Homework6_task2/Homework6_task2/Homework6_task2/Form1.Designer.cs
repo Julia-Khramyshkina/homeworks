@@ -35,44 +35,49 @@
             this.flowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timer1
+            // timer
             // 
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.TimerTick);
             // 
-            // label1
+            // label
             // 
+            this.label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label.AutoSize = true;
             this.label.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(203)));
-            this.label.Location = new System.Drawing.Point(0, 0);
+            this.label.Location = new System.Drawing.Point(0, -1);
             this.label.Margin = new System.Windows.Forms.Padding(0);
-            this.label.Name = "label1";
+            this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(208, 76);
             this.label.TabIndex = 0;
             this.label.Text = "watch";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanel
             // 
+            this.flowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel.Controls.Add(this.label);
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(350, 77);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(301, 75);
             this.flowLayoutPanel.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 77);
+            this.BackColor = System.Drawing.SystemColors.Highlight;
+            this.ClientSize = new System.Drawing.Size(299, 77);
             this.Controls.Add(this.flowLayoutPanel);
-            this.MaximumSize = new System.Drawing.Size(366, 115);
-            this.MinimumSize = new System.Drawing.Size(366, 115);
+            this.MaximumSize = new System.Drawing.Size(320, 115);
+            this.MinimumSize = new System.Drawing.Size(315, 115);
             this.Name = "Form1";
+            this.RightToLeftLayout = true;
             this.Text = "Watch";
             this.flowLayoutPanel.ResumeLayout(false);
             this.flowLayoutPanel.PerformLayout();

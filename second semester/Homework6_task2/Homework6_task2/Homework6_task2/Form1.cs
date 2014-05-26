@@ -21,7 +21,7 @@ namespace Homework6_task2
         /// </summary>
         private void TimerTick(object sender, EventArgs e)
         {
-            label.Text = DateTime.Now.ToString("h:mm:ss.f");
+            label.Text = DateTime.Now.ToString("h:mm:ss");
         }
     }
 }
