@@ -1,5 +1,10 @@
 #pragma once
 #include <QMainWindow>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QtCore>
+#include <QtGui>
+#include <QDialog>
 
 namespace Ui {
 class MainWindow;
@@ -15,4 +20,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QGraphicsScene *scene;
+    QGraphicsView *view;
+    QGraphicsRectItem *rect;
+    QGraphicsEllipseItem *ellipse;
+
 };

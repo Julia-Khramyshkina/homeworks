@@ -1,14 +1,13 @@
 #pragma once
 #include <QGraphicsScene>
 #include <QGraphicsView>
-class gun
+
+class target
 {
 public:
-    gun(QGraphicsScene *somethingScene);
-
+    target(QGraphicsScene *somethingScene);
     void draw();
 
 private:
     QGraphicsScene *scene;
-}
-;
+};
