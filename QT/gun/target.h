@@ -5,9 +5,7 @@
 class target
 {
 public:
-    target(QGraphicsScene *somethingScene);
-    void draw();
+    target();
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-private:
-    QGraphicsScene *scene;
 };

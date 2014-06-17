@@ -5,7 +5,7 @@
 #include <QtCore>
 #include <QtGui>
 #include <QDialog>
-
+#include "gun.h"
 namespace Ui {
 class MainWindow;
 }
@@ -21,8 +21,5 @@ public:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    QGraphicsView *view;
-    QGraphicsRectItem *rect;
-    QGraphicsEllipseItem *ellipse;
-
+    gun *ourGun;
 };

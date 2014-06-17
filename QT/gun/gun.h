@@ -1,14 +1,11 @@
 #pragma once
 #include <QGraphicsScene>
 #include <QGraphicsView>
-class gun
+#include <QGraphicsItem>
+class gun : public QGraphicsItem
 {
 public:
-    gun(QGraphicsScene *somethingScene);
-
-    void draw();
-
-private:
-    QGraphicsScene *scene;
-}
-;
+    gun();
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+};

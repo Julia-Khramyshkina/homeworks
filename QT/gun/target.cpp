@@ -1,11 +1,10 @@
 #include "target.h"
 
-target::target(QGraphicsScene *somethingScene)
+target::target()
 {
-    scene = somethingScene;
 }
 
-void target::draw()
+void target:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    scene->addEllipse(400, 10, 30, 30);
+    //painter->addEllipse(400, 10, 30, 30);
 }

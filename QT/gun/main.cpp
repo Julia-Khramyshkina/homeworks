@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    QGraphicsScene *scene = new QGraphicsScene();
+    //QGraphicsScene *scene = new QGraphicsScene();
     //scene->
     /*scene->activeWindow();
     gun *thisGun = new gun(scene);
@@ -20,11 +20,10 @@ int main(int argc, char *argv[])
 */
 
 
-    QGraphicsView view(*&scene);
-    //QGraphicsView view(w);
-    view.setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
-    view.show();
+    //view.setAlignment(Qt::AlignLeft | Qt::AlignTop);
+
+    //view.show();
 
     return a.exec();
 }

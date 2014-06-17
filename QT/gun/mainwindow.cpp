@@ -7,9 +7,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
+    //graphicsView = new QGraphicsView();
+    //ui->graphicsView->setScene(scene);
 
-    ellipse = scene->addEllipse(10, 200, 100, 70);
-    rect = scene->addRect(110, 230, 40, 10);
+
+    //QGraphicsView view(*&scene);
+    ourGun = new gun();
+    scene->addItem(ourGun);
+    //QGraphicsRectItem *something = new QGraphicsRectItem(ourGun ourGun);
+    //scene->addItem(something);
+
+    ui->graphicsView->setScene(scene);
+
+    //view.show();
 }
 
 MainWindow::~MainWindow()
