@@ -1,5 +1,10 @@
 #include "mainwindow.h"
+
 #include "ui_mainwindow.h"
+
+#include "gun.h"
+
+#include "shell.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,19 +12,89 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
-    //graphicsView = new QGraphicsView();
-    //ui->graphicsView->setScene(scene);
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    timer = new QTimer(this);
 
-
-    //QGraphicsView view(*&scene);
-    ourGun = new gun();
+    ourGun = new Gun();
     scene->addItem(ourGun);
-    //QGraphicsRectItem *something = new QGraphicsRectItem(ourGun ourGun);
-    //scene->addItem(something);
-
+    ourTarget = new Target(ourGun->currentGun(), ourGun->counterGun());
+    scene->addItem(ourTarget);
     ui->graphicsView->setScene(scene);
 
-    //view.show();
+    QObject::connect(ui->buttonUp, &QPushButton::clicked, this, &MainWindow::down);
+    QObject::connect(ui->buttonDown, &QPushButton::clicked, this, &MainWindow::up);
+    QObject::connect(ui->slowly, &QRadioButton::clicked, this, &MainWindow::slowly);
+    QObject::connect(ui->medium, &QRadioButton::clicked, this, &MainWindow::medium);
+    QObject::connect(ui->quickly, &QRadioButton::clicked, this, &MainWindow::quickly);
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
+    QObject::connect(ui->buttonFire, &QPushButton::clicked, this, &MainWindow::fire);
+}
+
+void MainWindow::down()
+{
+    ourGun->changeCounter(1);
+    scene->invalidate();
+}
+
+void MainWindow::up()
+{
+    ourGun->changeCounter(-1);
+    scene->invalidate();
+}
+
+void MainWindow::fire()
+{
+    if (ourTarget->isCheckWin())
+    {
+        timer->stop();
+        ourTarget->newGame();
+        scene->invalidate();
+        return;
+    }
+    ourShell = new Shell(ourGun->currentGun(), ourGun->counterGun(), speed);
+    scene->addItem(ourShell);
+    if (!this->changeSpeed)
+        return;
+    timer->start(this->interval);
+    scene->invalidate();
+}
+
+void MainWindow::timerUpdate()
+{
+    ourShell->fly();
+    this->win();
+    scene->invalidate();
+}
+
+void MainWindow::slowly()
+{
+    this->speed = 5;
+    this->changeSpeed = true;
+}
+
+void MainWindow::medium()
+{
+    this->speed = 15;
+    this->changeSpeed = true;
+}
+
+void MainWindow::quickly()
+{
+    this->speed = 25;
+    this->changeSpeed = true;
+}
+
+void MainWindow::win()
+{
+    if (ourShell->posX() - ourTarget->posX() <= 30 && ourShell->posX() - ourTarget->posX() >= -30 )
+    {
+        if (ourShell->posY() - ourTarget->posY() <= 30 && ourShell->posY() - ourTarget->posY() >= -30 )
+        {
+            ourTarget->winChanges();
+            scene->invalidate();
+        }
+    }
 }
 
 MainWindow::~MainWindow()

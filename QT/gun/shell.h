@@ -1,15 +1,19 @@
 #pragma once
 
+#include "mainwindow.h"
+
 #include <QGraphicsScene>
 
 #include <QGraphicsView>
 
 #include <QGraphicsItem>
 
-class Target : public QGraphicsItem
+#include <QWidget>
+
+class Shell : public QGraphicsItem
 {
 public:
-    Target(qreal x, qreal y);
+    Shell(qreal x, qreal y, qreal speed);
 
     /// Rectangle for paint shell.
     QRectF boundingRect() const;
@@ -17,23 +21,21 @@ public:
     /// Paint shell.
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    /// Processing of flight.
+    void fly();
+
     /// Get value from position from x.
     qreal posX();
 
-    /// Get value from position from x.
+    /// Get value from position from y.
     qreal posY();
-
-    /// Processing win.
-    void winChanges();
-
-    /// Start new game.
-    void newGame();
-
-    /// Chek win.
-    bool isCheckWin();
 
 private:
     qreal shift;
     qreal turn;
-    bool win = false;
+    QPointF coordinate;
+    qreal speed = 0;
+    QPointF speedVector;
+    QPointF g;
 };
+

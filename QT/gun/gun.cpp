@@ -1,23 +1,39 @@
 #include "gun.h"
+
+#include "mainwindow.h"
+
 #include <QTransform>
 
-gun::gun()
+Gun::Gun(){}
+
+QRectF Gun::boundingRect() const
 {
-}
-QRectF gun::boundingRect() const
-    {
-     qreal penWidth = 1;
-     return QRectF(-10 - penWidth / 2, -10 - penWidth / 2,
-                   20 + penWidth, 20 + penWidth);
-    }
-
-
-
-void gun:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    painter->drawEllipse(10, 200, 100, 70);
-
-
-    painter->drawRect(110, 230, 40, 10);
+    return QRectF(-200, 250, 120, 50);
 }
 
+void Gun::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+
+    painter->drawEllipse(-200, 200, 90, 90);
+    painter->translate(-150, 240);
+    painter->rotate(this->currentAngleGuns * this->counter);
+    painter->drawRect(0, 0, 80, 10);
+}
+
+void Gun::changeCounter(qreal value)
+{
+    if (value == 1)
+        ++this->counter;
+    if (value == -1)
+        --this->counter;
+}
+
+qreal Gun:: currentGun()
+{
+    return this->currentAngleGuns;
+}
+
+qreal Gun:: counterGun()
+{
+    return this->counter;
+}
