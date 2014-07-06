@@ -9,31 +9,31 @@
 class Target : public QGraphicsItem
 {
 public:
-    Target(qreal x, qreal y);
+	Target(qreal x, qreal y);
 
-    /// Rectangle for paint shell.
-    QRectF boundingRect() const;
+	/// Rectangle for paint shell.
+	QRectF boundingRect() const;
 
-    /// Paint shell.
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+	/// Paint shell.
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    /// Get value from position from x.
-    qreal posX();
+	/// Get value from position from x.
+	qreal posX();
 
-    /// Get value from position from x.
-    qreal posY();
+	/// Get value from position from x.
+	qreal posY();
 
-    /// Processing win.
-    void winChanges();
+	/// Processing win.
+	void winChanges();
 
-    /// Start new game.
-    void newGame();
+	/// Start new game.
+	void newGame();
 
-    /// Chek win.
-    bool isCheckWin();
+	/// Chek win.
+	bool isCheckWin();
 
 private:
-    qreal shift;
-    qreal turn;
-    bool win = false;
+	qreal shift;
+	qreal turn;
+	bool win = false;
 };

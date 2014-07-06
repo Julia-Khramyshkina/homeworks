@@ -28,46 +28,47 @@ class Shell;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+	explicit MainWindow(QWidget *parent = 0);
 
-    /// Processing and verification of cases to win.
-    void win();
-    ~MainWindow();
+	/// Processing and verification of cases to win.
+	void win();
+	~MainWindow();
 
 public slots:
 
-    /// Movement down the barrel.
-    void down();
+	/// Movement down the barrel.
+	void down();
 
-    /// Movement up the barrel.
-    void up();
+	/// Movement up the barrel.
+	void up();
 
-    /// Shot.
-    void fire();
+	/// Shot.
+	void fire();
 
-    /// Timer update.
-    void timerUpdate();
+	/// Timer update.
+	void timerUpdate();
 
-    /// Rate selection. Slowly.
-    void slowly();
+	/// Rate selection. Slowly.
+	void slowly();
 
-    /// Rate selection. Medium.
-    void medium();
+	/// Rate selection. Medium.
+	void medium();
 
-    /// Rate selection. Quickly.
-    void quickly();
+	/// Rate selection. Quickly.
+	void quickly();
 
 private:
-    Ui::MainWindow *ui;
-    QGraphicsScene *scene;
-    Gun *ourGun;
-    Target *ourTarget;
-    Shell *ourShell;
-    QTimer *timer;
-    bool changeSpeed = false;
-    qreal speed;
-    qreal interval = 100;
+	Ui::MainWindow *ui;
+	QGraphicsScene *scene;
+	Gun *ourGun;
+	Target *ourTarget;
+	Shell *ourShell;
+	QTimer *timer;
+	bool changeSpeed = false;
+	qreal speed;
+	qreal interval = 100;
+	bool shellCreate = false;
 };

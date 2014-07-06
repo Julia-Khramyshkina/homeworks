@@ -14,26 +14,26 @@
 class Gun : public QGraphicsItem
 {
 public:
-    Gun();
+	Gun();
 
-    /// Rectangle for paint gun.
-    QRectF boundingRect() const;
+	/// Rectangle for paint gun.
+	QRectF boundingRect() const;
 
-    /// Paint gun.
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+	/// Paint gun.
+	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    /// Change state of trunk.
-    void changeCounter(qreal value);
+	/// Change state of trunk.
+	void changeCounter(qreal value);
 
-    /// Get value corner of rotation.
-    qreal currentGun();
+	/// Get value corner of rotation.
+	qreal currentGun();
 
-    /// Get value count of rotations.
-    qreal counterGun();
+	/// Get value count of rotations.
+	qreal counterGun();
 
 private:
-    qreal currentAngleGuns = - 3;
-    qreal counter = 0;
+	qreal currentAngleGuns = - 3;
+	qreal counter = 0;
 };
 
 
