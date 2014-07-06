@@ -4,7 +4,6 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsItem>
-#include <QWidget>
 
 /// This is gun class.
 class Gun : public QGraphicsItem
@@ -19,6 +18,7 @@ public:
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
 	/// Change state of trunk.
+	/// @value change corner.
 	void changeCounter(qreal value);
 
 	/// Get value corner of rotation.
@@ -28,8 +28,8 @@ public:
 	qreal counterGun();
 
 private:
-	qreal currentAngleGuns = - 3;
-	qreal counter = 0;
+	qreal const mCurrentAngleGuns = - 3;
+	qreal mCounter = 0;
 };
 
 

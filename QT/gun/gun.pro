@@ -16,14 +16,15 @@ CONFIG += C++11
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     gun.cpp \
     target.cpp \
-    shell.cpp
+    shell.cpp \
+    mainWindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     gun.h \
     target.h \
-    shell.h
+    shell.h \
+    mainWindow.h
 
 FORMS    += mainwindow.ui

@@ -2,23 +2,23 @@
 
 Shell::Shell(qreal x, qreal y, qreal speed)
 {
-	this->shift = x;
-	this->turn = y;
-	g.setY(g.y() + 1);
-	coordinate.setX(coordinate.x() + 80);
-	coordinate.setY(coordinate.y());
+	this->mShift = x;
+	this->mTurn = y;
+	mG.setY(mG.y() + 1);
+	mCoordinate.setX(mCoordinate.x() + 80);
+	mCoordinate.setY(mCoordinate.y());
 
 	QTransform transform;
 	transform.translate(-150, 240);
-	transform.rotate(this->shift * this->turn - 3);
+	transform.rotate(this->mShift * this->mTurn - 3);
 
-	this->coordinate = transform.map(this->coordinate);
-	this->speedVector.setX(this->speedVector.x() + speed);
-	this->speedVector.setY(this->speedVector.y());
+	this->mCoordinate = transform.map(this->mCoordinate);
+	this->mSpeedVector.setX(this->mSpeedVector.x() + speed);
+	this->mSpeedVector.setY(this->mSpeedVector.y());
 
 	QTransform transform1;
-	transform1.rotate(this->shift * this->turn - 3);
-	this->speedVector = transform1.map(this->speedVector);
+	transform1.rotate(this->mShift * this->mTurn - 3);
+	this->mSpeedVector = transform1.map(this->mSpeedVector);
 }
 
 QRectF Shell::boundingRect() const
@@ -28,23 +28,22 @@ QRectF Shell::boundingRect() const
 
 void Shell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-	painter->drawEllipse(this->coordinate.x(), this->coordinate.y(), 15, 15);
+	painter->drawEllipse(this->mCoordinate.x(), this->mCoordinate.y(), 15, 15);
 }
-
 
 void Shell::fly()
 {
-	this->speedVector += this->g;
-	this->coordinate.setX(this->coordinate.x() + this->speedVector.x());
-	this->coordinate.setY(this->coordinate.y() + this->speedVector.y());
+	this->mSpeedVector += this->mG;
+	this->mCoordinate.setX(this->mCoordinate.x() + this->mSpeedVector.x());
+	this->mCoordinate.setY(this->mCoordinate.y() + this->mSpeedVector.y());
 }
 
 qreal Shell::posX()
 {
-	return this->coordinate.x();
+	return this->mCoordinate.x();
 }
 
 qreal Shell::posY()
 {
-	return this->coordinate.y();
+	return this->mCoordinate.y();
 }

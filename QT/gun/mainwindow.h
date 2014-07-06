@@ -5,7 +5,6 @@
 #include <QGraphicsView>
 #include <QtCore>
 #include <QtGui>
-#include <QDialog>
 #include <QWidget>
 #include "target.h"
 
@@ -54,14 +53,14 @@ public slots:
 	void quickly();
 
 private:
-	Ui::MainWindow *ui;
-	QGraphicsScene *scene;
-	Gun *ourGun;
-	Target *ourTarget;
-	Shell *ourShell;
-	QTimer *timer;
-	bool changeSpeed = false;
-	qreal speed;
-	qreal interval = 100;
-	bool shellCreate = false;
+	Ui::MainWindow *mUi; // Has ownership.
+	QGraphicsScene *mScene; // Doesn't have ownership.
+	Gun *mOurGun; // Doesn't have ownership.
+	Target *mOurTarget; // Doesn't have ownership.
+	Shell *mOurShell; // Doesn't have ownership.
+	QTimer *mTimer; // Doesn't have ownership.
+	bool mChangeSpeed = false;
+	qreal mSpeed;
+	qreal const mInterval = 100;
+	bool mShellCreate = false;
 };

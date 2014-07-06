@@ -2,8 +2,8 @@
 
 Target::Target(qreal x, qreal y)
 {
-	this->shift = x;
-	this->turn = y;
+	this->mShift = x;
+	this->mTurn = y;
 }
 
 QRectF Target::boundingRect() const
@@ -14,7 +14,7 @@ QRectF Target::boundingRect() const
 void Target:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 	painter->drawEllipse(220, 20, 30, 30);
-	if (win)
+	if (mWin)
 	{
 		painter->setBrush(Qt::blue);
 		painter->drawEllipse(220, 20, 30, 30);
@@ -33,15 +33,15 @@ qreal Target::posY()
 
 void Target::winChanges()
 {
-	this->win = true;
+	this->mWin = true;
 }
 
 void Target::newGame()
 {
-	this->win = false;
+	this->mWin = false;
 }
 
 bool Target::isCheckWin()
 {
-	return this->win;
+	return this->mWin;
 }

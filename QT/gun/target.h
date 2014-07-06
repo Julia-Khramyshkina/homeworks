@@ -31,7 +31,7 @@ public:
 	bool isCheckWin();
 
 private:
-	qreal shift;
-	qreal turn;
-	bool win = false;
+	qreal mShift;
+	qreal mTurn;
+	bool mWin = false;
 };

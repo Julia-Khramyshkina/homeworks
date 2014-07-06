@@ -1,114 +1,117 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include "gun.h"
 #include "shell.h"
-
 MainWindow::MainWindow(QWidget *parent) :
 	QMainWindow(parent),
-	ui(new Ui::MainWindow)
+	mUi(new Ui::MainWindow)
 {
-	ui->setupUi(this);
-	scene = new QGraphicsScene(this);
-	ui->graphicsView->setScene(scene);
-	ui->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-	timer = new QTimer(this);
 
-	ourGun = new Gun();
-	scene->addItem(ourGun);
-	ourTarget = new Target(ourGun->currentGun(), ourGun->counterGun());
-	scene->addItem(ourTarget);
-	ui->graphicsView->setScene(scene);
+	mUi->setupUi(this);
+	mScene = new QGraphicsScene(this);
+	mUi->graphicsView->setScene(mScene);
+	mUi->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+	mTimer = new QTimer(this);
 
-	QObject::connect(ui->buttonUp, &QPushButton::clicked, this, &MainWindow::down);
-	QObject::connect(ui->buttonDown, &QPushButton::clicked, this, &MainWindow::up);
-	QObject::connect(ui->slowly, &QRadioButton::clicked, this, &MainWindow::slowly);
-	QObject::connect(ui->medium, &QRadioButton::clicked, this, &MainWindow::medium);
-	QObject::connect(ui->quickly, &QRadioButton::clicked, this, &MainWindow::quickly);
-	QObject::connect(timer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
-	QObject::connect(ui->buttonFire, &QPushButton::clicked, this, &MainWindow::fire);
+	mOurGun = new Gun();
+	mScene->addItem(mOurGun);
+	mOurTarget = new Target(mOurGun->currentGun(), mOurGun->counterGun());
+	mScene->addItem(mOurTarget);
+	mUi->graphicsView->setScene(mScene);
+
+	QObject::connect(mUi->buttonUp, &QPushButton::clicked, this, &MainWindow::down);
+	QObject::connect(mUi->buttonDown, &QPushButton::clicked, this, &MainWindow::up);
+	QObject::connect(mUi->slowly, &QRadioButton::clicked, this, &MainWindow::slowly);
+	QObject::connect(mUi->medium, &QRadioButton::clicked, this, &MainWindow::medium);
+	QObject::connect(mUi->quickly, &QRadioButton::clicked, this, &MainWindow::quickly);
+	QObject::connect(mTimer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
+	QObject::connect(mUi->buttonFire, &QPushButton::clicked, this, &MainWindow::fire);
 }
 
 void MainWindow::down()
 {
-	ourGun->changeCounter(1);
-	scene->invalidate();
+	mOurGun->changeCounter(1);
+	mScene->invalidate();
 }
 
 void MainWindow::up()
 {
-	ourGun->changeCounter(-1);
-	scene->invalidate();
+	mOurGun->changeCounter(-1);
+	mScene->invalidate();
 }
 
 void MainWindow::fire()
 {
-	if (this->shellCreate)
+	if (this->mShellCreate)
 	{
-		this->shellCreate = false;
-		delete ourShell;
+		this->mShellCreate = false;
+		delete mOurShell;
 	}
 
-	if (ourTarget->isCheckWin())
+	if (mOurTarget->isCheckWin())
 	{
-		timer->stop();
-		ourTarget->newGame();
-		scene->invalidate();
+		mTimer->stop();
+		mOurTarget->newGame();
+		mScene->invalidate();
 		return;
 	}
 
-	if (!this->changeSpeed)
+	if (!this->mChangeSpeed)
 	{
-		this->changeSpeed = true;
-		ui->slowly->click();
-		ui->slowly->clicked();
+		this->mChangeSpeed = true;
+		mUi->slowly->click();
+		mUi->slowly->clicked();
 		this->slowly();
 	}
 
-	this->shellCreate = true;
-	ourShell = new Shell(ourGun->currentGun(), ourGun->counterGun(), speed);
-	scene->addItem(ourShell);
-	timer->start(this->interval);
-	scene->invalidate();
+	this->mShellCreate = true;
+	mOurShell = new Shell(mOurGun->currentGun(), mOurGun->counterGun(), mSpeed);
+	mScene->addItem(mOurShell);
+	mTimer->start(this->mInterval);
+	mScene->invalidate();
 }
 
 void MainWindow::timerUpdate()
 {
-	ourShell->fly();
+	mOurShell->fly();
 	this->win();
-	scene->invalidate();
+	mScene->invalidate();
 }
 
 void MainWindow::slowly()
 {
-	this->speed = 5;
-	this->changeSpeed = true;
+	this->mSpeed = 5;
+	this->mChangeSpeed = true;
 }
 
 void MainWindow::medium()
 {
-	this->speed = 15;
-	this->changeSpeed = true;
+	this->mSpeed = 15;
+	this->mChangeSpeed = true;
 }
 
 void MainWindow::quickly()
 {
-	this->speed = 25;
-	this->changeSpeed = true;
+	this->mSpeed = 25;
+	this->mChangeSpeed = true;
 }
 
 void MainWindow::win()
 {
-	if (ourShell->posX() - ourTarget->posX() <= 30 && ourShell->posX() - ourTarget->posX() >= -30 )
+	if (mOurShell->posX() - mOurTarget->posX() <= 30 && mOurShell->posX() - mOurTarget->posX() >= -30 )
 	{
-		if (ourShell->posY() - ourTarget->posY() <= 30 && ourShell->posY() - ourTarget->posY() >= -30 )
+		if (mOurShell->posY() - mOurTarget->posY() <= 30 && mOurShell->posY() - mOurTarget->posY() >= -30 )
 		{
-			ourTarget->winChanges();
-			scene->invalidate();
+			mOurTarget->winChanges();
+			mScene->invalidate();
 		}
 	}
 }
 
 MainWindow::~MainWindow()
 {
-	delete ui;
+	delete mTimer;
+	delete mScene;
+	delete mUi;
 }

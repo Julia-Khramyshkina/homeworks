@@ -4,7 +4,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QGraphicsItem>
-#include <QWidget>
+//#include <QWidget>
 
 class Shell : public QGraphicsItem
 {
@@ -27,11 +27,11 @@ public:
 	qreal posY();
 
 private:
-	qreal shift;
-	qreal turn;
-	QPointF coordinate;
-	qreal speed = 0;
-	QPointF speedVector;
-	QPointF g;
+	qreal mShift;
+	qreal mTurn;
+	QPointF mCoordinate;
+	qreal mSpeed = 0;
+	QPointF mSpeedVector;
+	QPointF mG;
 };
 
