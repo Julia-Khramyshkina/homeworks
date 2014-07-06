@@ -1,19 +1,12 @@
 #pragma once
 
 #include <QMainWindow>
-
 #include <QGraphicsScene>
-
 #include <QGraphicsView>
-
 #include <QtCore>
-
 #include <QtGui>
-
 #include <QDialog>
-
 #include <QWidget>
-
 #include "target.h"
 
 namespace Ui {

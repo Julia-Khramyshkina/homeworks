@@ -1,13 +1,8 @@
 #include "mainwindow.h"
-
 #include <QApplication>
-
 #include <QGraphicsScene>
-
 #include <QGraphicsView>
-
 #include "gun.h"
-
 #include "target.h"
 
 int main(int argc, char *argv[])

@@ -22,9 +22,9 @@ Shell::Shell(qreal x, qreal y, qreal speed)
 }
 
 QRectF Shell::boundingRect() const
-	{
-	 return QRectF(10, 30, 50, 20);
-	}
+{
+	return QRectF(10, 30, 50, 20);
+}
 
 void Shell::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {

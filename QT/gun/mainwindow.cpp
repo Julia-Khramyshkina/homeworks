@@ -1,9 +1,6 @@
 #include "mainwindow.h"
-
 #include "ui_mainwindow.h"
-
 #include "gun.h"
-
 #include "shell.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -66,6 +63,7 @@ void MainWindow::fire()
 		ui->slowly->clicked();
 		this->slowly();
 	}
+
 	this->shellCreate = true;
 	ourShell = new Shell(ourGun->currentGun(), ourGun->counterGun(), speed);
 	scene->addItem(ourShell);

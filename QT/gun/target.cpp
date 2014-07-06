@@ -7,9 +7,9 @@ Target::Target(qreal x, qreal y)
 }
 
 QRectF Target::boundingRect() const
-	{
+{
 	 return QRectF(225, -30, 50, 50);
-	}
+}
 
 void Target:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {

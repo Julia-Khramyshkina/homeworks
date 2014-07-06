@@ -1,13 +1,9 @@
 #pragma once
 
 #include "mainwindow.h"
-
 #include <QGraphicsScene>
-
 #include <QGraphicsView>
-
 #include <QGraphicsItem>
-
 #include <QWidget>
 
 class Shell : public QGraphicsItem

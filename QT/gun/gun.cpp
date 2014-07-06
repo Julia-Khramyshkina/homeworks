@@ -1,7 +1,5 @@
 #include "gun.h"
-
 #include "mainwindow.h"
-
 #include <QTransform>
 
 Gun::Gun(){}
@@ -24,6 +22,7 @@ void Gun::changeCounter(qreal value)
 {
 	if (value == 1)
 		++this->counter;
+
 	if (value == -1)
 		--this->counter;
 }
