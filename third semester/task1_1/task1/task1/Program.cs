@@ -14,22 +14,25 @@ namespace task1
         {
             BinaryTreeSeach tree = new BinaryTreeSeach();
 
-
             tree.InsertElement(10);
             tree.InsertElement(12);
-            tree.InsertElement(3);
             tree.InsertElement(5);
-            tree.InsertElement(2);
+            tree.InsertElement(1);
+            tree.InsertElement(6);
+            tree.InsertElement(18);
 
+
+            foreach (int i in tree)
+            {
+                System.Console.WriteLine("!!!");
+            }
+
+            tree.InsertElement(100);
 
             foreach (int i in tree)
             {
                 System.Console.WriteLine("ololo");
             }
-
-            tree.RemoveElement(3);
-
-
         }
     }
 }

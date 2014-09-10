@@ -12,10 +12,9 @@ namespace task1
         {
             public int Value { get; set; }
             public int Position { get; set; }
-            public ElementOfBinaryTreeSeach(int value, int position)
+            public ElementOfBinaryTreeSeach(int value)
             {
                 Value = value;
-                Position = position;
             }
             public ElementOfBinaryTreeSeach Left { get; set; }
             public ElementOfBinaryTreeSeach Right { get; set; }
@@ -54,40 +53,57 @@ namespace task1
         
             private int valueForNumerator = -1;
             private BinaryTreeSeach binaryTree;
-
+            private List<int> listForBinaryTree = new List<int>(); 
+            
+            
             public MyEnumerator(BinaryTreeSeach binaryTree1)
             {
                 this.binaryTree = binaryTree1;
+                Ascending(binaryTree.head);
             }
 
+            private void Ascending(ElementOfBinaryTreeSeach currentElement)
+            {
+                if (currentElement != null)
+                {
+                    listForBinaryTree.InsertToEnd(currentElement.Value);
+                }
+
+                if (currentElement.Left != null)
+                {             
+                    Ascending(currentElement.Left);
+                }
+           
+                if (currentElement.Right != null)
+                {
+                    Ascending(currentElement.Right);
+                }
+            }
 
             public int Current
             {
                 get
                 {
-                    return binaryTree.ValueOnPosition(valueForNumerator);
+                    return listForBinaryTree.ValueOnPosition(valueForNumerator);
                 }
             }
 
-
             private object Current1
             {
-
-                get { return this.Current; }
+                get
+                {
+                    return this.Current;
+                }
             }
 
            
             object IEnumerator.Current
             {
-                get { return Current1; }
+                get
+                { 
+                    return Current1;
+                }
             }
-
-
-            /// <summary>
-            /// Get value.
-            /// </summary>
-           
-
 
             /// <summary>
             /// Check possible moving.
@@ -95,18 +111,17 @@ namespace task1
             /// <returns></returns>
             public bool MoveNext()
             {
-
-                if (binaryTree.head == null)
+                if (listForBinaryTree.First() == null)
                     return false;
-                if (binaryTree.head.Left == null && binaryTree.head.Right == null)
+
+                if (listForBinaryTree.First().Next == null)
                 {
                     Reset();
                     return false;
                 }
                 ++valueForNumerator;
-                if (binaryTree.size == valueForNumerator)
+                if (listForBinaryTree.SizeOfList() == valueForNumerator)
                     return false;
-               
                 return true;
             }
 
@@ -117,8 +132,7 @@ namespace task1
             {
                 valueForNumerator = -1;
             }
-
-   
+ 
             /// <summary>
             /// Releasing or resetting unmanaged resources.
             /// </summary>
@@ -127,7 +141,6 @@ namespace task1
 
             }
         }      
-
   
         public void InsertElement(int value)
         {
@@ -138,12 +151,11 @@ namespace task1
 
             if (this.head == null)
             {
-                this.head = new ElementOfBinaryTreeSeach(value, size);
+                this.head = new ElementOfBinaryTreeSeach(value);
                 return;
             }
 
             var counter = this.head;
-            ++size;
 
             while (counter.Left != null || counter.Right != null)
             {
@@ -166,49 +178,20 @@ namespace task1
             }
             if (counter.Value > value)
             {
-                counter.Left = new ElementOfBinaryTreeSeach(value, size);
+                counter.Left = new ElementOfBinaryTreeSeach(value);
             }
             else
             {
                 
-                counter.Right = new ElementOfBinaryTreeSeach(value, size);
+                counter.Right = new ElementOfBinaryTreeSeach(value);
             }
         }
 
 
-        private void AscendingDouble(ref ElementOfBinaryTreeSeach currentElement, int position, ref int resultPosition, ref ElementOfBinaryTreeSeach result)
-        {
-            ++resultPosition;
-            if (currentElement != null)
-            {
-                
-                if (resultPosition == position)
-                    result = currentElement;
+     
 
-                currentElement = currentElement.Left;
-                AscendingDouble(ref currentElement, position, ref resultPosition, ref result);
-            }
 
-           
-            if (currentElement != null)
-            {
-                if (resultPosition == position)
-                    result = currentElement;
-
-                currentElement = currentElement.Right;
-                AscendingDouble(ref currentElement, position, ref resultPosition, ref result);
-            }
-           
-        }
-
-        private int ValueOnPosition(int position)
-        {
-            ElementOfBinaryTreeSeach result = this.head;
-            int resultPosition = 0;
-            AscendingDouble(ref this.head, position, ref resultPosition, ref result);
-            return result.Value;
-        }
-
+  
 
         public bool ElementExist(int value)
         {
