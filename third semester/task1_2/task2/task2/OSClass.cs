@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace task2
 {
+    /// <summary>
+    /// Class for simulation OS.
+    /// </summary>
     public class OSClass
     {
         public OSClass(string input)
@@ -16,6 +19,11 @@ namespace task2
             this.probabilityOfInfection = Infection(temp);
         }
 
+        /// <summary>
+        /// Get value, which illustrates the probability of infection.
+        /// </summary>
+        /// <param name="value">Name of OS.</param>
+        /// <returns></returns>
         private int Infection(string value)
         {
             if (value == "Windows")
@@ -27,34 +35,43 @@ namespace task2
             return 80;
         }
 
+        /// <summary>
+        /// Get value about probabilty of infection.
+        /// </summary>
+        /// <returns></returns>
         public int ProbabilityOfInfection()
         {
             return this.probabilityOfInfection;
         }
 
+        /// <summary>
+        /// Infection occurs.
+        /// </summary>
         public void Infected()
         {
             this.infection = true;
         }
 
+        /// <summary>
+        /// Check for infection.
+        /// </summary>
+        /// <returns></returns>
         public bool IsInfected()
         {
             return this.infection;
         }
 
+        /// <summary>
+        /// Attempt to infect.
+        /// </summary>
+        /// <param name="value">Value for attempt.</param>
         public void TryInfect(int value)
         {
-            if (this.probabilityOfInfection == value)
+            if (this.probabilityOfInfection <= value)
             {
                 this.Infected();
             }
         }
-
-        public int GetNumber()
-        {
-            return this.number;
-        }
-
 
         private int number;
         private int probabilityOfInfection;

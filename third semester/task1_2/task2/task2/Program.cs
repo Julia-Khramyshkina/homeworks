@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 
-
 namespace task2
 {
     class Program
@@ -49,21 +48,18 @@ namespace task2
 
             int variable = 0;
             line = input.ReadLine();
-            Console.Write("Starting matrix:\n");
+
             while ((line = input.ReadLine()) != null)
             {
                 buf = line.Split(' ');
                 for (int j = 0; j < buf.Length; ++j)
                 {
                     arrayOfRelations[variable, j] = Convert.ToInt32(buf[j]);
-                    Console.Write("{0} ", arrayOfRelations[variable, j]);
                 }
                 ++variable;
-                Console.WriteLine();
             }
 
             Random rand = new Random();
-
             while (true)
             {
                 int temp = rand.Next(60, 100);
@@ -71,7 +67,6 @@ namespace task2
                 {
                     if (isInfectedComputers[i])
                     {
-
                         for (int j = 0; j < size; ++j)
                         {
                             if (arrayOfRelations[i, j] != 0)
@@ -82,9 +77,20 @@ namespace task2
                     }
                 }
 
+                for (int j = 0; j < size; ++j)
+                {
+                    if (matrixOfComputers[j].IsInfected())
+                    {
+                        isInfectedComputers[j] = true;
+                    }
+                }
+                Console.WriteLine("Network status");
                 PrintStates(matrixOfComputers, size);
+                Console.WriteLine("If you want exit, press 0, else press other key");
+                int exitKey = Convert.ToInt32(Console.ReadLine());
+                if (exitKey == 0)
+                    return;
             }
-
         }
     }
 }
