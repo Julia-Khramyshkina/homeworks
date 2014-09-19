@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryTreeSeach.cs" />
-    <Compile Include="List.cs" />
+    <Compile Include="CompareInt.cs" />
+    <Compile Include="CompareInterface.cs" />
+    <Compile Include="CompareString.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

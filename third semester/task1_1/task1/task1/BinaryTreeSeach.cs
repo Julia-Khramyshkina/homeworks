@@ -6,13 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 namespace task1
 {
-    public class BinaryTreeSeach : IEnumerable<int>
+    /// <summary>
+    /// Class for binary tree of seacrh.
+    /// </summary>
+    public class BinaryTreeSeach<ElementType> : IEnumerable<ElementType>
     {
         private class ElementOfBinaryTreeSeach
         {
-            public int Value { get; set; }
+            public ElementType Value { get; set; }
             public int Position { get; set; }
-            public ElementOfBinaryTreeSeach(int value)
+            public ElementOfBinaryTreeSeach(ElementType value)
             {
                 Value = value;
             }
@@ -20,55 +23,48 @@ namespace task1
             public ElementOfBinaryTreeSeach Right { get; set; }
         }
         private ElementOfBinaryTreeSeach head = null;
-        private int size = 0;
 
-
-        public IEnumerator<int> GetEnumerator()
+        IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
         {
             return new MyEnumerator(this);
         }
-
-
-        //private IEnumerator GetEnumerator1()
-        //{
-        //    return this.GetEnumerator();
-        //}
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //    return GetEnumerator1();
-        //}
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return (IEnumerator)(new MyEnumerator(this));
         }
 
-
-     
-
-    
-        public class MyEnumerator : IEnumerator<int>
+        /// <summary
+        /// Class for travel in our tree.
+        /// </summary>
+        public class MyEnumerator : IEnumerator<ElementType>
         {
-
-        
             private int valueForNumerator = -1;
-            private BinaryTreeSeach binaryTree;
-            private List<int> listForBinaryTree = new List<int>(); 
-            
-            
-            public MyEnumerator(BinaryTreeSeach binaryTree1)
+            private BinaryTreeSeach<ElementType> binaryTree;
+            private List<ElementType> listForBinaryTree = new List<ElementType>();
+
+            public MyEnumerator(BinaryTreeSeach<ElementType> binaryTree1)
             {
                 this.binaryTree = binaryTree1;
+                //if (binaryTree.IsEmpty())
+                //    throw new Exception("Empty Tree");
                 Ascending(binaryTree.head);
             }
 
+            /// <summary>
+            /// Bypass for move.
+            /// </summary>
+            /// <param name="currentElement">Start position of bypass.</param>
             private void Ascending(ElementOfBinaryTreeSeach currentElement)
             {
+                if (binaryTree.head == null)
+                    return;
+
                 if (currentElement != null)
                 {
-                    listForBinaryTree.InsertToEnd(currentElement.Value);
+                    listForBinaryTree.Add(currentElement.Value);
                 }
-
+             
                 if (currentElement.Left != null)
                 {             
                     Ascending(currentElement.Left);
@@ -80,14 +76,20 @@ namespace task1
                 }
             }
 
-            public int Current
+            /// <summary>
+            /// Get value.
+            /// </summary>
+            public ElementType Current
             {
                 get
                 {
-                    return listForBinaryTree.ValueOnPosition(valueForNumerator);
+                   return listForBinaryTree.ElementAt(valueForNumerator);
                 }
             }
 
+            /// <summary>
+            /// Get object.
+            /// </summary>
             private object Current1
             {
                 get
@@ -96,7 +98,9 @@ namespace task1
                 }
             }
 
-           
+            /// <summary>
+            /// Get object.
+            /// </summary>
             object IEnumerator.Current
             {
                 get
@@ -111,16 +115,19 @@ namespace task1
             /// <returns></returns>
             public bool MoveNext()
             {
+                if (listForBinaryTree.Count == 0)
+                    return false;
+
                 if (listForBinaryTree.First() == null)
                     return false;
 
-                if (listForBinaryTree.First().Next == null)
+                if (listForBinaryTree.ElementAt(1) == null)
                 {
                     Reset();
                     return false;
                 }
                 ++valueForNumerator;
-                if (listForBinaryTree.SizeOfList() == valueForNumerator)
+                if (listForBinaryTree.Count == valueForNumerator)
                     return false;
                 return true;
             }
@@ -141,10 +148,14 @@ namespace task1
 
             }
         }      
-  
-        public void InsertElement(int value)
+ 
+        /// <summary>
+        /// Insert element to tree.
+        /// </summary>
+        /// <param name="value"></param>
+        public void InsertElement(ElementType value, CompareInterface<ElementType> comparator)
         {
-            if (ElementExist(value))
+            if (ElementExist(value, comparator))
             {
                 return;
             }
@@ -159,12 +170,13 @@ namespace task1
 
             while (counter.Left != null || counter.Right != null)
             {
-                if (value > counter.Value)
+                if (comparator.Compare(value, counter.Value) == 1)
                 {
                     if (counter.Right == null)
                     {
                         break;
                     }
+
                     counter = counter.Right;
                 }
                 else
@@ -173,36 +185,35 @@ namespace task1
                     {
                         break;
                     }
+
                     counter = counter.Left;
                 }
             }
-            if (counter.Value > value)
+            if (comparator.Compare(value, counter.Value) == -1)
             {
                 counter.Left = new ElementOfBinaryTreeSeach(value);
             }
             else
-            {
-                
+            {       
                 counter.Right = new ElementOfBinaryTreeSeach(value);
             }
         }
 
-
-     
-
-
-  
-
-        public bool ElementExist(int value)
+        /// <summary>
+        /// Checking exist.
+        /// </summary>
+        /// <param name="value">Value of this element.</param>
+        /// <returns></returns>
+        public bool ElementExist(ElementType value, CompareInterface<ElementType> comparator)
         {
             var counter = this.head;
             while (counter != null)
             {
-                if (counter.Value < value)
+                if (comparator.Compare(value, counter.Value) == 1)
                 {
                     counter = counter.Right;
                 }
-                else if (counter.Value > value)
+                else if (comparator.Compare(value, counter.Value) == -1)
                 {
                     counter = counter.Left;
                 }
@@ -214,27 +225,31 @@ namespace task1
             return false;
         }
 
-        public void RemoveElement(int value)
+        /// <summary>
+        /// Removing element.
+        /// </summary>
+        /// <param name="value">Value of this element.</param>
+        public void RemoveElement(ElementType value, CompareInterface<ElementType> comparator)
         {
             if (IsEmpty())
                 return;
 
-            if (!ElementExist(value))
+            if (!ElementExist(value, comparator))
                 return;
-            --size;
+
             var counter = this.head;
             var previousCounter = this.head;
-            while (counter.Value != value)
+            while (comparator.Compare(counter.Value, value) != 0)
             {
-                if (counter.Value == value)
+                if (comparator.Compare(counter.Value, value) == 0)
                 {
                     break;
                 }
 
-                if (counter.Value < value)
+                if (comparator.Compare(counter.Value, value) == -1)
                 {
                     counter = counter.Right;
-                    if (previousCounter.Right.Value != value)
+                    if (comparator.Compare(previousCounter.Right.Value, value) != 0)
                     {
                         previousCounter = previousCounter.Right;
                     }
@@ -242,11 +257,17 @@ namespace task1
                 else
                 {
                     counter = counter.Left;
-                    if (previousCounter.Left.Value != value)
+                    if (comparator.Compare(previousCounter.Left.Value, value) != 0)
                     {
                         previousCounter = previousCounter.Left;
                     }
                 }
+            }
+
+            if (counter == previousCounter)
+            {
+                this.head = null;
+                return;
             }
 
             if (counter.Left == null && counter.Right == null)
@@ -294,20 +315,19 @@ namespace task1
                 {
                     searchCounter = searchCounter.Left;
                 }
-                int saveValue = searchCounter.Value;
-                RemoveElement(searchCounter.Value);
+                ElementType saveValue = searchCounter.Value;
+                RemoveElement(searchCounter.Value, comparator);
                 counter.Value = saveValue;
             }
-    }
+        }
 
+        /// <summary>
+        /// Check tree. Empty?
+        /// </summary>
+        /// <returns></returns>
         public bool IsEmpty()
         {
             return this.head == null;
         }
-
-
-
-
-
     }
 }
