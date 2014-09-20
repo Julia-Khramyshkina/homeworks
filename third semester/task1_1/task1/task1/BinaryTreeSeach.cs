@@ -26,28 +26,26 @@ namespace task1
 
         IEnumerator<ElementType> IEnumerable<ElementType>.GetEnumerator()
         {
-            return new MyEnumerator(this);
+            return new TreeEnumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator)(new MyEnumerator(this));
+            return (IEnumerator)(new TreeEnumerator(this));
         }
 
         /// <summary
         /// Class for travel in our tree.
         /// </summary>
-        public class MyEnumerator : IEnumerator<ElementType>
+        public class TreeEnumerator : IEnumerator<ElementType>
         {
             private int valueForNumerator = -1;
             private BinaryTreeSeach<ElementType> binaryTree;
             private List<ElementType> listForBinaryTree = new List<ElementType>();
 
-            public MyEnumerator(BinaryTreeSeach<ElementType> binaryTree1)
+            public TreeEnumerator(BinaryTreeSeach<ElementType> binaryTree1)
             {
                 this.binaryTree = binaryTree1;
-                //if (binaryTree.IsEmpty())
-                //    throw new Exception("Empty Tree");
                 Ascending(binaryTree.head);
             }
 
@@ -127,9 +125,8 @@ namespace task1
                     return false;
                 }
                 ++valueForNumerator;
-                if (listForBinaryTree.Count == valueForNumerator)
-                    return false;
-                return true;
+
+                return !(listForBinaryTree.Count == valueForNumerator);
             }
 
             /// <summary>
@@ -226,19 +223,15 @@ namespace task1
         }
 
         /// <summary>
-        /// Removing element.
+        /// Get position of need element.
         /// </summary>
-        /// <param name="value">Value of this element.</param>
-        public void RemoveElement(ElementType value, CompareInterface<ElementType> comparator)
+        /// <param name="value">Value of element.</param>
+        /// <param name="comparator">Comparator for this type of elements.</param>
+        /// <returns>Element, which we are searching.</returns>
+        private ElementOfBinaryTreeSeach SearchElement(ElementType value, CompareInterface<ElementType> comparator)
         {
-            if (IsEmpty())
-                return;
-
-            if (!ElementExist(value, comparator))
-                return;
-
             var counter = this.head;
-            var previousCounter = this.head;
+            var previousCounter = this.head;           
             while (comparator.Compare(counter.Value, value) != 0)
             {
                 if (comparator.Compare(counter.Value, value) == 0)
@@ -263,11 +256,37 @@ namespace task1
                     }
                 }
             }
+            return previousCounter;
+        }
 
+        /// <summary>
+        /// Removing element.
+        /// </summary>
+        /// <param name="value">Value of this element.</param>
+        public void RemoveElement(ElementType value, CompareInterface<ElementType> comparator)
+        {
+            if (IsEmpty())
+                return;
+
+            if (!ElementExist(value, comparator))
+                return;
+
+            var counter = this.head;
+            var previousCounter = SearchElement(value, comparator);
+           
             if (counter == previousCounter)
             {
                 this.head = null;
                 return;
+            }
+
+            if (comparator.Compare(previousCounter.Left.Value, value) == 0)
+            {
+                counter = previousCounter.Left;
+            }
+            else
+            {
+                counter = previousCounter.Right;
             }
 
             if (counter.Left == null && counter.Right == null)
