@@ -1,0 +1,11 @@
+﻿5
+0 Windows
+1 Linux
+2 Mac
+3 Windows
+4 Linux
+0 1 0 0 1
+1 0 0 1 0
+0 0 0 1 0
+0 1 1 0 0
+1 0 0 0 0
