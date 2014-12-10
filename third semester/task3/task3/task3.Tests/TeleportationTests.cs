@@ -12,7 +12,7 @@ namespace task3.Tests
     public class TeleportationTests
     {
         [TestMethod]
-        public void TeleportstionTest()
+        public void TeleportationTest()
         {
             StreamReader input = new StreamReader("input.txt");
             StorageInputData test = new StorageInputData(input);
@@ -23,7 +23,7 @@ namespace task3.Tests
         }
 
         [TestMethod]
-        public void TeleportstionTest1()
+        public void TeleportationTest1()
         {
             StreamReader input = new StreamReader("input1.txt");
             StorageInputData test = new StorageInputData(input);

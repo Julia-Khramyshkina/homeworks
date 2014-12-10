@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace task3
 {
+    /// <summary>
+    /// Class for processing of teleportation.
+    /// </summary>
     public class Teleportation
     {
         private StorageInputData inputData;
@@ -15,7 +18,10 @@ namespace task3
         {
             inputData = input;
         }
-
+        
+        /// <summary>
+        /// Processing of teleportation.
+        /// </summary>
         public void Processing()
         {
             int size = inputData.GetSize();
@@ -79,6 +85,10 @@ namespace task3
             }
         }
 
+        /// <summary>
+        /// Get an answer about the destruction of robots.
+        /// </summary>
+        /// <returns> Answer.</returns>
         public bool GetAnswer()
         {
             return win;
