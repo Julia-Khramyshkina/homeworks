@@ -21,5 +21,16 @@ namespace task3.Tests
             bool answer = testTeleportation.GetAnswer();
             Assert.IsTrue(answer);
         }
+
+        [TestMethod]
+        public void TeleportstionTest1()
+        {
+            StreamReader input = new StreamReader("input1.txt");
+            StorageInputData test = new StorageInputData(input);
+            Teleportation testTeleportation = new Teleportation(test);
+            testTeleportation.Processing();
+            bool answer = testTeleportation.GetAnswer();
+            Assert.IsFalse(answer);
+        }
     }
 }
