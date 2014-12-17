@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace task3.Tests
@@ -17,7 +13,7 @@ namespace task3.Tests
             StreamReader input = new StreamReader("input.txt");
             StorageInputData test = new StorageInputData(input);
             Teleportation testTeleportation = new Teleportation(test);
-            testTeleportation.Processing();
+            testTeleportation.Process();
             bool answer = testTeleportation.GetAnswer();
             Assert.IsTrue(answer);
         }
@@ -28,7 +24,7 @@ namespace task3.Tests
             StreamReader input = new StreamReader("input1.txt");
             StorageInputData test = new StorageInputData(input);
             Teleportation testTeleportation = new Teleportation(test);
-            testTeleportation.Processing();
+            testTeleportation.Process();
             bool answer = testTeleportation.GetAnswer();
             Assert.IsFalse(answer);
         }
@@ -39,7 +35,7 @@ namespace task3.Tests
             StreamReader input = new StreamReader("input2.txt");
             StorageInputData test = new StorageInputData(input);
             Teleportation testTeleportation = new Teleportation(test);
-            testTeleportation.Processing();
+            testTeleportation.Process();
             bool answer = testTeleportation.GetAnswer();
             Assert.IsTrue(answer);
         }
@@ -50,7 +46,7 @@ namespace task3.Tests
             StreamReader input = new StreamReader("input3.txt");
             StorageInputData test = new StorageInputData(input);
             Teleportation testTeleportation = new Teleportation(test);
-            testTeleportation.Processing();
+            testTeleportation.Process();
             bool answer = testTeleportation.GetAnswer();
             Assert.IsFalse(answer);
         }
@@ -61,7 +57,7 @@ namespace task3.Tests
             StreamReader input = new StreamReader("input4.txt");
             StorageInputData test = new StorageInputData(input);
             Teleportation testTeleportation = new Teleportation(test);
-            testTeleportation.Processing();
+            testTeleportation.Process();
             bool answer = testTeleportation.GetAnswer();
             Assert.IsFalse(answer);
         }
@@ -72,7 +68,7 @@ namespace task3.Tests
             StreamReader input = new StreamReader("input5.txt");
             StorageInputData test = new StorageInputData(input);
             Teleportation testTeleportation = new Teleportation(test);
-            testTeleportation.Processing();
+            testTeleportation.Process();
             bool answer = testTeleportation.GetAnswer();
             Assert.IsTrue(answer);
         }

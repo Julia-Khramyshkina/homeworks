@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace task3
 {
     /// <summary>
@@ -17,7 +18,7 @@ namespace task3
         /// <summary>
         /// Processing of teleportation.
         /// </summary>
-        public void Processing()
+        public void Process()
         {
             int size = inputData.GetSize();
             int[,] arrayOfRelations = inputData.GetArrayOfRelations();
@@ -38,40 +39,23 @@ namespace task3
                 }
             }
 
-            int temp = size;
-            int positionSave = size;
+            int position = size;
 
             for (int i = 0; i < size; ++i)
             {
                 if (arrayOfPositions[i])
                 {
-                    temp = i;
-                    positionSave = i;
+                    position = i;
                     break;
                 }
             }
-            TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, temp, positionSave);
 
+            if (position == size)
+            {
+                throw new Exception("In this graph there are no robots");
+            }
 
-
-            //for (int j = 0; j < size; ++j)
-            //{
-            //    if (arrayOfRelations[temp, j] == 1)
-            //    {
-            //        for (int z = 0; z < size; ++z)
-            //        {
-            //            if (arrayOfRelations[j, z] == 1)
-            //            {
-            //                if (arrayOfPositions[z])
-            //                {
-            //                    result[z] = 1;
-            //                }
-
-            //                temp = z;
-            //            }
-            //        }
-            //    }
-            //}
+            TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, position);
 
             int amount = 0;
             for (int i = 0; i < size; ++i)
@@ -88,52 +72,37 @@ namespace task3
             }
         }
 
-        private void TeleportationProcess(int[,] arrayOfRelations, bool[] arrayOfPositions, ref int[] result, ref bool[] attend, int position, int positionSave)
+        /// <summary>
+        /// Teleportation robots in the graph.
+        /// </summary>
+        /// <param name="arrayOfRelations"> Array of relations in the graph.</param>
+        /// <param name="arrayOfPositions"> Array of positions of robots.</param>
+        /// <param name="result"> Array with result of teleportation.</param>
+        /// <param name="attend"> Array with attended vertices.</param>
+        /// <param name="position"> Current position.</param>
+        private void TeleportationProcess(int[,] arrayOfRelations, bool[] arrayOfPositions, ref int[] result, ref bool[] attend, int position)
         {
-            int size = inputData.GetSize();
-            bool attended = true;
-
-
-            for (int i = 0; i < size; ++i)
-            {
-                if (arrayOfPositions[position])
-                {
-                    if (!attend[position])
-                    {
-                        attended = false;
-                    }
-                }
-            }
-
-            if (attended)
-                return;
-    
-            
-
+            int size = inputData.GetSize();    
             for (int j = 0; j < size; ++j)
             {
                 if (arrayOfRelations[position, j] == 1)
                 {
-                    for (int z = 0; z < size; ++z)
+                    for (int top = 0; top < size; ++top)
                     {
-                        if (arrayOfRelations[j, z] == 1 && !attend[z])
+                        if (arrayOfRelations[j, top] == 1 && !attend[top])
                         {
-                            if (arrayOfPositions[z])
+                            if (arrayOfPositions[top])
                             {
-                                result[z] = 1;
-                                attend[z] = true;
-                                position = z;
+                                result[top] = 1;
                             }
 
-                            position = z;
+                                attend[top] = true;
+                                position = top;
+                                TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, position);              
                         }
                     }
                 }
             }
-
-            position = positionSave;
-            TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, position, positionSave);
-
         }
 
         /// <summary>
