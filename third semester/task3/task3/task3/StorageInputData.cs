@@ -17,16 +17,16 @@ namespace task3
         private int[,] arrayOfRelations;
         private bool[] startPosition;
 
-        public StorageInputData(StreamReader input1)
+        public StorageInputData(StreamReader input)
         {
-            input = input1;
-            this.ProcessingInputData();
+            this.input = input;
+            this.ProcessInputData();
         }
 
         /// <summary>
         /// Processing data of input.
         /// </summary>
-        public void ProcessingInputData()
+        public void ProcessInputData()
         {
             string line;
             string[] buf;

@@ -32,5 +32,49 @@ namespace task3.Tests
             bool answer = testTeleportation.GetAnswer();
             Assert.IsFalse(answer);
         }
+
+        [TestMethod]
+        public void TeleportationTest2()
+        {
+            StreamReader input = new StreamReader("input2.txt");
+            StorageInputData test = new StorageInputData(input);
+            Teleportation testTeleportation = new Teleportation(test);
+            testTeleportation.Processing();
+            bool answer = testTeleportation.GetAnswer();
+            Assert.IsTrue(answer);
+        }
+
+        [TestMethod]
+        public void TeleportationTest3()
+        {
+            StreamReader input = new StreamReader("input3.txt");
+            StorageInputData test = new StorageInputData(input);
+            Teleportation testTeleportation = new Teleportation(test);
+            testTeleportation.Processing();
+            bool answer = testTeleportation.GetAnswer();
+            Assert.IsFalse(answer);
+        }
+
+        [TestMethod]
+        public void TeleportationTest4()
+        {
+            StreamReader input = new StreamReader("input4.txt");
+            StorageInputData test = new StorageInputData(input);
+            Teleportation testTeleportation = new Teleportation(test);
+            testTeleportation.Processing();
+            bool answer = testTeleportation.GetAnswer();
+            Assert.IsFalse(answer);
+        }
+
+        [TestMethod]
+        public void TeleportationTest5()
+        {
+            StreamReader input = new StreamReader("input5.txt");
+            StorageInputData test = new StorageInputData(input);
+            Teleportation testTeleportation = new Teleportation(test);
+            testTeleportation.Processing();
+            bool answer = testTeleportation.GetAnswer();
+            Assert.IsTrue(answer);
+        }
     }
 }

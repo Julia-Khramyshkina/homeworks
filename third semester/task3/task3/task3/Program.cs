@@ -17,6 +17,14 @@ namespace task3
             testTelePortation.Processing();
             bool answer = testTelePortation.GetAnswer();
             System.Console.WriteLine(answer);
+
+            StreamReader input1 = new StreamReader("input1.txt");
+            StorageInputData test1 = new StorageInputData(input1);
+            Teleportation testTeleportation = new Teleportation(test);
+            testTeleportation.Processing();
+            answer = testTeleportation.GetAnswer();
+            System.Console.WriteLine(answer);
+
         }
     }
 }
