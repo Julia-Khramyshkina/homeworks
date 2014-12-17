@@ -52,7 +52,8 @@ namespace task3
 
             if (position == size)
             {
-                throw new Exception("In this graph there are no robots");
+                win = true;
+                return;
             }
 
             TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, position);
@@ -87,18 +88,18 @@ namespace task3
             {
                 if (arrayOfRelations[position, j] == 1)
                 {
-                    for (int top = 0; top < size; ++top)
+                    for (int vertex = 0; vertex < size; ++vertex)
                     {
-                        if (arrayOfRelations[j, top] == 1 && !attend[top])
+                        if (arrayOfRelations[j, vertex] == 1 && !attend[vertex])
                         {
-                            if (arrayOfPositions[top])
+                            if (arrayOfPositions[vertex])
                             {
-                                result[top] = 1;
+                                result[vertex] = 1;
                             }
 
-                                attend[top] = true;
-                                position = top;
-                                TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, position);              
+                            attend[vertex] = true;
+                            position = vertex;
+                            TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, position);              
                         }
                     }
                 }
