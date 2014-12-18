@@ -58,16 +58,22 @@ namespace task3
 
             TeleportationProcess(arrayOfRelations, arrayOfPositions, ref result, ref attend, position);
 
-            int amount = 0;
+            int amountOfBlackNodes = 0;
+            int amountOfWhiteNodes = 0;
             for (int i = 0; i < size; ++i)
             {
                 if (result[i] == -1)
                 {
-                    ++amount;
+                    ++amountOfBlackNodes;
+                }
+
+                if (result[i] == 1)
+                {
+                    ++amountOfWhiteNodes;
                 }
             }
 
-            if (amount == 0 || amount > 1)
+            if ((amountOfBlackNodes == 0 || amountOfBlackNodes > 1) && (amountOfWhiteNodes == 0 || amountOfWhiteNodes > 1))
             {
                 win = true;
             }
