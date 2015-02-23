@@ -12,4 +12,4 @@ let firstPosition number list =
     let size = List.length list
     firstPositionOfNumberInList number list size
 
-firstPosition 3 [1;2;3;4;5]
+firstPosition 3 [1; 2; 3; 4; 5]
