@@ -3,7 +3,7 @@
    | head :: tail -> 
        let result = head :: result
        turn tail result
-   | [] -> printfn "Turning performed"
+   | [] -> result
 
 let simpleTurn list =
     turn list []

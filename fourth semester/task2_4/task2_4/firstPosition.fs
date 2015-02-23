@@ -8,4 +8,8 @@
       else
          firstPositionOfNumberInList number t size 
 
-firstPositionOfNumberInList 3 [1;2;3;4;5] 5
+let firstPosition number list =
+    let size = List.length list
+    firstPositionOfNumberInList number list size
+
+firstPosition 3 [1;2;3;4;5]
