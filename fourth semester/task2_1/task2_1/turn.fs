@@ -1,8 +1,11 @@
 ﻿let rec turn list result =
    match list with
    | head :: tail -> 
-   let result = head :: result
-   turn tail result
-   | [] -> System.Console.WriteLine("Turning performed")
+       let result = head :: result
+       turn tail result
+   | [] -> printfn "Turning performed"
 
-turn [1;2;3] []
+let simpleTurn list =
+    turn list []
+
+simpleTurn [1; 2; 3]
