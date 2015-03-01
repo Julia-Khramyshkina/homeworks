@@ -10,3 +10,9 @@ let countOfEven2 list =
    List.length newList - countOfNotEven
 
 countOfEven2 [1; 2; 3; 4; 5]
+
+let countOfEven3 list = 
+   let newList = list |> List.map (fun x -> (x + 1) % 2)
+   List.sum newList
+
+countOfEven3 [1; 2; 3; 4; 5] 
