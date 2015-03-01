@@ -5,7 +5,7 @@
          isPrimeRec number currentNumber
        elif (number % currentNumber = 0 && number <> currentNumber) then
          false
-       elif (currentNumber < number) then
+       elif (currentNumber < (number / 2)) then
          isPrimeRec number currentNumber
        else
          true
