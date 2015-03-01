@@ -4,7 +4,7 @@
        | h1 :: h2 :: h3 :: t ->
           let newList = h2 :: h3 :: t
           let currentPosition = currentPosition + 1
-          if (maxValue < h1 + h3) then
+          if (maxValue <= h1 + h3) then
              let maxValue = h1 + h3
              let result = currentPosition
              positionOfMaxSumRec newList currentPosition maxValue result
