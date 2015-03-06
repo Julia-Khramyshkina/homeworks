@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>61aac449-4a4c-489b-9ed6-3402b8494d56</ProjectGuid>
+    <ProjectGuid>135d4bd0-5c44-43f0-8de4-ea5b3f6eab9c</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>task3_4</RootNamespace>
     <AssemblyName>task3_4</AssemblyName>
@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.fs" />
-    <None Include="App.config" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
