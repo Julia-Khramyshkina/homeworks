@@ -9,5 +9,6 @@ let rec high tree =
            result
         | Tip _ -> 1
 
+
 let tree1 = Tree(6, Tree(2, Tip(1), Tip(3)), Tip(9))
 high tree1

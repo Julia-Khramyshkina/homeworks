@@ -1,36 +1,49 @@
-﻿type Tree<'a> =
-    | Tree of 'a * Tree<'a> * Tree<'a>
-    | Tip of 'a
+﻿type PartOfTree =
+    | Plus of PartOfTree * PartOfTree
+    | Minus of PartOfTree * PartOfTree
+    | Multy of PartOfTree * PartOfTree
+    | Divide of PartOfTree * PartOfTree
+    | One
+    | Two
+    | Three
+    | Four
+    | Five
+    | Six
+    | Seven
+    | Eight
+    | Nine
+    | Zero
+
 
 let resultOfCalculateExpression tree = 
    let rec resultOfArithmeticExpression tree result =
        match tree with
-       | Tree('+', l, r) ->
+       | Plus(l, r) ->
           let result = resultOfArithmeticExpression l result + resultOfArithmeticExpression r result
           result
-       | Tree('-', l, r) ->
+       | Minus(l, r) ->
           let result =resultOfArithmeticExpression l result - resultOfArithmeticExpression r result
           result
-       | Tree('*', l, r) ->
+       | Multy(l, r) ->
           let result = resultOfArithmeticExpression l result * resultOfArithmeticExpression r result
           result
-       | Tree('/', l, r) ->
+       | Divide( l, r) ->
           let result = resultOfArithmeticExpression l result / resultOfArithmeticExpression r result
           result
-       | Tip x  -> 
+       | x  -> 
           match x with
-          | '1' -> 1
-          | '2' -> 2
-          | '3' -> 3
-          | '4' -> 4
-          | '5' -> 5
-          | '6' -> 6
-          | '7' -> 7
-          | '8' -> 8
-          | '9' -> 9
-          | '0' -> 0
+          | One -> 1
+          | Two -> 2
+          | Three -> 3
+          | Four -> 4
+          | Five -> 5
+          | Six -> 6
+          | Seven -> 7
+          | Eight -> 8
+          | Nine -> 9
+          | Zero -> 0
    resultOfArithmeticExpression tree 0
 
-let tree = Tree('+', Tree('-', Tip('1'), Tip('3')), Tip('9'))
+let expr = (Plus (Minus(One, Three), Nine));
 
-resultOfCalculateExpression tree 
+printfn "%A"  <| resultOfCalculateExpression expr 
