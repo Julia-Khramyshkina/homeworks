@@ -1,0 +1,10 @@
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\bin\Debug\task2.exe.config
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\bin\Debug\task2.XML
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\bin\Debug\task2.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\bin\Debug\task2.pdb
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\bin\Debug\FSharp.Core.dll
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\bin\Debug\FSharp.Core.xml
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\bin\Debug\ru\FSharp.Core.resources.dll
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\obj\Debug\task2.fsprojResolveAssemblyReference.cache
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\obj\Debug\task2.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task2\task2\obj\Debug\task2.pdb

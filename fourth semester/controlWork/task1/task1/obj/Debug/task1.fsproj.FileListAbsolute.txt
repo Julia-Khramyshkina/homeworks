@@ -1,0 +1,10 @@
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\bin\Debug\task1.exe.config
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\bin\Debug\task1.XML
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\bin\Debug\task1.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\bin\Debug\task1.pdb
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\bin\Debug\FSharp.Core.dll
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\bin\Debug\FSharp.Core.xml
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\bin\Debug\ru\FSharp.Core.resources.dll
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\obj\Debug\task1.fsprojResolveAssemblyReference.cache
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\obj\Debug\task1.exe
+D:\Julia-Khramyshkina\Julia-Khramyshkina\fourth semester\controlWork\task1\task1\obj\Debug\task1.pdb
