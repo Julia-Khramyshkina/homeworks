@@ -3,17 +3,7 @@
     | Minus of PartOfTree * PartOfTree
     | Multy of PartOfTree * PartOfTree
     | Divide of PartOfTree * PartOfTree
-    | One
-    | Two
-    | Three
-    | Four
-    | Five
-    | Six
-    | Seven
-    | Eight
-    | Nine
-    | Zero
-
+    | Number of int
 
 let resultOfCalculateExpression tree = 
    let rec resultOfArithmeticExpression tree result =
@@ -30,20 +20,10 @@ let resultOfCalculateExpression tree =
        | Divide( l, r) ->
           let result = resultOfArithmeticExpression l result / resultOfArithmeticExpression r result
           result
-       | x  -> 
-          match x with
-          | One -> 1
-          | Two -> 2
-          | Three -> 3
-          | Four -> 4
-          | Five -> 5
-          | Six -> 6
-          | Seven -> 7
-          | Eight -> 8
-          | Nine -> 9
-          | Zero -> 0
+       | Number x  -> x
+
    resultOfArithmeticExpression tree 0
 
-let expr = (Plus (Minus(One, Three), Nine));
+let expr = (Plus (Minus(Number 1, Number 3), Number 9));
 
 printfn "%A"  <| resultOfCalculateExpression expr 

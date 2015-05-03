@@ -5,9 +5,8 @@
 countOfEven [1; 2; 3; 4; 5]
 
 let countOfEven2 list = 
-   let newList = list |> List.map (fun x -> x % 2)
-   let countOfNotEven = List.fold (fun acc elem -> acc + elem) 0 newList
-   List.length newList - countOfNotEven
+   let count = List.fold (fun res x -> if x % 2 = 0 then (res + 1) else res) 0 list
+   count
 
 countOfEven2 [1; 2; 3; 4; 5]
 

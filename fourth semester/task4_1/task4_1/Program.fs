@@ -1,18 +1,10 @@
 ﻿let parse string = 
    let rec parseRec string countPosition listCheck =
        if (countPosition <> String.length string) then
-          if (string.[countPosition] = '{') then
-             let listCheck = '{' :: listCheck;
+          if (string.[countPosition] = '{' || string.[countPosition] = '(' || string.[countPosition] = '[') then
+             let listCheck = string.[countPosition] :: listCheck;
              let countPosition = countPosition + 1;
              parseRec string countPosition listCheck
-          elif (string.[countPosition] = '(') then
-             let listCheck = '(' :: listCheck;
-             let countPosition = countPosition + 1;
-             parseRec string countPosition listCheck
-          elif (string.[countPosition] = '[') then
-             let listCheck = '[' :: listCheck;
-             let countPosition = countPosition + 1;
-             parseRec string countPosition listCheck;
           else
              if (string.[countPosition] = ']' && List.head listCheck <> '[' || string.[countPosition] = '}' && List.head listCheck <> '{' || string.[countPosition] = ')' && List.head listCheck <> '(') then
                 false;

@@ -1,27 +1,27 @@
-﻿let rec countInformationSave listNames listPhones position result =
+﻿open System.IO
+open System.Runtime.Serialization.Formatters.Binary
+
+let rec countInformationSave listNames listPhones position result =
     if (List.length listNames <> position && List.length listPhones <> position) then 
-       let result = listPhones.[position] :: result;
-       let result = listNames.[position] :: result;
-       let position = position + 1;
+       let result = listPhones.[position] :: result
+       let result = listNames.[position] :: result
+       let position = position + 1
        countInformationSave listNames listPhones position result
-    else result;
+    else result
 
 let rec informationGetNames list resultListNames  =
     match list with 
     | h1 :: h2 :: t -> 
-          let resultListNames = h1 :: resultListNames;
+          let resultListNames = h1 :: resultListNames
           informationGetNames t resultListNames 
-    | [] -> resultListNames;
+    | _ -> resultListNames
 
 let rec informationGetPhones list resultListPhones =
     match list with 
     | h1 :: h2 :: t -> 
-          let resultListPhones = h2 :: resultListPhones;
+          let resultListPhones = h2 :: resultListPhones
           informationGetPhones t resultListPhones
-    | [] -> resultListPhones;
-
-open System.IO
-open System.Runtime.Serialization.Formatters.Binary
+    | _ -> resultListPhones
 
 let writeValue outputStream (x: 'a) =
     let formatter = new BinaryFormatter()
@@ -33,68 +33,73 @@ let readValue inputStream =
     unbox res
 
 let addRecordName result =
-   let name = System.Console.ReadLine();
-   let result = name :: result;
-   result;
+   let name = System.Console.ReadLine()
+   name :: result
 
 let addRecordPhone result =
-   let number = System.Console.ReadLine();
-   let correctNumber = number;
-   let result = correctNumber :: result;
-   result;
+   let number = System.Console.ReadLine()
+   number :: result
 
 let rec searchPosition list key result =
-    let size = List.length list;
+    let size = List.length list
     match list with
     | h :: t -> 
        if (h = key) then result
        else 
-         let result = result + 1;
-         searchPosition t key result;
-    | [] -> result;
+         let result = result + 1
+         if result < size then
+            searchPosition t key result
+         else -1
+    | [] -> result
 
 let phoneAndNameList =
    let rec phone listNames listPhones command = 
-      printfn "please input command";
-      let command =  System.Console.ReadLine();
+      printfn "please input command"
+      let command =  System.Console.ReadLine()
       match command with
-      | "0" -> printfn "good-bye";
+      | "0" -> printfn "good-bye"
       | "1" -> 
-         printfn "please input new name";
-         let listNames = addRecordName listNames;
-         printfn "please input new phone";
-         let listPhones = addRecordPhone listPhones; 
-         phone listNames listPhones command;
+         printfn "please input new name"
+         let listNames = addRecordName listNames
+         printfn "please input new phone"
+         let listPhones = addRecordPhone listPhones
+         phone listNames listPhones command
       | "2" -> 
-         printfn "please input name for search phone";
-         let temp = System.Console.ReadLine();
-         let count = searchPosition listNames temp 0;
-         let number = listPhones.[count];
-         printfn "phone: %s" number;
-         phone listNames listPhones command;
+         printfn "please input name for search phone"
+         let temp = System.Console.ReadLine()
+         let count = searchPosition listNames temp 0
+         if count = -1 then
+            printfn "%s" "not exist"
+         else
+            let number = listPhones.[count]
+            printfn "phone: %s" number
+         phone listNames listPhones command
       | "3" ->
-         printfn "please input phone for search name";
-         let number = System.Console.ReadLine();
-         let count = searchPosition listPhones number 0;
-         let name = listNames.[count];
-         printfn "name: %s" name;
-         phone listNames listPhones command;
+         printfn "please input phone for search name"
+         let number = System.Console.ReadLine()
+         let count = searchPosition listPhones number 0
+         if count = -1 then
+            printfn "%s" "not exist" 
+         else
+            let name = listNames.[count]
+            printfn "name: %s" name
+         phone listNames listPhones command
       | "4" ->
-         let fsOut = new FileStream("Data.txt", FileMode.Create);
-         let toSave =  countInformationSave listNames listPhones 0 [];
-         writeValue fsOut toSave;
-         fsOut.Close();
-         printfn "data saved";
-         phone listNames listPhones command;
+         let fsOut = new FileStream("Data.txt", FileMode.Create)
+         let toSave =  countInformationSave listNames listPhones 0 []
+         writeValue fsOut toSave
+         fsOut.Close()
+         printfn "data saved"
+         phone listNames listPhones command
       | "5" ->
          let fsIn = new FileStream("Data.txt", FileMode.Open)
          let res : List<string> = readValue fsIn
          fsIn.Close()
-         let listNames =  informationGetNames res [];
-         let listPhones =  informationGetPhones res [];
-         printfn "data gotten";
-         phone listNames listPhones command;
-      | _ -> printfn "uncorrect input";
-   phone [] [] "";
+         let listNames = informationGetNames res []
+         let listPhones = informationGetPhones res []
+         printfn "data gotten"
+         phone listNames listPhones command
+      | _ -> printfn "incorrect input"
+   phone [] [] ""
 
-phoneAndNameList; 
+phoneAndNameList;
