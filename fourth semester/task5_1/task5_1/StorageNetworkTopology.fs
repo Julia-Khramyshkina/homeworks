@@ -21,8 +21,8 @@ open OSClass
 
             if (count + 1 < size) then
                let count = count + 1;
-               getMatrixOfComputers count;
-         getMatrixOfComputers 0;
+               getMatrixOfComputers count
+         getMatrixOfComputers 0
          let count = 1 + size;         
 
          let getRelations =
