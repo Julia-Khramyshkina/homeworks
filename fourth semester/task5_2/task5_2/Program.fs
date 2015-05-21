@@ -11,23 +11,25 @@ type Enumerator<'a>(tree : Tree<'a>) =
     let rec treeToList tree =
        match tree with
         | Empty -> []
-        | Tip x  -> [x] 
-        | Tree(x , l, r) ->  [x] @ treeToList l @ treeToList r
+        | Tip x -> [x] 
+        | Tree(x, l, r) ->  x :: treeToList l @ treeToList r
    
     let list = ref (treeToList tree) 
 
     interface IEnumerator with
-       member v.Current with get() = 
-         let current = (!list).Head :> obj 
-         list := (!list).Tail
-         current
-       member v.MoveNext() = 
+       member v.get_Current() =
+        let current = (!list).Head :> obj 
+        list := (!list).Tail
+        current
+
+        member v.MoveNext() = 
          match !list with
          | [] ->
             false
          | _ -> 
             true
-       member v.Reset() = list := (treeToList tree)
+        member v.Reset() = list := (treeToList tree)
+
     interface IEnumerator<'a> with
        member v.get_Current() = (!list).Head
        member v.Dispose () = ()
@@ -99,6 +101,7 @@ type BinaryTreeSearch() =
                         let forRemove = rightmost l
                         match forRemove with
                         | Tip a -> Tree(a, recRemove l a, r)
+                        | _ -> Empty
         if (v.Exist x) then
            tree <- recRemove tree x
         else 

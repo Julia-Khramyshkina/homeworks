@@ -2,8 +2,8 @@
 open StorageNetworkTopology
 open System
 
-   type Simulation(random : System.Random, res : List<string>) = 
-      let mutable networkTopology : StorageNetworkTopology = StorageNetworkTopology(res : List<string>)
+   type Simulation(random : System.Random, input : List<int * string>, matrix : int [][], needSize : int) = 
+      let mutable networkTopology : StorageNetworkTopology = StorageNetworkTopology(input, matrix, needSize)
       member v.ChangeNetworkState = 
          networkTopology.ProcessingDataOfNetwork
          let infected : bool array ref = ref (Array.zeroCreate (networkTopology.SizeOfTopology()))
@@ -17,8 +17,8 @@ open System
          let randNext = random.Next()
          let sizeT = networkTopology.SizeOfTopology()
 
-         let array : int array ref = ref (Array.create sizeT -1);
-         let count : int ref = ref 0;
+         let array : int array ref = ref (Array.create sizeT -1)
+         let count : int ref = ref 0
 
          for i in 0 .. sizeT - 1 do
             if (!infected).[i] = true then
@@ -44,10 +44,10 @@ open System
 
       member v.ShowAllStates =
         let rec show i = 
-            if (i < networkTopology.SizeOfTopology()) then
+            if i < networkTopology.SizeOfTopology() then
                let number = string i;
-               let separate = string ' ';
-               printfn "%A" (number + separate + v.ShowState(i));
-               let i = i + 1;
-               show i;
-        show 0;        
+               let separate = string " "
+               printfn "%A" (number + separate + v.ShowState(i))
+               let i = i + 1
+               show i
+        show 0  

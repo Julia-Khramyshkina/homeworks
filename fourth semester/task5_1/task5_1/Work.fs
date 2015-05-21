@@ -3,11 +3,12 @@ open Simulation
 
 let rand = new System.Random(100)
 
-let list = "5" :: "0 Windows" :: "1 Linux" :: "2 Mac" :: "3 Windows" ::[ "4 Linux" ]
-let list1 = "0 1 0 0 1":: "1 0 0 1 0" ::"0 0 0 1 0" ::"0 1 1 0 0" :: ["1 0 0 0 0"] 
-let res = list @ list1
+let list = (0, "Windows") :: (1, "Linux") :: (2, "Mac") :: (3, "Windows") :: [(4, "Linux")]
+let matrix = [| [|0; 1; 0; 0; 1|]; [|1; 0; 0; 1; 0|]; [|0; 0; 0; 1; 0|]; [|0; 1; 1; 0; 0|]; [|1; 0; 0; 0; 0|] |]
+let size = 5
 
-let network = new Simulation(rand, res)
+let network = new Simulation(rand, list, matrix, size)
+   
 
 let rec someChanges number i = 
    network.ChangeNetworkState

@@ -1,6 +1,6 @@
 ﻿type RoundingBuilder (accuracy : int) =
     member this.Bind ((x : float) , rest) =
-         rest x   
+         rest (System.Math.Round (x, accuracy))  
     member this.Return (x : float) = 
         System.Math.Round(x, accuracy)
 
