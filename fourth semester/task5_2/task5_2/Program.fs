@@ -7,7 +7,7 @@ type Tree<'a> =
     | Tip of 'a
     | Tree of 'a * Tree<'a> *Tree<'a>
 
-type Enumerator<'a>(tree : Tree<'a>) =
+type Enumerator<'a when 'a : comparison>(tree : Tree<'a>) =
     let rec treeToList tree =
        match tree with
         | Empty -> []
@@ -34,7 +34,7 @@ type Enumerator<'a>(tree : Tree<'a>) =
        member v.get_Current() = (!list).Head
        member v.Dispose () = ()
 
-type BinaryTreeSearch() =
+type BinaryTreeSearch<'a  when 'a : comparison>() =
    let mutable tree : Tree<'a> = Empty
    let rec rightmost tree =
        match tree with
@@ -110,7 +110,7 @@ type BinaryTreeSearch() =
    interface IEnumerable with
        member t.GetEnumerator() = new Enumerator<'a>(tree) :> IEnumerator
 
-let tree = new BinaryTreeSearch()
+let tree = new BinaryTreeSearch<int>()
 tree.Insert 5
 tree.Insert 2
 tree.Insert 1

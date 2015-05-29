@@ -54,7 +54,7 @@ let rec searchPosition list key result =
 
 let phoneAndNameList =
    let rec phone listNames listPhones command = 
-      printfn "please input command"
+      printfn "hello! this is phoneBook: please input command"
       let command =  System.Console.ReadLine()
       match command with
       | "0" -> printfn "good-bye"
