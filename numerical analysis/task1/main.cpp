@@ -11,18 +11,18 @@ double func(double x0)
 
 double dFunc(double x0)
 {
-	return 192 * pow(x0, 5) - 192 * pow(x0, 3) + 36 * x0 - 9 / pow(x0 + 10, 2);
+	return 192.0 * pow(x0, 5.0) - 192.0 * pow(x0, 3.0) + 36.0 * x0 - 9.0 / pow(x0 + 10.0, 2.0);
 }
 
 double funcForIteration(double x0)
 {
-	return fabs(pow((-32 * pow(x0, 6) + 1 + 9 / (x0 + 10) + 48 * pow(x0, 4)) / 18, 1 / 2));
+	return fabs(pow((-32.0 * pow(x0, 6.0) + 1.0 + 9.0 / (x0 + 10.0) + 48.0 * pow(x0, 4.0)) / 18.0, 1.0 / 2.0));
 }
 
 double dFuncForIteration(double x0)
 {
-	return (-192 * pow(x0, 5) + 192 * pow(x0, 3) - 9 / pow(x0 + 10, 2)) / ((6 + pow(2, 1 / 2))
-		* (pow(-32 * pow(x0, 6) + 48 * pow(x0, 4) + 9 / (x0 + 10) + 1, 1 / 2)));
+	return (-192.0 * pow(x0, 5.0) + 192.0 * pow(x0, 3.0) - 9.0 / pow(x0 + 10.0, 2.0)) / ((6.0 + pow(2.0, 1.0 / 2.0))
+		* (pow(-32.0 * pow(x0, 6.0) + 48.0 * pow(x0, 4.0) + 9.0 / (x0 + 10.0) + 1.0, 1.0 / 2.0)));
 }
 
 QList<QPair<double, double> > getIntervals()
@@ -119,10 +119,10 @@ double methodChord(double a, double b, double root, double eps, int &quantityOFS
 		xk = b;
 	}
 
-	double m1 = a;
+	double m1 = fabs(func(a));
 	for (double i = a; i < b; i += eps) {
 		if (fabs(func(i)) < m1) {
-			m1 = func(i);
+			m1 = fabs(func(i));
 		}
 	}
 
@@ -151,7 +151,7 @@ double methodIteration(double x0, double root, double eps, double begin, double 
 	double m1 = 1000000;
 	double m2 = -10000000;
 
-	for (double i = begin; i < end; i += eps) {
+	for (double i = begin; i <= end; i += eps) {
 		if (fabs(dFuncForIteration(i)) > m2) {
 			m2 = fabs(dFuncForIteration(i));
 		}
@@ -166,8 +166,8 @@ double methodIteration(double x0, double root, double eps, double begin, double 
 	double q = 1 - m1 / m2;
 	int count = 0;
 	while (fabs(xk - root) >= q / (1 - q) * fabs(xk - xkPrev) && count < kMax) {
-		xk = funcForIteration(xkPrev);
 		xkPrev = xk;
+		xk = funcForIteration(xkPrev);
 		++count;
 		++quantityOFStepsI;
 	}
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
 		double rootSecant = methodSecant(x0, x0 + eps, root, eps, quantityOFStepsS, kMax);
 
 		cout << "method chord" << endl;
-		double rootChord = methodChord(currentInterval.first, currentInterval.second, root,eps, quantityOFStepsC, kMax);
+		double rootChord = methodChord(currentInterval.first, currentInterval.second, root, eps, quantityOFStepsC, kMax);
 
 		cout << "method iteration" << endl;
 		double rootIteration = methodIteration(x0, root, epsIter, currentInterval.first, currentInterval.second, kMax, quantityOFStepsI);
