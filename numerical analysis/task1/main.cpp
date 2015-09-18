@@ -178,12 +178,6 @@ double methodIteration(double x0, double root, double eps, double begin, double 
 	}
 	double q = 1 - m1 / m2;
 	int count = 0;
-	double value;
-
-	for (double i = begin; i <= end; i += step) {
-		double ololo = dFuncForIteration(i);
-		value = q - dFuncForIteration(i);
-	}
 
 	cout.precision(5);
 	while ((!(fabs(xk - root) <= q / (1 - q) * fabs(xk - xkPrev))) && count < kMax) {
