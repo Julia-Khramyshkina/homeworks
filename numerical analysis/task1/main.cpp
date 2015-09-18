@@ -8,7 +8,7 @@ using namespace std;
 
 double func(double x0)
 {
-	return 32 * pow(x0, 6) - 48 * pow(x0, 4) + 18 * pow(x0, 2) - 1 - 9 / (x0 + 10);
+	return 32.0 * pow(x0, 6) - 48.0 * pow(x0, 4) + 18.0 * pow(x0, 2) - 1.0 - 9.0 / (x0 + 10.0);
 }
 
 double dFunc(double x0)
@@ -18,13 +18,13 @@ double dFunc(double x0)
 
 double funcForIteration(double x0)
 {
-	return fabs(pow((32.0 * pow(x0, 6.0) - 1.0 - 9.0 / (x0 + 10.0) + 18.0 * pow(x0, 2.0)) / 48.0, 1.0 / 4.0));
+	return (48.0 * pow(x0, 4.0) + 1.0 + 9.0 / (x0 + 10.0) - 32.0 * pow(x0, 6.0)) / (18.0 * x0);
 }
 
 double dFuncForIteration(double x0)
 {
-	return (192.0 * pow(x0, 5.0) + 36.0 * x0 + 9.0 / pow(x0 + 10.0, 2.0)) / ((8.0 + pow(3.0, 1.0 / 4.0))
-		* (pow(32.0 * pow(x0, 6.0) + 18.0 * pow(x0, 2.0) - 9.0 / (x0 + 10.0) - 1.0, 3.0 / 4.0)));
+	return (-192.0 * pow(x0, 5.0) + 192 * pow(x0, 3.0) - 9 / pow(x0 + 10, 2.0)) / (18 * x0) -
+			(48.0 * pow(x0, 4.0) + 1.0 + 9.0 / (x0 + 10.0) - 32.0 * pow(x0, 6.0)) / (18 * x0 * x0);
 }
 
 QList<QPair<double, double> > getIntervals()
@@ -32,7 +32,7 @@ QList<QPair<double, double> > getIntervals()
 	const double begin = 0.0;
 	const double end = 2.0;
 
-	const double step = 0.1;
+	const double step = 0.01;
 	QList<QPair<double, double> > result;
 	for (double i = begin; i < end; i += step) {
 		if (func(i) * func(i + step) < 0) {
@@ -58,7 +58,7 @@ QPair<double, double> cut(QPair<double, double> interval)
 
 QList<QPair<double, double> > getSmallIntervals()
 {
-	const int quantity = 2;
+	const int quantity = 5;
 	QList<QPair<double, double> > startIntervals = getIntervals();
 	QList<QPair<double, double> > listWithSmallIntervals;
 
@@ -79,9 +79,16 @@ double methodNewton(double x0, double eps, int &quantityOFStepsN, int kMax)
 	int count = 0;
 	double xk = x0;
 	double xk1 = xk - func(xk) / dFunc(xk);
+	cout.precision(6);
+	cout << "Newton roots" << endl;
+	cout << fixed << setprecision(6) << "x0 = " << x0 << "; eps = " << eps << "; kMax = " << kMax << endl;
+
 	while (fabs(xk1 - xk) >= eps && count < kMax) {
 		xk = xk1;
 		xk1 = xk - func(xk) / dFunc(xk);
+		cout << "k = " << count << " xk = " << xk1 <<
+		"; f(xk) = " << func(xk1) << endl;
+
 		++count;
 		++quantityOFStepsN;
 	}
@@ -94,16 +101,17 @@ double methodSecant(double x0, double x1, double root, double eps, int &quantity
 	int count = 0;
 	double xk = x1;
 	double xkPrev = x0;
-	cout.precision(7);
+	cout.precision(6);
 
 	double xk1 = x1 - func(x1) / (func(x1) - func(x0)) * (x1 - x0);
 	while (fabs(xk1 - xk) >= eps && count < kMax) {
 		xkPrev = xk;
 		xk = xk1;
 		xk1 = xk - func(xk) / (func(xk) - func(xkPrev)) * (xk - xkPrev);
-		cout << "k = " << count << " xk = " << xk1 << "; xk - xk-1 = " << fabs(xk - xk1)  << setprecision(7)
-			 << "; xk - root = " << fabs(root - xk1) << setprecision(7)
-			 <<  "; f(xk) = " << func(xk1) << setprecision(7) << endl;
+		cout.precision(6);
+		cout << "k = " << count << " xk = " << xk1 << "; xk - xk-1 = " << fabs(xk - xk1)  << setprecision(6)
+			 << "; xk - root = " << fabs(root - xk1) * 1000 / 1000 << fixed << setprecision(6)
+			 <<  "; f(xk) = " << func(xk1) * 1000 / 1000 << setprecision(6) << endl;
 		++count;
 		++quantityOFStepsS;
 	}
@@ -124,9 +132,13 @@ double methodChord(double a, double b, double root, double eps, int &quantityOFS
 	}
 	const double step = 0.1;
 	double m1 = fabs(func(c));
+	double m2 = fabs(func(c));
 	for (double i = a; i <= b; i += step) {
 		if (fabs(func(i)) < m1) {
 			m1 = fabs(func(i));
+		}
+		if(fabs(func(i)) < m2) {
+			m2 = fabs(func(i));
 		}
 	}
 
@@ -136,7 +148,7 @@ double methodChord(double a, double b, double root, double eps, int &quantityOFS
 	double xk1 = xk - funcxk / (funcxk - funcc) * (xk - c);
 	cout.precision(7);
 
-	while (fabs(xk - root) > func(xk) / m1 && count < kMax) {
+	while (fabs(xk - root) > func(xk) / m1 && fabs(xk - root) > (m2 - m1) / m1 * fabs(xk1 - xk) && count < kMax) {
 		xk = xk1;
 		xk1 = xk - funcxk / (funcxk - funcc) * (xk - c);
 		cout << "k = " << count << " xk = " << xk1 << "; xk - xk-1 = " << fabs(xk - xk1) << "; xk - root = " << fabs(root - xk1) <<
@@ -154,7 +166,7 @@ double methodIteration(double x0, double root, double eps, double begin, double 
 
 	double m1 = 1000000;
 	double m2 = -10000000;
-	const double step = 0.0001;
+	const double step = 0.000001;
 	for (double i = begin; i <= end; i += step) {
 		if (fabs(dFunc(i)) > m2) {
 			m2 = fabs(dFunc(i));
@@ -164,9 +176,16 @@ double methodIteration(double x0, double root, double eps, double begin, double 
 			m1 = fabs(dFunc(i));
 		}
 	}
+	double q = 1 - m1 / m2;
 	int count = 0;
+	double value;
 
-	cout.precision(7);
+	for (double i = begin; i <= end; i += step) {
+		double ololo = dFuncForIteration(i);
+		value = q - dFuncForIteration(i);
+	}
+
+	cout.precision(5);
 	while ((!(fabs(xk - root) <= q / (1 - q) * fabs(xk - xkPrev))) && count < kMax) {
 		xkPrev = xk;
 		xk = funcForIteration(xkPrev);
@@ -182,14 +201,6 @@ double methodIteration(double x0, double root, double eps, double begin, double 
 	}
 
 	return xk;
-}
-
-double ololo(double x0)
-{
-	int l = int(x0);
-	x0 = l - x0;
-	x0 = int(x0 * pow(10, 5));
-	return l - x0 / pow(10, 5);
 }
 
 int main(int argc, char *argv[])
@@ -209,7 +220,6 @@ int main(int argc, char *argv[])
 		double x = std::trunc(x0 * 1000000.0) / 1000000.0;
 		double root = methodNewton(x0, eps, quantityOFStepsN, kMax);
 		roots.append(root);
-	//	cout.precision(7);
 		cout << "method secant" << endl;
 		double rootSecant = methodSecant(x0, x0 + 5 * eps, root, eps, quantityOFStepsS, kMax);
 
