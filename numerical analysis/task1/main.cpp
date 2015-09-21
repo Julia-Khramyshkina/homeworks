@@ -32,7 +32,7 @@ QList<QPair<double, double> > getIntervals()
 	const double begin = 0.0;
 	const double end = 2.0;
 
-	const double step = 0.01;
+	const double step = 0.001;
 	QList<QPair<double, double> > result;
 	for (double i = begin; i < end; i += step) {
 		if (func(i) * func(i + step) < 0) {
@@ -58,7 +58,7 @@ QPair<double, double> cut(QPair<double, double> interval)
 
 QList<QPair<double, double> > getSmallIntervals()
 {
-	const int quantity = 5;
+	const int quantity = 3;
 	QList<QPair<double, double> > startIntervals = getIntervals();
 	QList<QPair<double, double> > listWithSmallIntervals;
 
@@ -156,6 +156,7 @@ double methodChord(double a, double b, double root, double eps, int &quantityOFS
 		++count;
 		++quantityOFStepsC;
 	}
+
 	return xk1;
 }
 
@@ -210,7 +211,7 @@ int main(int argc, char *argv[])
 	int kMax = 5;
 
 	for (QPair<double, double> currentInterval : intervals) {
-		double x0 = (currentInterval.first + currentInterval.second) / 2;
+		double x0 = fabs(currentInterval.first + currentInterval.second) / 2 + 0.02;
 		double x = std::trunc(x0 * 1000000.0) / 1000000.0;
 		double root = methodNewton(x0, eps, quantityOFStepsN, kMax);
 		roots.append(root);
