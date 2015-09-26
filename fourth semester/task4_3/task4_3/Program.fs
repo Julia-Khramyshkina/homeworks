@@ -57,7 +57,7 @@ let phoneAndNameList =
       printfn "hello! this is phoneBook: please input command
     0 - out
     1 - add rocrd (name and phone)
-    2 - search phone for name телефон
+    2 - search phone for name
     3 - seacrh name for phone
     4 - save count data in file
     5 - read data from file\n"

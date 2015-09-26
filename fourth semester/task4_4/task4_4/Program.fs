@@ -57,4 +57,5 @@ let rec simple expression =
 
 let expr = Expr('+' , Expr('-', Const 1,  Variable 'x'),  Expr('*', Const 2, Variable 'x'))
 
+
 printfn "%A" (simple (derivative expr))
