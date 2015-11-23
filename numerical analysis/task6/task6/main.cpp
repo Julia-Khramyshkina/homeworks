@@ -1,6 +1,9 @@
 #include <iostream>
 #include <math.h>
 
+#include <QtCore>
+#include <limits>
+#include <iomanip>
 using namespace std;
 
 double function(double x)
@@ -10,8 +13,8 @@ double function(double x)
 
 double mediumRectanglesWithTwoNodes()
 {
-	const double h = 1.0 / 2.0;
-	return function(h / 2.0) + function(h / 2.0 + h);
+	const double h = 0.5;
+	return h * (function(h / 2) + function(h / 2 + h));
 }
 
 double A_1(double x1, double x2, double mu_0, double mu_1)
@@ -37,7 +40,10 @@ double interpolFormWithIntegral(double mu_0, double mu_1)
 
 double gauss()
 {
-	return (1.0 / 2.0) * (function(-1.0 / sqrt(3.0)) + function(1.0 / sqrt(3.0)));
+	double arg1 = 0.5 * (-1.0/ sqrt(3.0)) + 0.5;
+	double arg2 = 0.5 * (1.0/ sqrt(3.0)) + 0.5;
+
+	return (1.0 / 2.0) * (function(arg1) + function(arg2));
 }
 
 double searchingForKof1(double mu_0, double mu_1, double mu_2, double mu_3)
@@ -71,14 +77,9 @@ int main()
 	cout << "Checking equivalence A1 + A2 witn mu_0 " << "A1 + A2 = "  << A1 + A2
 		 << " mu_0 = " << mu_0 <<  endl;
 
-	const double node1WithReplacement = 0.5 * node1 + 0.5;
-	const double node2WithReplacement = 0.5 * node2 + 0.5;
 
-	const double B1 = A1 * 0.5;
-	const double B2 = A2 * 0.5;
-
-	const double integralFromGaussBuilt = B1 * sin(node1WithReplacement)
-			+ B2 * sin(node2WithReplacement);
+	const double integralFromGaussBuilt = A1 * sin(node1)
+			+ A2 * sin(node2);
 
 	cout << "exact value: " << preciseValueOfIntegral << endl;
 	cout << "medium rectangles: " << mediumRectanglesWithTwoNodes() << " difference: "
@@ -86,7 +87,7 @@ int main()
 	cout << "integral from interpolation formula: " << interpolFormWithIntegral(mu_0, mu_1)
 		 << " difference: " << interpolFormWithIntegral(mu_0, mu_1) - preciseValueOfIntegral << endl;
 	cout << "Gauss with nodes: " << gauss() << " difference: " << gauss() - preciseValueOfIntegral << endl;
-	cout << "Integral from built formula of Gauss: " << integralFromGaussBuilt
+	cout << "Integral from built formula of Gauss: " << fixed << setprecision(5) << integralFromGaussBuilt
 		 << " difference: " << integralFromGaussBuilt - preciseValueOfIntegral << endl;
 
 	return 0;
