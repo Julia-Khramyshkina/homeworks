@@ -13,13 +13,20 @@ public class task1
     static double[][] A1 = {
     {3.278164e-8, 1.046583, -1.378574, -0.527466},
     {1.046583, 2.975937, 0.934251, 2.526877},
-    {-1.378574, 0.934251, 4.836173, 5.165441}
-};
+    {-1.378574, 0.934251, 4.836173, 5.165441}};
 
-    static double[][] B = {
-    {1, 0.99, 1.99},
-    {0.99, 0.98, 1.97}
-};
+    static double[][] D = {
+            {7.35272, 0.88255, -2.270052, 1, 0, 0},
+            {0.88255, 5.58351, 0.528167, 0, 1, 0},
+            {-2.27005, 0.528167, 4.430329, 0, 0, 1}};
+    static double[][] D1 = {
+            {7.35272, 0.88255, -2.270052, 1, 0, 0},
+            {0.88255, 5.58351, 0.528167, 0, 1, 0},
+            {-2.27005, 0.528167, 4.430329, 0, 0, 1}};
+
+    static double[][] check = {
+    {1, 2, 3},
+    {4, 5, 6}, {7, 8, 9}};
 
     static double[][] C = {{7.35272, 0.88255, -2.270052, 1},
     {0.88255, 5.58351, 0.528167, 0},
@@ -88,6 +95,34 @@ public class task1
     return m;
 }
 
+    static double [][] inverse(double[][] m, int size)
+    {
+        for (int k = 0; k < size; k++)
+        {
+            double a = m[k][k];
+            if (Math.abs(a) < eps)
+            {
+                System.out.println("Too small " + k + " : " + a);
+            }
+            for (int j = k; j < size * 2; j++)
+            {
+                m[k][j] /= a;
+            }
+
+            for (int j = k + 1; j < size * 2; j++)
+            {
+                for (int i = 0; i < k; i++)
+                    m[k][i] = 0;
+
+                for (int i = k + 1; i < size; i++)
+                    m[i][j] -= m[k][j] * m[i][k];
+            }
+
+        }
+        return m;
+
+    }
+
 
     static double[] resolve(double[][] m, int size)
     {
@@ -103,21 +138,72 @@ public class task1
         return res;
     }
 
+    static double[][] otherMatrix(double[][] m, int size)
+    {
+        double [][] matrix = new double[size][size + 1];
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                matrix[i][j] = m[i][j];
+            }
+        }
+
+        return matrix;
+    }
+
+    static double[] otherResolve(double[][] newM, double[][] old, int size, int count)
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            newM[i][size] = old[i][count];
+        }
+
+        double [] result = resolve(newM, 3);
+        return result;
+    }
+
+    static void inversePrint(double [][]m, int size)
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                System.out.print(m[j][i] + " ");
+            }
+            System.out.println();
+        }
+    }
 
     public static void main(String[] args)
     {
-        System.out.println("A:");
-        print(A, 3);
-        print(Gauss2(A, 3), 3);
-        double[] res = resolve(A, 3);
-        print(res, 3);
+//        System.out.println("A:");
+//        print(A, 3);
+//        print(Gauss2(A, 3), 3);
+//        double[] res = resolve(A, 3);
+//        System.out.println("Result:");
+//        print(res, 3);
 
-        System.out.println("Result:");
-        double[] res2 = mult(A1, res, 3);
-        print(res2, 3);
+//
+//        System.out.println("Dif:");
+//        print(minus(res2, A1, 3), 3);
 
-        System.out.println("Dif:");
-        print(minus(res2, A1, 3), 3);
+
+
+        print(D, 3);
+
+        double [][] matrix = inverse(D, 3);
+        otherPrint(matrix, 3, 6);
+        double [][] newMatrix = otherMatrix(matrix, 3);
+
+        double [][]inverseMatrix = new double[3][3];
+        for (int i = 0 ; i < 3; ++i)
+        {
+            inverseMatrix[i] = otherResolve(newMatrix, matrix, 3, i + 3);
+        }
+
+        inversePrint(inverseMatrix, 3);
+
     }
 
 
@@ -125,9 +211,22 @@ public class task1
     {
         for (int j = 0; j < size; j++)
         {
-            for (int i = 0; i < size + 1; i++)
+            for (int i = 0; i < size * 2; i++)
             {
                 System.out.print(m[j][i] + "  ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    static void otherPrint(double[][] m, int one, int two)
+    {
+        for (int i = 0; i < one; i++)
+        {
+            for (int j = 0; j < two; j++)
+            {
+                System.out.print(m[i][j] + "  ");
             }
             System.out.println();
         }
